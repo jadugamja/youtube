@@ -53,13 +53,13 @@ const Header = (props) => {
                 </div>
             </div>
             <div className="align-center h-center">
-                <form className={`vertical-align-center ${isActive ? "active" : ""}`}>
-                    <div className="vertical-align-center input-area-container" onFocus={activateInputEvent} onBlur={disabledInputEvent}>
-                        <div className={`vertical-align-center input-area ${isActive ? "active" : ""}`}>
-                            {
-                                isActive &&
-                                    <img className="i-search" src="./resources/icon/search.png" />
-                            }
+                <form className="vertical-align-center">
+                    <div className={`vertical-align-center input-area-container ${isActive ? "active" : ""}`} onFocus={activateInputEvent} onBlur={disabledInputEvent}>
+                      <div className="vertical-align-center input-area">
+                        {
+                            isActive &&
+                                <img className="i-search" src="./resources/icon/search.png" />
+                        }
                             <input type="text" className="input" placeholder="검색" />
                             <div className="keyboard-box" onClick={toggleKeyboardEvent}>
                                 <img className="i-keyboard" src="./resources/icon/keyboard.png" />

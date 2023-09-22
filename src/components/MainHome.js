@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MainHomeItem from "./MainHomeItem";
 import videoSet from "../db/videoSet.json"
 import "./Main.Home.css";
@@ -11,8 +11,8 @@ const MainHome = () => {
     // 영상 정보
     const [dataSet, setDataSet] = useState(videoSet.slice(isScrolledDown, isScrolledDown + 16));
 
-    // 키워드 정보 
-    const [keywordsSet, setKeywordsSet] = useState([]);
+    // 키워드 정보
+    let [keywordsSet, setKeywordsSet] = useState([]);
 
 
     // 스크롤 문서 최하단 위치 시 콘텐츠 추가 이벤트
@@ -41,8 +41,7 @@ const MainHome = () => {
         try {
           const response = await fetch('/data.json');
           keywordsSet = await response.json();
-          setKeywordsSet(keywordsSet);
-          console.log(keywordsSet);
+          setKeywordsSet(keywordsSet.keywords);
         } catch (error) {
           console.error('데이터를 불러오는 중 오류 발생: ', error);
         }

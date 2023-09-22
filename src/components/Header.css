@@ -57,19 +57,20 @@ form {
     flex-basis: 65%;
 }
 
-form.active {
-    flex-basis: 68%;
-}
-
 .input-area-container {
     flex-basis: 100%;
+    padding-left: 30px;
+}
+
+.input-area-container.active {
+    padding-left: 0;
 }
 
 .input-area {
     justify-content: space-between;
 
     height: 40px;
-    padding-left: 20px;
+    padding-left: 15px;
     flex-basis: 100%;
     
     border: 1px solid var(--search-border-color);
@@ -77,14 +78,13 @@ form.active {
     box-shadow: inset 0.5px 0.2px 3px #e6e6e6;
 }
 
-.input-area.active {
+.input-area-container.active .input-area {
     border: 1px solid var(--search-focus-border-color);
 }
 
-.input-area.active .input {
+.input-area-container.active .input {
     margin-left: 10px;
 }
-
 .input {
     width: 100%;
     font-size: 16px;
