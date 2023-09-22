@@ -1,13 +1,202 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+    --search-border-color: #ccc;
+    --search-focus-border-color: #1c62b9;
+    --search-btn-bg-color: #f8f8f8;
+    --btn-bg-color: #f2f2f2;
+
+    --main-txt-color: #0F0F0F;
+    --channel-txt-color: #606060;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;  
+    box-sizing: border-box;
+    font-family: Roboto, Arial, sans-serif, "FontAwesome";
+    color: var(--main-txt-color);
+}
+
+html, body, #root {
+    height: 100%;
+}
+
+body, #root {
+    position: absolute;
+    width: 100%;
+}
+
+main {
+    height: 100%;
+
+    margin-top: 60px;
+    margin-left: 78px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hide {
+    display: none!important;
+}
+
+/**************************************************/
+/************* 기본 태그 스타일 무효화 **************/
+/**************************************************/
+body {
+    margin: 0;
+}
+
+input[type="text"], input[type="submit"] {
+    padding: 0;
+    outline: 0;
+    border: 0;
+    background: transparent;
+}
+
+form {
+    margin: 0;
+    margin-block-end: 0;
+}
+
+h1, h2, h3 {
+    margin: 0;
+}
+
+button {
+    border: 0;
+    padding: 0;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/****************************************************/
+/********************* 스크롤바 *********************/
+/****************************************************/
+/* Firefox */
+body {
+    scrollbar-width: thin;
+    scrollbar-color: black transparent;
+}
+
+/* Chrome, Edge */
+::-webkit-scrollbar {
+    width: 17px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    /* width: 10px; */
+    border-radius: 10px;
+    background-color: #5D5D5D;
+    background-clip: padding-box;
+    border: 4px solid transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #909090;
+}
+
+::-webkit-scrollbar-track {
+    /* width: 10px; */
+    background-color: transparent;
+}
+
+/************************************************/
+/****************** ALIGNMENT *******************/
+/************************************************/
+.align-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vertical-align-center {
+    display: flex;
+    align-items: center;
+}
+
+/************************************************/
+/******************** ICON **********************/
+/************************************************/
+.i-menu {
+    width: 26.5px;
+    height: 32px;
+}
+
+.i-logo {
+    width: 87px;
+    height: 20px;
+}
+
+.i-keyboard {
+    width: 21px;
+}
+
+.i-search {
+    width: 24px;
+}
+
+.i-mic {
+    width: 24px;
+    height: 25px;
+}
+
+.i-video {
+    width: 26px;
+}
+
+.i-bell {
+    width: 18px;
+    height: 22px;
+}
+
+.i-home {
+    width: 17px;
+    height: 18px;
+}
+
+.i-shorts {
+    width: 26px;
+    height: 26px;
+    margin-left: 2px;
+}
+
+.i-sub {
+    width: 23px;
+    height: 19px;
+}
+
+.i-lib {
+    width: 24px;
+    height: 24px;
+    margin-left: 2px;
+}
+
+/************************************************/
+/******************** MODAL **********************/
+/************************************************/
+.modal {
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    height: 250px
 }

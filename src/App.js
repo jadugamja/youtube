@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react"
+import Header from "./components/Header"
+import Nav from "./components/Nav"
+import MainHome from "./components/MainHome"
+import MainShorts from "./components/MainShorts"
+import MainSubscribe from "./components/MainSubscribe"
+import MainLibrary from "./components/MainLibrary"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+    // 네비바 열림/닫힘 여부
+    const [isOpen, setIsOpen] = useState(false);
+
+    // 네비바 메뉴 선택 여부
+    const [isSelected, setIsSelected] = useState(0);
+
+    // 렌더링할 메인 아이템 선택
+    let mainItem;
+    switch (isSelected) {
+        case 1:
+            mainItem = <MainShorts />;
+            break;
+        case 2:
+            mainItem = <MainSubscribe />;
+            break;
+        case 3:
+            mainItem = <MainLibrary />;
+            break;
+        default:
+            mainItem = <MainHome />;
+    }
+
+    // 첫 로드 시 스크롤 최상단 위치
+    React.useEffect(() => {
+        window.scrollTo(0, 0)
+    }, []);
+    
+    return (
+        <React.Fragment>
+            <Header isOpen={isOpen} setIsOpen={setIsOpen} />
+            <Nav isOpen={isOpen} isSelected={isSelected} setIsSelected={setIsSelected} />
+            {mainItem}
+        </React.Fragment>
+    );
 }
 
-export default App;
+export default App
