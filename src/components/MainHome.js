@@ -14,7 +14,6 @@ const MainHome = () => {
     // 키워드 정보
     let [keywordsSet, setKeywordsSet] = useState([]);
 
-
     // 스크롤 문서 최하단 위치 시 콘텐츠 추가 이벤트
     const scrollDownToNextContentEvent = () => {
         const root = document.getElementById("root");
@@ -39,11 +38,11 @@ const MainHome = () => {
 
     const fetchData = async () => {
         try {
-          const response = await fetch('/data.json');
-          keywordsSet = await response.json();
-          setKeywordsSet(keywordsSet.keywords);
+            const response = await fetch('/data.json');
+            keywordsSet = await response.json();
+            setKeywordsSet(keywordsSet.keywords);
         } catch (error) {
-          console.error('데이터를 불러오는 중 오류 발생: ', error);
+            console.error('데이터를 불러오는 중 오류 발생: ', error);
         }
     };
 

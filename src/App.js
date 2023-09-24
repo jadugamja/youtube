@@ -22,6 +22,7 @@ const App = () => {
             break;
         case 2:
             mainItem = <MainSubscribe />;
+            document.getElementById("root").style.overflow = "hidden";
             break;
         case 3:
             mainItem = <MainLibrary />;
@@ -33,7 +34,7 @@ const App = () => {
     // 첫 로드 시 스크롤 최상단 위치
     React.useEffect(() => {
         window.scrollTo(0, 0)
-    }, []);
+    }, [isSelected]);
     
     return (
         <React.Fragment>

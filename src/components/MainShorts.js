@@ -1,16 +1,21 @@
+import React from "react";
 import { faVolumeHigh, faThumbsUp, faThumbsDown, faMessage, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Main.Shorts.css";
 
 const MainShorts = () => {
+    const [isHover, setIsHover] = React.useState(false);
+    const activateHeaderEvent = () => setIsHover(true);
+    const disabledHeaderEvent = () => setIsHover(false);
+    
     return (
         <main className="vertical-align-center">
-            <div className="container">
+            <div className="container" onMouseOver={() => {activateHeaderEvent()}} onMouseOut={disabledHeaderEvent}>
                 <div className="play-container">
                     <video>
                         <source type="video/mp4" src="./resources/media/test.mp4"></source>
                     </video>
-                    <div className="play-header">
+                    <div className={`play-header ${!isHover? "hide": "" }`}>
                         <button className="play">▶</button>
                         <button className="volume">
                             <FontAwesomeIcon icon={faVolumeHigh}/>

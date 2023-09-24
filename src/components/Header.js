@@ -1,6 +1,11 @@
 import { useState } from "react"
 import HeaderRightSideButton from "./HeaderRightSideButton";
 import "./Header.css";
+import menu from "../assets/menu.png";
+import logo from "../assets/logo.png";
+import search from "../assets/search.png";
+import keyboard from "../assets/keyboard.png";
+import mic from "../assets/mic.png";
 
 const Header = (props) => {
 
@@ -42,10 +47,10 @@ const Header = (props) => {
             <div className="vertical-align-center h-left-box">
                 <div className="vertical-align-center h-left">
                     <div id="menu" className="align-center menu-box" onClick={toggleMenuButtonEvent}>
-                        <img className="i-menu" src="./resources/icon/menu.png" />
+                        <img className="i-menu" src={menu} />
                     </div>
                     <a className="logo-box" href="#">
-                        <img className="i-logo" src="./resources/img/logo.png" />
+                        <img className="i-logo" src={logo} />
                     </a>
                     <div id="tooltip-home" className="hide">
                         <span>YouTube 홈</span>
@@ -58,17 +63,17 @@ const Header = (props) => {
                       <div className="vertical-align-center input-area">
                         {
                             isActive &&
-                                <img className="i-search" src="./resources/icon/search.png" />
+                                <img className="i-search" src={search} />
                         }
                             <input type="text" className="input" placeholder="검색" />
                             <div className="keyboard-box" onClick={toggleKeyboardEvent}>
-                                <img className="i-keyboard" src="./resources/icon/keyboard.png" />
+                                <img className="i-keyboard" src={keyboard} />
                             </div>
                         </div>
                     </div>
                     <div className="search-btn-area" onMouseOver={() => {activateTooltipEvent(0)}} onMouseOut={disabledTooltipEvent}>
                         <input type="submit" value="" />
-                        <img className="i-search" src="./resources/icon/search.png" />
+                        <img className="i-search" src={search} />
                         {
                             isHover === 0 && (
                                 <div id="tooltip-search" className="tooltip">
@@ -79,7 +84,7 @@ const Header = (props) => {
                     </div>
                 </form>
                 <div className="mic-box" onMouseOver={() => {activateTooltipEvent(1)}} onMouseOut={disabledTooltipEvent}>
-                    <img className="i-mic" src="./resources/icon/mic.png" />
+                    <img className="i-mic" src={mic} />
                         {
                             isHover === 1 && (
                                 <div id="tooltip-search-by-voice" className="tooltip">

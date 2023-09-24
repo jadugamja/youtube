@@ -12,7 +12,7 @@ const HeaderRightSideButton = ({elem}) => {
         default:
             return (
                 <div className="align-center h-right-item">
-                    <img className={`i-${icon}`} src={`./resources/icon/${icon}.png`} />
+                    <img className={`i-${icon}`} src={require(`../assets/${icon}.png`)} alt={icon} />
                 </div>
             );
     }

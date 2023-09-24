@@ -1,151 +1,31 @@
+import React from "react";
 import NavItem from "./NavItem";
 import "./Nav.css";
 
 const Nav = ({isOpen, isSelected, setIsSelected}) => {
 
+    // 사이드 바 메뉴 목록
+    let [closedMenuListSet, setClosedMenuListSet] = React.useState([]);
+    let [openMenuListsSet, setOpenMenuListsSet] = React.useState({});
+
+    React.useEffect(() => {
+        fetchData();
+    }, []);
+    
     // 네비바 항목 선택 및 클릭 이벤트
     const clickNavItemEvent = (idx) => setIsSelected(idx);
-    
-    // 사이드 바 닫혔을 때
-    // const closedMenuListSet = JSON.parse(JSON.stringify(closedMenuList));
-    const closedMenuListSet = [
-        {
-            "id": "home",
-            "name": "홈"
-        }, 
-        {
-            "id": "shorts",
-            "name": "Shorts"
-        },
-        {
-            "id": "sub",
-            "name": "구독"
-        },
-        {
-            "id": "lib",
-            "name": "보관함"
-        }
-    ]
 
-    // 사이드 바 열렸을 때
-    // const openMenuListsSet = JSON.parse(JSON.stringify(openMenuLists));
-    const openMenuListsSet = {
-        "firstGroup": {
-            "title": "",
-            "contents": [
-                {
-                    "id": "home",
-                    "name": "홈"
-                }, {
-                    "id": "shorts",
-                    "name": "Shorts"
-                }, {
-                    "id": "sub",
-                    "name": "구독"
-                }
-            ]
-        }, 
-        "secondGroup" : {
-            "title": "",
-            "contents": [
-                {
-                    "id": "lib",
-                    "name": "보관함"
-                }, {
-                    "id": "record",
-                    "name": "시청 기록"
-                }, {
-                    "id": "my-video",
-                    "name": "내 동영상"
-                }, {
-                    "id": "my-film",
-                    "name": "내 영화"
-                }, {
-                    "id": "later",
-                    "name": "나중에 볼 동영상"
-                }, {
-                    "id": "likes",
-                    "name": "좋아요 표시한 동영상"
-                }
-            ]
-        }, 
-        "thirdGroup" : {
-            "title": "구독",
-            "contents": []
-        }, 
-        "fourthGroup" : {
-            "title": "탐색",
-            "contents": [
-                {
-                    "id": "popular",
-                    "name": "인기 급상승"
-                }, {
-                    "id": "shopping",
-                    "name": "쇼핑"
-                }, {
-                    "id": "music",
-                    "name": "음악"
-                }, {
-                    "id": "film",
-                    "name": "영화"
-                }, {
-                    "id": "real-time",
-                    "name": "실시간"
-                }, {
-                    "id": "game",
-                    "name": "게임"
-                }, {
-                    "id": "sports",
-                    "name": "스포츠"
-                }, {
-                    "id": "learning",
-                    "name": "학습"
-                }
-            ]
-        },
-        "fifthGroup" : {
-            "title": "",
-            "contents": [
-                {
-                    "id": "yt-premium",
-                    "name": "YouTube Premium"
-                },
-                {
-                    "id": "yt-studio",
-                    "name": "YouTube 스튜디오"
-                },
-                {
-                    "id": "yt-music",
-                    "name": "YouTube Music"
-                },
-                {
-                    "id": "yt-kids",
-                    "name": "YouTube Kids"
-                }
-            ]
-        }, 
-        "sixthGroup" : {
-            "title": "",
-            "contents": [
-                {
-                    "id": "setting",
-                    "name": "설정"
-                },
-                {
-                    "id": "report",
-                    "name": "신고 기록"
-                },
-                {
-                    "id": "customer",
-                    "name": "고객센터"
-                },
-                {
-                    "id": "comments",
-                    "name": "의견 보내기"
-                }
-            ]
+    // 로컬 JSON 데이터 불러오기
+    const fetchData = async () => {
+        try {
+            const response = await fetch('/data.json');
+            const data = await response.json();
+            setClosedMenuListSet(data.closedMenuList);
+            setOpenMenuListsSet(data.openMenuLists);
+        } catch (error) {
+            console.error('데이터를 불러오는 중 오류 발생: ', error);
         }
-    }; 
+    };
 
     return (
         <>
