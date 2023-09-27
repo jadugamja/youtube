@@ -1,5 +1,5 @@
 import React from "react";
-import { faVolumeHigh, faThumbsUp, faThumbsDown, faMessage, faShare } from "@fortawesome/free-solid-svg-icons";
+import { faPause, faVolumeHigh, faThumbsUp, faThumbsDown, faMessage, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Main.Shorts.css";
 
@@ -7,6 +7,7 @@ const MainShorts = () => {
     
     const videoRef = React.useRef(null);
     const [isHover, setIsHover] = React.useState(false);
+    const [isPlaying, setIsPlaying] = React.useState(true);
 
     const activateHeaderEvent = () => setIsHover(true);
     const disabledHeaderEvent = () => {
@@ -15,12 +16,13 @@ const MainShorts = () => {
     }
     
     const togglePlayPauseEvent = () => {
-        setIsHover(true);
-
-        if(videoRef.current.paused)
+        if(videoRef.current.paused) {
+            setIsPlaying(true);
             videoRef.current.play();
-        else
+        } else {
+            setIsPlaying(false);
             videoRef.current.pause();
+        }
     }
 
     return (
@@ -31,7 +33,15 @@ const MainShorts = () => {
                         <source type="video/mp4" src={`${process.env.PUBLIC_URL}/media/test.mp4`}></source>
                     </video>
                     <div className={`play-header ${!isHover ? "hide": "" }`}>
-                        <button className="play">▶</button>
+                        {
+                            isPlaying
+                                ?
+                                    <button className="play">▶</button>
+                                :
+                                    <button className="pause">
+                                        <FontAwesomeIcon icon={faPause} style={{color: "#ffffff"}}/>        
+                                    </button>
+                        }
                         <button className="volume">
                             <FontAwesomeIcon icon={faVolumeHigh} style={{color: "#ffffff"}}/>
                         </button>

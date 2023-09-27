@@ -15,7 +15,6 @@ const MainHomeItem = (props) => {
     // 마우스 떼면
     const handleThumbnailMouseOut = () => setIsPlaying(false);
 
-
     return(
         <section onMouseOver={handleThumbnailMouseOver} onMouseOut={handleThumbnailMouseOut}>
             <div className="align-center">
