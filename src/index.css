@@ -13,7 +13,7 @@
     -moz-box-sizing: border-box;  
     box-sizing: border-box;
     font-family: Roboto, Arial, sans-serif, "FontAwesome";
-    color: var(--main-txt-color);
+    /* color: var(--main-txt-color); */
 }
 
 html, body, #root {
@@ -23,16 +23,7 @@ html, body, #root {
 body, #root {
     position: absolute;
     width: 100%;
-}
-
-main {
-    height: 100%;
-
-    margin-top: 60px;
-    margin-left: 78px;
-
-    display: flex;
-    flex-direction: column;
+    overflow: hidden;
 }
 
 button {
@@ -73,6 +64,14 @@ button {
 
 ul, ol {
     list-style: none;
+}
+
+video::-webkit-media-controls {
+    display: none;
+}
+
+video::-webkit-media-controls-play-button {
+    display: none;
 }
 
 /****************************************************/
@@ -148,7 +147,7 @@ body {
 }
 
 .i-video {
-    width: 26px;
+    width: 33px;
 }
 
 .i-bell {
@@ -189,7 +188,7 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {

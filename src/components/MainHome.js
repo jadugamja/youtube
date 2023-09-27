@@ -36,6 +36,7 @@ const MainHome = () => {
         }
     }
 
+    // public 데이터 불러오기
     const fetchData = async () => {
         try {
             const response = await fetch('/data.json');

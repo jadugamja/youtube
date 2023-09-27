@@ -16,6 +16,7 @@ const App = () => {
 
     // 렌더링할 메인 아이템 선택
     let mainItem;
+
     switch (isSelected) {
         case 1:
             mainItem = <MainShorts />;
@@ -33,7 +34,7 @@ const App = () => {
 
     // 첫 로드 시 스크롤 최상단 위치
     React.useEffect(() => {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
     }, [isSelected]);
     
     return (

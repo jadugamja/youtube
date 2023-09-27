@@ -44,7 +44,7 @@ const Nav = ({isOpen, isSelected, setIsSelected}) => {
                                                         <h3>{group.title}</h3>
                                                 }{
                                                     Object.values(group.contents).map((menu, index) => (
-                                                        <NavItem item={menu} />
+                                                        <NavItem onClick={() => {clickNavItemEvent(index)}} item={menu} isSelected={isSelected === index} />
                                                     ))
                                                 }
                                                 <hr />

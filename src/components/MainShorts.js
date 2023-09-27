@@ -4,28 +4,43 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Main.Shorts.css";
 
 const MainShorts = () => {
-    const [isHover, setIsHover] = React.useState(false);
-    const activateHeaderEvent = () => setIsHover(true);
-    const disabledHeaderEvent = () => setIsHover(false);
     
+    const videoRef = React.useRef(null);
+    const [isHover, setIsHover] = React.useState(false);
+
+    const activateHeaderEvent = () => setIsHover(true);
+    const disabledHeaderEvent = () => {
+        if(!videoRef.current.paused)
+            setIsHover(false);
+    }
+    
+    const togglePlayPauseEvent = () => {
+        setIsHover(true);
+
+        if(videoRef.current.paused)
+            videoRef.current.play();
+        else
+            videoRef.current.pause();
+    }
+
     return (
         <main className="vertical-align-center">
             <div className="container" onMouseOver={() => {activateHeaderEvent()}} onMouseOut={disabledHeaderEvent}>
-                <div className="play-container">
-                    <video>
-                        <source type="video/mp4" src="./resources/media/test.mp4"></source>
+                <div className="play-container" onClick={togglePlayPauseEvent}>
+                    <video ref={videoRef} controls autoplay="true" loop="loop">
+                        <source type="video/mp4" src={`${process.env.PUBLIC_URL}/media/test.mp4`}></source>
                     </video>
-                    <div className={`play-header ${!isHover? "hide": "" }`}>
+                    <div className={`play-header ${!isHover ? "hide": "" }`}>
                         <button className="play">▶</button>
                         <button className="volume">
-                            <FontAwesomeIcon icon={faVolumeHigh}/>
+                            <FontAwesomeIcon icon={faVolumeHigh} style={{color: "#ffffff"}}/>
                         </button>
                     </div>
                     <div className="play-footer">
                         <div className="title-container">
                             <h2 className="video-title">쇼츠 제목1</h2>
                         </div>
-                        <div className="sub-title-container">
+                        <div className="sub-title-container hide">
                             <a>
                                 <h3 className="video-sub-title">
                                     <div>▶</div>
@@ -37,7 +52,7 @@ const MainShorts = () => {
                             <div className="profile-container">
                                 <div className="profile"></div>
                                 <div className="channel-name">
-                                    <span>{`@account1`}</span>
+                                    <span className="channel-name-txt">{`@account1`}</span>
                                 </div>
                             </div>
                             <div className="sub-button-container">

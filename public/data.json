@@ -82,7 +82,7 @@
                     "id": "record",
                     "name": "시청 기록"
                 }, {
-                    "id": "video",
+                    "id": "my-video",
                     "name": "내 동영상"
                 }, {
                     "id": "film",

@@ -1,25 +1,34 @@
+main {
+    height: 100%;
+    margin-top: 60px;
+    margin-left: 140px;
+    flex-direction: column;
+}
 
 video {
-    width: 446px;
-    height: 828px;
+    width: 440px;
+    height: 100%;
     border-radius: 10px;
     filter: drop-shadow(-0.02rem 0 0.6rem rgba(117, 117, 117, 0.9));
+    object-fit: cover;
 }
 
 .container {
     display: flex;
     height: 90%;
+    z-index: 2;
 }
 
 .play-container {
     position: relative;
-    height: fit-content;
+    height: 800px;
+    margin-top: 22px;
 }
 
 .play-header {
     position: absolute;
-    top: 17px;
-    padding: 18px 21px;
+    top: 0;
+    padding: 20px 21px;
     width: 100%;
     height: 10%;
 
@@ -36,7 +45,8 @@ video {
 
 .play, .volume {
     background-color: transparent;
-    font-size: 18px;
+    font-size: 16px;
+    color: #fff;
 }
 
 .play-header:hover {
@@ -48,7 +58,7 @@ video {
     bottom: 0;
     z-index: 3;
     width: 100%;
-    padding: 25px 16px;
+    padding: 20px 16px;
     background-image: linear-gradient(to top, #6e6e6e66, transparent);
     border-radius: 0 0 10px 10px;
 }
@@ -56,6 +66,8 @@ video {
 .video-title {
     font-size: 16px;
     font-weight: 500;
+    margin: 14px 0;
+    color: #fff;
 }
 
 .sub-title-container {
@@ -76,13 +88,19 @@ video {
 main .profile {
     margin: 0;
     margin-right: 6px;
+    width: 34px;
+    height: 34px;
 }
 
 .channel-name {
     display: flex;
     align-items: center;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
+}
+
+.channel-name-txt {
+    color: #fff;
 }
 
 .sub-button-container {
@@ -104,8 +122,8 @@ main .profile {
 .feedback-container {
     display: flex;
     flex-direction: column;
-    justify-content: end;
-    margin: 6px 12px;
+    justify-content: flex-end;
+    margin: 20px 12px;
     gap: 20px;
     font-size: 14px;
 }
@@ -128,13 +146,13 @@ main .profile {
 .top-button-container {
     position: fixed;
     top: 70px;
-    right: 3px;
+    right: 12px;
 }
 
 .bottom-button-container {
     position: fixed;
     bottom: 8px;
-    right: 3px;
+    right: 12px;
 }
 
 .bigger-rounded-button {
