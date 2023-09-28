@@ -1,0 +1,168 @@
+main {
+    height: 100%;
+
+    margin-top: 60px;
+    margin-left: 78px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-x: hidden;
+}
+
+.keywords-container {
+    position: fixed;
+    width: 100%;
+    height: 64px;
+    background: #fff;
+    
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+
+.keyword-box {
+    height: 100%;
+    margin: 8px 0 0 24px;
+}
+
+.keyword {
+    display: flex;
+    justify-content: center;
+    flex: 1 1;
+
+    margin: 0 7px;
+    background-color: #F2F2F2;
+    padding: 8px 12px;
+    font-size: 15px;
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.keyword:hover {
+    background-color: #E5E5E5;
+}
+
+.keyword.active {
+    background-color: #0F0F0F;
+}
+
+.keyword.active span {
+    color: #fff;
+}
+
+.contents-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(330px, 1fr));
+    grid-gap: 60px 20px;
+
+    /* display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+    gap: 70px 20px; */
+
+    margin: 96px 20px 0 30px;
+}
+
+section {
+    cursor: pointer;
+}
+
+.thumbnail-box {
+    flex-basis: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.thumbnail {
+    object-fit: cover;
+    width: 100%;
+    /* height: 42%; */
+    max-width: 450px;
+    max-height: 225px;
+    border-radius: 14px;
+}
+
+section:hover .thumbnail {
+    transition: ease-in 0.2s;
+    border-radius: 0;
+}
+
+.main-desc-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 450px;
+    margin-top: 12px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.img-channel-profile {
+    width: 36px;
+    border-radius: 50%;
+}
+
+.right-side-box {
+    flex-basis: 88%;
+}
+
+.right-side-box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+
+    max-width: 376px;
+    max-height: 47px;
+    overflow: hidden;
+}
+
+.right-side-box-profile {
+    display: flex;
+    flex-direction: column;
+    margin: 7px 0;
+}
+
+.txt-title {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    /* text-overflow: ellipsis; */
+
+    width: 94%;
+    flex-basis: 95%;
+    font-size: 17.5px;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.txt-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--channel-txt-color);
+}
+
+.kebab-btn {
+    /* background-image: url(../icon/kebab.png); */
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: transparent;
+
+    border: 0;
+    max-width: 23px;
+    height: 23px;
+    cursor: pointer;
+
+    align-self: center;
+    flex: 1;
+}
+
+.verified {
+    /* background-image: url(../icon/verified.png); */
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 15px;
+    height: 15px;
+}
