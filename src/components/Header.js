@@ -1,5 +1,4 @@
 import { useState } from "react"
-import HeaderRightSideButton from "./HeaderRightSideButton";
 import "./Header.css";
 import menu from "../assets/menu.png";
 import logo from "../assets/logo.png";
@@ -25,22 +24,6 @@ const Header = (props) => {
     const [isHover, setIsHover] = useState(false);
     const activateTooltipEvent = (idx) => setIsHover(idx);
     const disabledTooltipEvent = () => setIsHover(false);
-
-    // 헤더 오른쪽 버튼 
-    const buttonSet = [
-        {
-            icon: "video",
-            contents: "upload"
-        }, 
-        {
-            icon: "bell",
-            contents: "alarm"
-        },
-        {
-            icon: "",
-            contents: "profile"
-        }
-    ];
 
     return (
         <header>
@@ -95,13 +78,15 @@ const Header = (props) => {
                 </div>
             </div>
             <div className="vertical-align-center h-right">
-                {
-                    buttonSet.map((elem) => {
-                        return (
-                            <HeaderRightSideButton elem={elem} />
-                        );
-                    })
-                }
+                <div className="align-center h-right-item">
+                    <img className="i-video" src={require(`../assets/video.png`)} alt="video" />
+                </div>
+                <div className="align-center h-right-item">
+                    <img className={`i-bell`} src={require(`../assets/bell.png`)} alt="bell" />
+                </div>
+                <div className="align-center profile">
+                    <img className="i-user" alt="user"/>
+                </div>
             </div>
         </header>
     )
