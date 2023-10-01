@@ -7,7 +7,7 @@ const NavItem = forwardRef((props, ref) => {
     return (
         <li key={id} className={`nav-item ${id}-pad ${isSelected ? "active" : ""}`} onClick={onClick}>
             <div className="i-wrapper">
-                <img className={`i-${id}`} src={require(`../assets/${id}.png`)} alt={id} />
+                <img className={`i-${id}`} src={require(`assets/${id}.png`)} alt={id} />
             </div>
             <span>{name}</span>
         </li>

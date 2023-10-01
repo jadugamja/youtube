@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MainHomeItem from "./MainHomeItem";
-import videoSet from "../db/videoSet.json"
+import videoSet from "db/videoSet.json"
 import "./Main.Home.css";
 
 const MainHome = () => {

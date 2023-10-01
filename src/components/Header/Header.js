@@ -1,10 +1,10 @@
 import { useState } from "react"
 import "./Header.css";
-import menu from "../assets/menu.png";
-import logo from "../assets/logo.png";
-import search from "../assets/search.png";
-import keyboard from "../assets/keyboard.png";
-import mic from "../assets/mic.png";
+import menu from "assets/menu.png";
+import logo from "assets/logo.png";
+import search from "assets/search.png";
+import keyboard from "assets/keyboard.png";
+import mic from "assets/mic.png";
 
 const Header = (props) => {
 
@@ -79,10 +79,10 @@ const Header = (props) => {
             </div>
             <div className="vertical-align-center h-right">
                 <div className="align-center h-right-item">
-                    <img className="i-video" src={require(`../assets/video.png`)} alt="video" />
+                    <img className="i-video" src={require(`assets/video.png`)} alt="video" />
                 </div>
                 <div className="align-center h-right-item">
-                    <img className={`i-bell`} src={require(`../assets/bell.png`)} alt="bell" />
+                    <img className={`i-bell`} src={require(`assets/bell.png`)} alt="bell" />
                 </div>
                 <div className="align-center profile">
                     <img className="i-user" alt="user"/>

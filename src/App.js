@@ -1,18 +1,17 @@
 import React, { useState } from "react"
-import Header from "./components/Header"
-import Nav from "./components/Nav"
-import MainHome from "./components/MainHome"
-import MainShorts from "./components/MainShorts"
-import MainSubscribe from "./components/MainSubscribe"
-import MainLibrary from "./components/MainLibrary"
+import Header from "./components/Header/Header"
+import Nav from "./components/Nav/Nav"
+import MainHome from "./components/Main/MainHome"
+import MainShorts from "./components/Main/MainShorts"
+import MainSubscribe from "./components/Main/MainSubscribe"
+import MainLibrary from "./components/Main/MainLibrary"
 
 const App = () => {
 
     // 네비바 열림/닫힘 여부
     const [isOpen, setIsOpen] = useState(false);
-
-    // 네비바 메뉴 선택 여부
-    const [isSelected, setIsSelected] = useState(0);
+    // 선택 메뉴
+    const [isSelected, setIsSelected] = React.useState(0);
 
     // 첫 로드 시 스크롤 최상단 위치
     React.useEffect(() => {
