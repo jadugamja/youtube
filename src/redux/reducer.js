@@ -3,6 +3,7 @@ import { createStore } from "redux";
 const initState = {
     isOpen: false,
     selectedMenu: 0,
+    selectedKeyword: 0
 }
 
 const reducer = ( state = initState, action ) => {
@@ -17,6 +18,11 @@ const reducer = ( state = initState, action ) => {
             return {
                 ...state,
                 selectedMenu: action.payload
+            }
+        case "SET_SELECTED_KEYWORD":
+            return {
+                ...state,
+                selectedKeyword: action.payload
             }
         default:
             return state;

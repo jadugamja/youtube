@@ -23,7 +23,7 @@ html, body, #root {
 body, #root {
     position: absolute;
     width: 100%;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 button {

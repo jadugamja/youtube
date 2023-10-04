@@ -3,16 +3,15 @@ import {useState} from "react";
 const MainHomeItem = (props) => {
 
     const {item: {channelName, channelProfile, videoTitle, staticThumbnail, animatedThumbnail, hitsPerVideo, uploadedPeriod}, idx} = props;
-
     const [isPlaying, setIsPlaying] = useState(false);
 
     // 상대 경로 -> 절대 경로로 변환
     const convertToAbsolutePath = (imagePath) => { return process.env.PUBLIC_URL + imagePath; };
 
-    // // 마우스 오버 시
+    // 마우스 오버 시
     const handleThumbnailMouseOver = () => setIsPlaying(true);
 
-    // // 마우스 떼면
+    // 마우스 떼면
     const handleThumbnailMouseOut = () => setIsPlaying(false);
 
     return(

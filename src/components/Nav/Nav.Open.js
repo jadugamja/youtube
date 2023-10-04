@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import{ setSelectedMenu } from "redux/action";
 
+import { fetchData } from "utils/fetchData";
 import NavItem from "./NavItem";
 
 const NavOpen = () => {
@@ -20,19 +21,12 @@ const NavOpen = () => {
     let [openMenuListsSet, setOpenMenuListsSet] = React.useState({});
 
     React.useEffect(() => {
-        fetchData();
-    }, []);
-
-    // 로컬 JSON 데이터 불러오기
-    const fetchData = async () => {
-        try {
-            const response = await fetch('/data.json');
-            const data = await response.json();
+        // 로컬 JSON 데이터 불러오기
+        fetchData("/data.json", (data) => {
             setOpenMenuListsSet(data.openMenuLists);
-        } catch (error) {
-            console.error('데이터를 불러오는 중 오류 발생: ', error);
-        }
-    };
+        });
+
+    }, []);
 
     return (
         <React.Fragment>

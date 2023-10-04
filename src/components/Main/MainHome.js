@@ -1,19 +1,27 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import{ setSelectedKeyword } from "redux/action";
+
 import MainHomeItem from "./MainHomeItem";
-import videoSet from "db/videoSet.json"
+import videoSet from "db/videoSet.json";
+import { fetchData } from "utils/fetchData";
 import "./Main.Home.css";
 
 const MainHome = () => {
-            
+    
+    const dispatch = useDispatch();
+
     // 스크롤이 문서 최하단에 위치한 횟수
     const [isScrolledDown, setIsScrolledDown] = useState(0);
+    const selectedKeyword = useSelector(state => state.selectedKeyword);
 
-    // 영상 정보
+    // 영상 정보, 키워드 정보
     const [dataSet, setDataSet] = useState(videoSet.slice(isScrolledDown, isScrolledDown + 16));
-
-    // 키워드 정보
     let [keywordsSet, setKeywordsSet] = useState([]);
 
+    // 선택 키워드 및 클릭 이벤트
+    const clickKeywordButtonEvent = (idx) => dispatch(setSelectedKeyword(idx));
+    
     // 스크롤 문서 최하단 위치 시 콘텐츠 추가 이벤트
     const scrollDownToNextContentEvent = () => {
         const root = document.getElementById("root");
@@ -36,27 +44,12 @@ const MainHome = () => {
         }
     }
 
-    // public 데이터 불러오기
-    const fetchData = async () => {
-        try {
-            // using URL full name
-            // const response = await fetch("http://localhost:3000/data.json", { method: "GET" });
-            const res = await fetch('/data.json');
-            keywordsSet = await res.json();
-            setKeywordsSet(keywordsSet.keywords);
-        } catch (error) {
-            console.error('데이터를 불러오는 중 오류 발생: ', error);
-        }
-    };
-
-    // 키워드 선택 여부 및 클릭 이벤트
-    const [isSelected, setIsSelected] = React.useState(0);
-    const clickKeywordButtonEvent = (idx) => setIsSelected(idx);
-
     React.useEffect(() => {
 
-        fetchData();
-
+        fetchData("/data.json", (data) => {
+            setKeywordsSet(data.keywords);
+        });
+    
         // isScrolledDown의 상태가 변화할 때마다 이벤트 핸들러 호출
         window.addEventListener("scroll", scrollDownToNextContentEvent, true);
 
@@ -73,7 +66,7 @@ const MainHome = () => {
                 {
                     keywordsSet.map((item, index) => {
                         return (
-                            <div onClick={() => {clickKeywordButtonEvent(index)}} className={`keyword ${isSelected === index? "active": ""}`} key={index} idx={index} value={item.value}>
+                            <div onClick={() => {clickKeywordButtonEvent(index)}} className={`keyword ${selectedKeyword === index? "active": ""}`} key={index} idx={index} value={item.value}>
                                 <span>{item.key}</span>
                             </div>
                         )
