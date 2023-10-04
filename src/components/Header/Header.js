@@ -1,4 +1,7 @@
-import { useState } from "react"
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import{ toggleMenuButton } from "redux/action";
+
 import "./Header.css";
 import menu from "assets/menu.png";
 import logo from "assets/logo.png";
@@ -6,10 +9,14 @@ import search from "assets/search.png";
 import keyboard from "assets/keyboard.png";
 import mic from "assets/mic.png";
 
-const Header = ({isOpen, setIsOpen}) => {
+const Header = () => {
+
+    const dispatch = useDispatch();
 
     // 메뉴바 버튼 클릭 이벤트
-    const toggleMenuButtonEvent = () => setIsOpen(!isOpen);
+    const toggleEvent = () => {
+        dispatch(toggleMenuButton());
+    }
 
     // 검색 영역 활성화 상태 여부 및 상태 변경 이벤트
     const [isActive, setIsActive] = useState(false);
@@ -28,7 +35,7 @@ const Header = ({isOpen, setIsOpen}) => {
         <header>
             <div className="vertical-align-center h-left-box">
                 <div className="vertical-align-center h-left">
-                    <div id="menu" className="align-center menu-box" onClick={toggleMenuButtonEvent}>
+                    <div id="menu" className="align-center menu-box" onClick={toggleEvent}>
                         <img className="i-menu" src={menu} />
                     </div>
                     <a className="logo-box" href="#">
@@ -77,12 +84,26 @@ const Header = ({isOpen, setIsOpen}) => {
                 </div>
             </div>
             <div className="vertical-align-center h-right">
-                <div className="align-center h-right-item">
+                <div className="align-center h-right-item" onMouseOver={() => {activateTooltipEvent(2)}} onMouseOut={disabledTooltipEvent}>
                     <img className="i-video" src={require(`assets/video.png`)} alt="video" />
+                        {
+                            isHover === 2 && (
+                                <div id="tooltip-video" className="tooltip">
+                                    <span className="tooltip-txt">만들기</span>
+                                </div>
+                            )
+                        }
                 </div>
-                <div className="align-center h-right-item">
+                <div className="align-center h-right-item" onMouseOver={() => {activateTooltipEvent(3)}} onMouseOut={disabledTooltipEvent}>
                     <img className={`i-bell`} src={require(`assets/bell.png`)} alt="bell" />
-                </div>
+                       {
+                            isHover === 3 && (
+                                <div id="tooltip-video" className="tooltip">
+                                    <span className="tooltip-txt">알림</span>
+                                </div>
+                            )
+                        }
+             </div>
                 <div className="align-center profile">
                     <img className="i-user" alt="user"/>
                 </div>

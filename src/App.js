@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
+
 import Header from "components/Header/Header";
 import Nav from "components/Nav/Nav";
 import MainHome from "components/Main/MainHome";
@@ -8,10 +10,8 @@ import MainLibrary from "components/Main/MainLibrary";
 
 const App = () => {
 
-    // 네비바 열림/닫힘 여부
-    const [isOpen, setIsOpen] = useState(false);
     // 선택 메뉴
-    const [selectedMenu, setSelectedMenu] = React.useState(0);
+    const selectedMenu = useSelector(state => state.selectedMenu);
 
     // 첫 로드 시 스크롤 최상단 위치
     React.useEffect(() => {
@@ -20,8 +20,8 @@ const App = () => {
     
     return (
         <React.Fragment>
-            <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-            <Nav isOpen={isOpen} selectedMenu={selectedMenu} setSelectedMenu={setSelectedMenu} />
+            <Header />
+            <Nav />
             {
                 selectedMenu === 0 && <MainHome />
             }
