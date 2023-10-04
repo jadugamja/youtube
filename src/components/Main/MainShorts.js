@@ -29,7 +29,7 @@ const MainShorts = () => {
         <main className="vertical-align-center">
             <div className="container" onMouseOver={() => {activateHeaderEvent()}} onMouseOut={disabledHeaderEvent}>
                 <div className="play-container" onClick={togglePlayPauseEvent}>
-                    <video ref={videoRef} controls autoplay="true" loop="loop">
+                    <video ref={videoRef} controls autoPlay="true" loop="loop">
                         <source type="video/mp4" src={`${process.env.PUBLIC_URL}/media/test.mp4`}></source>
                     </video>
                     <div className={`play-header ${!isHover ? "hide": "" }`}>

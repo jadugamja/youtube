@@ -1,7 +1,7 @@
 import React from "react";
 import NavItem from "./NavItem";
 
-const NavOpen = ({isSelected, setIsSelected}) => {
+const NavOpen = ({selectedMenu, setSelectedMenu}) => {
 
     // 열린 사이드 바 메뉴 목록
     let [openMenuListsSet, setOpenMenuListsSet] = React.useState({});
@@ -22,36 +22,25 @@ const NavOpen = ({isSelected, setIsSelected}) => {
         }
     };
 
-    // 네비바 항목 선택 및 클릭 이벤트
-    const clickNavItemEvent = (e) => {
-        switch (e.target.key) {
-            case "open-menu-1":
-                setIsSelected(1);
-                break;
-            case "open-menu-2":
-                setIsSelected(2);
-                break;
-            case "open-menu-3":
-                setIsSelected(3);
-                break;
-            default:
-                setIsSelected(0);
-                break;
-        }
+    // 네비바 메뉴 클릭 이벤트
+    const clickMenuEvent = (e) => {
+        const clickedLi = e.target.nodeName === "LI" ? e.target : e.target.closest("li") || e.target.querySelector("li");
+        const idx = Array.from(e.currentTarget.querySelectorAll("li")).indexOf(clickedLi);
+        setSelectedMenu(idx)
     }
 
     return (
         <React.Fragment>
-            <div className="nav-open" onClick={clickNavItemEvent}>
+            <div className="nav-open" onClick={clickMenuEvent}>
                 {
                     Object.values(openMenuListsSet).map((group, groupIndex) => {
                         return (
-                            <ul className="active" key={groupIndex}>
+                            <ul key={groupIndex}>
                                 {
                                     group.title !== "" && <h3>{group.title}</h3>
                                 }{
                                     Object.values(group.contents).map((menu, index) => (
-                                        <NavItem key={`open-menu-${index}`} item={menu} isSelected={isSelected === index} />
+                                        <NavItem key={`${groupIndex}-${index}`} item={menu} selectedMenu={selectedMenu === (groupIndex * group.contents.length + index)} />
                                     ))
                                 }
                                 <hr />

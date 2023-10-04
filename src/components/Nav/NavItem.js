@@ -1,11 +1,9 @@
-import { forwardRef } from "react";
-
-const NavItem = forwardRef((props, ref) => {
+const NavItem = ((props) => {
     
-    const {item: {id, name}, onClick, isSelected} = props;
+    const {item: {id, name}, selectedMenu} = props;
 
     return (
-        <li key={id} className={`nav-item ${id}-pad ${isSelected ? "active" : ""}`} onClick={onClick}>
+        <li key={id} className={`nav-item ${id}-pad ${selectedMenu? "active": ""} `}>
             <div className="i-wrapper">
                 <img className={`i-${id}`} src={require(`assets/${id}.png`)} alt={id} />
             </div>

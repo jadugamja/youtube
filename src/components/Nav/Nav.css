@@ -9,11 +9,6 @@ nav {
     overflow-x: hidden;
 }
 
-/* nav.active {
-    width: 240px;
-    margin-top: -56px;
-} */
-
 .nav-open {
     width: 100%;
     overflow-y: auto;
@@ -89,7 +84,7 @@ ul {
     background: #F2F2F2;
 }
 
-nav.active ul, ul.active {
+.nav-open ul {
     position: static;
     width: 240px;
 
@@ -97,14 +92,14 @@ nav.active ul, ul.active {
     padding: 0;
 }
 
-nav.active ul h3, ul.active h3 {
+.nav-open ul h3 {
     align-self: baseline;
     margin: 6px 25px;
     font-size: 18px;
     font-weight: 500;
 }
 
-nav.active ul .nav-item, ul.active .nav-item {
+.nav-open ul .nav-item {
     display: grid;
     grid-template-columns: 1fr 3fr;
     grid-gap: 14px;
@@ -113,23 +108,23 @@ nav.active ul .nav-item, ul.active .nav-item {
     width: 88%;
 }
 
-nav.active ul .nav-item span, ul.active .nav-item span {
+.nav-open ul .nav-item span {
     font-size: 15px;
     text-align: start;
 }
 
-nav.active ul hr , ul.active hr {
+.nav-open ul hr {
     border: 1px solid rgba(0, 0, 0, 0.1);
     width: 90%;
     opacity: 0.5;
 }
 
-nav.active .h-left {
+.nav-open ul .h-left {
     justify-content: space-evenly;
     margin-right: 30px;
     padding: 10px 0;
 }
 
-nav.active .menu-box + nav.active .logo-box {
+.nav-open ul .menu-box + .nav-open ul .logo-box {
     margin-left: 10px
 }

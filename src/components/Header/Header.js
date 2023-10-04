@@ -6,10 +6,9 @@ import search from "assets/search.png";
 import keyboard from "assets/keyboard.png";
 import mic from "assets/mic.png";
 
-const Header = (props) => {
+const Header = ({isOpen, setIsOpen}) => {
 
     // 메뉴바 버튼 클릭 이벤트
-    const {isOpen, setIsOpen} = props;
     const toggleMenuButtonEvent = () => setIsOpen(!isOpen);
 
     // 검색 영역 활성화 상태 여부 및 상태 변경 이벤트
