@@ -1,0 +1,135 @@
+nav {
+    position: fixed;
+    z-index: 9;
+
+    height: 100%;
+    background: #fff;
+
+    margin-top: 60px;
+    overflow-x: hidden;
+}
+
+/* nav.active {
+    width: 240px;
+    margin-top: -56px;
+} */
+
+.nav-open {
+    width: 100%;
+    overflow-y: auto;
+    margin-top: 13px;
+}
+
+/****************************************************/
+/****************** 네비바 스크롤바 ******************/
+/****************************************************/
+.nav-open::-webkit-scrollbar {
+    width: 10px;
+}
+
+.nav-open::-webkit-scrollbar,
+.nav-open::-webkit-scrollbar-thumb {
+    overflow: visible;
+    /* visibility: hidden; */
+}
+
+.scroll {
+    position: absolute;
+    width: 19px;
+    height: 100%;
+    top: 0;
+    right: -19px;
+    opacity: 1;
+    background-color: #fff;
+}
+
+nav:hover .scroll {
+    opacity: 0;
+    -webkit-transition: all .5s;
+}
+
+/* nav:hover nav::-webkit-scrollbar {
+    visibility: visible;
+} */
+
+ul {
+    position: fixed;
+    top: 52px;
+    width: 78px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 4px;
+}
+
+.nav-item {
+    width: 100%;
+    height: 82px;
+    padding: 13px 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    font-size: 11px;
+    text-align: center;
+    border-radius: 7px;
+}
+
+.nav-item.active {
+    background: #E6E6E6;
+    background: #F2F2F2;
+}
+
+.nav-item:hover {
+    cursor: pointer;
+    background: #F2F2F2;
+}
+
+nav.active ul, ul.active {
+    position: static;
+    width: 240px;
+
+    margin: 0;
+    padding: 0;
+}
+
+nav.active ul h3, ul.active h3 {
+    align-self: baseline;
+    margin: 6px 25px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+nav.active ul .nav-item, ul.active .nav-item {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 14px;
+
+    height: 48px;
+    width: 88%;
+}
+
+nav.active ul .nav-item span, ul.active .nav-item span {
+    font-size: 15px;
+    text-align: start;
+}
+
+nav.active ul hr , ul.active hr {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width: 90%;
+    opacity: 0.5;
+}
+
+nav.active .h-left {
+    justify-content: space-evenly;
+    margin-right: 30px;
+    padding: 10px 0;
+}
+
+nav.active .menu-box + nav.active .logo-box {
+    margin-left: 10px
+}

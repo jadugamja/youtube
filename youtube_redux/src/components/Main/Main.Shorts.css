@@ -1,0 +1,177 @@
+main {
+    height: 100%;
+    margin-top: 56px;
+    margin-left: 140px;
+    flex-direction: column;
+}
+
+video {
+    width: 450px;
+    height: 100%;
+    border-radius: 10px;
+    filter: drop-shadow(-0.02rem 0 0.6rem rgba(117, 117, 117, 0.9));
+    object-fit: cover;
+}
+
+.container {
+    display: flex;
+    height: 90%;
+    z-index: 2;
+}
+
+.play-container {
+    position: relative;
+    height: 800px;
+    margin-top: 22px;
+}
+
+.play-header {
+    position: absolute;
+    top: 0;
+    padding: 20px 20px;
+    width: 100%;
+    height: 10%;
+
+    background-image: linear-gradient(to bottom, #6e6e6e96, transparent);
+    border-radius: 10px 10px 0 0;
+    
+    display: flex;
+    /* display: none; */
+    justify-content: space-between;
+    align-items: baseline;
+
+    z-index: 3;
+}
+
+.play, .pause, .volume {
+    background-color: transparent;
+    color: #fff;
+}
+
+.play, .volume {
+    font-size: 16px;
+}
+
+.pause {
+    font-size: 19px;
+}
+
+.play-header:hover {
+    display: flex;
+}
+
+.play-footer {
+    position: absolute;
+    bottom: 0;
+    z-index: 3;
+    width: 100%;
+    padding: 20px 16px;
+    background-image: linear-gradient(to top, #6e6e6e66, transparent);
+    border-radius: 0 0 10px 10px;
+}
+
+.video-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 14px 0;
+    color: #fff;
+}
+
+.sub-title-container {
+    margin: 20px 0;
+}
+
+.video-sub-title {
+    display: flex;
+    font-size: 13px;
+    font-weight: 500;
+    gap: 10px;
+}
+
+.profile-container {
+    display: flex;
+}
+
+main .profile {
+    margin: 0;
+    margin-right: 6px;
+    width: 34px;
+    height: 34px;
+}
+
+.channel-name {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.channel-name-txt {
+    color: #fff;
+}
+
+.sub-button-container {
+    position: absolute;
+    bottom: 54px;
+    right: 77px;
+}
+
+.sub-button {
+    position: absolute;
+    background-color: #fff;
+    width: 60px;
+    height: 36px;
+    border-radius: 20px;
+
+    cursor: pointer;
+}
+
+.feedback-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin: 20px 12px;
+    gap: 20px;
+    font-size: 14px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.rounded-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.top-button-container {
+    position: fixed;
+    top: 70px;
+    right: 12px;
+}
+
+.bottom-button-container {
+    position: fixed;
+    bottom: 8px;
+    right: 12px;
+}
+
+.bigger-rounded-button {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    font-size: 22px;
+}
+
+.square-rounded-button {
+    width: 38px;
+    height: 38px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.6);
+}

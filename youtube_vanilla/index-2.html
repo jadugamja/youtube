@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="resources/css/common.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/index.header.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/index.nav.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/index.main.css">
+    
+    <!-- 2주차 -->
+    <!-- 리액트 문법 적용 -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- Virtual DOM: 컴포넌트 랜더링 -->
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel Library -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script src="./resources/json/closedMenuList.json" type="text/javascript"></script>
+    <script src="./resources/json/openMenuLists.json" type="text/javascript"></script>
+    <script src="./resources/json/video.json" type="text/javascript"></script>
+    <script src="./resources/json/keywords.json" type="text/javascript"></script>
+    <script type="text/babel">
+
+        /*******************************************/
+        /* Create Component
+        /*******************************************/
+        // 홈 영역
+        const Home = (props) => {
+
+            const {isOpen, setIsOpen} = props;
+            
+            // 메뉴바 버튼 클릭 이벤트
+            const toggleMenuButton = () => {
+                setIsOpen(!isOpen);
+            }
+
+            return (
+                <div className="vertical-align-center h-left-box">
+                    <div className="vertical-align-center h-left">
+                        <div id="menu" className="align-center menu-box" onClick={toggleMenuButton}>
+                            <img className="i-menu" src="/homework/intermediate/youtube/resources/icon/menu.png" />
+                        </div>
+                        <a className="logo-box" href="#">
+                            <img className="i-logo" src="/homework/intermediate/youtube/resources/img/logo.png" />
+                        </a>
+                        <div id="tooltip-home" className="hide">
+                            <span>YouTube 홈</span>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        // 검색 영역
+        const Search = () => {
+
+            const searchForm = React.useRef();
+            const searchArea = React.useRef();
+            const searchIcon = React.useRef();
+
+            /*******************************************/
+            /* Event Handler
+            /*******************************************/
+            // 검색 영역 활성화 이벤트
+            const activateInputEvent = () => {
+                searchForm.current.style.flexBasis = "89%";
+                searchArea.current.classList.add("active");
+                searchIcon.current.classList.remove("hide");
+            }
+
+            // 검색 영역 비활성화 이벤트
+            const disabledInputEvent = () => {
+                searchForm.current.style.flexBasis = "85%";
+                searchArea.current.classList.remove("active");
+                searchIcon.current.classList.add("hide");
+            }
+
+            // 키보드 아이콘 클릭 이벤트
+            const toggleKeyboard = () => {
+                console.log("키보드 클릭 이벤트 발생")
+            }
+
+            return (
+                <div className="align-center h-center">
+                    <form ref={searchForm} className="vertical-align-center">
+                        <div className="vertical-align-center input-area-container" onFocus={activateInputEvent} onBlur={disabledInputEvent}>
+                            <div ref={searchArea} className="vertical-align-center input-area">
+                                <img ref={searchIcon} className="i-search hide" src="/homework/intermediate/youtube/resources/icon/search.png" />
+                                <input type="text" className="input" placeholder="검색" />
+                                <div className="keyboard-box" onClick={toggleKeyboard}>
+                                    <img className="i-keyboard" src="/homework/intermediate/youtube/resources/icon/keyboard.png" />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="search-btn-area">
+                            <input type="submit" value="" />
+                            <img class="i-search" src="/homework/intermediate/youtube/resources/icon/search.png" />
+                            <div id="tooltip-search" className="hide">
+                                <span>검색</span>
+                            </div>
+                        </div>
+                    </form>
+                    <div className="mic-box">
+                        <img className="i-mic" src="/homework/intermediate/youtube/resources/icon/mic.png" />
+                        <div id="tooltip-search-by-voice" className="hide">
+                            <span>음성으로 검색</span>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
+        // 헤더 오른쪽 영역 버튼
+        const HeaderRightSideButton = (props) => {
+            const {icon, contents} = props;
+
+            switch (contents) {
+                case "profile":
+                    return (
+                        <div className="align-center profile">
+                            <img className="i-user" />
+                        </div>
+                    );
+                default:
+                    return (
+                        <div className="align-center h-right-item">
+                            <img className={`i-${icon}`} src={`/homework/intermediate/youtube/resources/icon/${icon}.png`} />
+                        </div>
+                    );
+            }
+        }
+
+        // 헤더
+        const Header = (props) => {
+
+            const {isOpen, setIsOpen} = props;
+            const buttonSet = [
+                {
+                    icon: "video",
+                    contents: "upload"
+                }, 
+                {
+                    icon: "bell",
+                    contents: "alarm"
+                },
+                {
+                    icon: "",
+                    contents: "profile"
+                }
+            ];
+
+            return (
+                <>
+                    <Home isOpen={isOpen} setIsOpen={setIsOpen} />
+                    <header>
+                        <Search />
+                        <div className="vertical-align-center h-right">
+                            {
+                                buttonSet.map((elem) => {
+                                    return (
+                                        <HeaderRightSideButton icon={elem.icon} contents={elem.contents} />
+                                    );
+                                })
+                            }
+                        </div>
+                    </header>
+                </>
+            )
+        }
+
+        // 네비바 메뉴 항목 컴포넌트
+        const NavItem = (props) => {
+
+            const {id, name} = props;
+
+            return (
+                <li key={id} className={`nav-item ${id}-pad`}>
+                    <div className="i-wrapper">
+                        <img class={`i-${id}`} src={`/homework/intermediate/youtube/resources/icon/${id}.png`} />
+                    </div>
+                    <span>{name}</span>
+                </li>
+            )
+        }
+        
+        // 네비바 컴포넌트
+        const Nav = (props) => {
+
+            const nav = React.useRef();
+            const closedNav = React.useRef();
+            const openNav = React.useRef();
+            const modal = React.useRef();
+
+            // const [isOpen, setIsOpen] = React.useState(false);
+            const {isOpen} = props;
+
+            // 사이드 바 닫혔을 때
+            const closedMenuList = [
+                {
+                    "id": "home",
+                    "name": "홈"
+                }, 
+                {
+                    "id": "shorts",
+                    "name": "Shorts"
+                },
+                {
+                    "id": "sub",
+                    "name": "구독"
+                },
+                {
+                    "id": "lib",
+                    "name": "보관함"
+                }
+            ];
+
+            // 사이드 바 열렸을 때
+            const openMenuLists = {
+                "firstGroup": {
+                    "title": "",
+                    "contents": [
+                        {
+                            "id": "home",
+                            "name": "홈"
+                        }, {
+                            "id": "shorts",
+                            "name": "Shorts"
+                        }, {
+                            "id": "sub",
+                            "name": "구독"
+                        }
+                    ]
+                }, 
+                "secondGroup" : {
+                    "title": "",
+                    "contents": [
+                        {
+                            "id": "lib",
+                            "name": "보관함"
+                        }, {
+                            "id": "record",
+                            "name": "시청 기록"
+                        }, {
+                            "id": "my-video",
+                            "name": "내 동영상"
+                        }, {
+                            "id": "my-film",
+                            "name": "내 영화"
+                        }, {
+                            "id": "later",
+                            "name": "나중에 볼 동영상"
+                        }, {
+                            "id": "likes",
+                            "name": "좋아요 표시한 동영상"
+                        }
+                    ]
+                }, 
+                "thirdGroup" : {
+                    "title": "구독",
+                    "contents": []
+                }, 
+                "fourthGroup" : {
+                    "title": "탐색",
+                    "contents": [
+                        {
+                            "id": "popular",
+                            "name": "인기 급상승"
+                        }, {
+                            "id": "shopping",
+                            "name": "쇼핑"
+                        }, {
+                            "id": "music",
+                            "name": "음악"
+                        }, {
+                            "id": "film",
+                            "name": "영화"
+                        }, {
+                            "id": "real-time",
+                            "name": "실시간"
+                        }, {
+                            "id": "game",
+                            "name": "게임"
+                        }, {
+                            "id": "sports",
+                            "name": "스포츠"
+                        }, {
+                            "id": "learning",
+                            "name": "학습"
+                        }
+                    ]
+                },
+                "fifthGroup" : {
+                    "title": "",
+                    "contents": [
+                        {
+                            "id": "yt-premium",
+                            "name": "YouTube Premium"
+                        },
+                        {
+                            "id": "yt-studio",
+                            "name": "YouTube 스튜디오"
+                        },
+                        {
+                            "id": "yt-music",
+                            "name": "YouTube Music"
+                        },
+                        {
+                            "id": "yt-kids",
+                            "name": "YouTube Kids"
+                        }
+                    ]
+                }, 
+                "sixthGroup" : {
+                    "title": "",
+                    "contents": [
+                        {
+                            "id": "setting",
+                            "name": "설정"
+                        },
+                        {
+                            "id": "report",
+                            "name": "신고 기록"
+                        },
+                        {
+                            "id": "customer",
+                            "name": "고객센터"
+                        },
+                        {
+                            "id": "comments",
+                            "name": "의견 보내기"
+                        }
+                    ]
+                }
+            }
+
+            return (
+                <>
+                    <nav>
+                        {
+                            isOpen
+                                ?
+                                    <div ref={openNav} className="nav-open">
+                                        {
+                                            Object.values(openMenuLists).map((group, groupIndex) => {
+                                                return (
+                                                    <ul className="active" key={groupIndex}>
+                                                        {
+                                                            group.title !== "" &&
+                                                                <h3>{group.title}</h3>
+                                                        }
+                                                        {
+                                                            Object.values(group.contents).map(menu => (
+                                                                <NavItem key={menu.id} id={menu.id} name={menu.name} />
+                                                            ))
+                                                        }
+                                                        <hr />
+                                                    </ul>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                :
+                                    <ul ref={closedNav} class="nav-closed">
+                                        {
+                                            closedMenuList.map(elem => 
+                                                <NavItem id={elem.id} name={elem.name} />
+                                            )
+                                        }
+                                    </ul>
+                        }
+                    </nav>
+                        {
+                            isOpen &&
+                                <div ref={modal} className="modal"></div>
+                        }
+                </>
+            );
+        }
+
+        const Section = (props) => {
+
+            const {item: {channelName, channelProfile, videoTitle, staticThumbnail, animatedThumbnail, hitsPerVideo, uploadedPeriod}, idx} = props;
+            
+            let isPlaying = false;
+
+/****************************************************************************************/
+/* useState 없이 이벤트 핸들링                                                           */
+/****************************************************************************************/
+            // 마우스 오버 시
+            const handleThumbnailMouseOver = (props) => {
+                isPlaying = true;
+                const thumbnail = document.querySelectorAll(".thumbnail")[props];
+                if(thumbnail)
+                    thumbnail.src = animatedThumbnail;
+            }
+
+            // 마우스 떼면
+            const handleThumbnailMouseOut = (props) => {
+                isPlaying = false;
+
+                const thumbnail = document.querySelectorAll(".thumbnail")[props];
+                if(thumbnail)
+                    thumbnail.src = staticThumbnail;
+            }
+
+/****************************************************************************************/
+/* //useState 없이 이벤트 핸들링                                                          */
+/****************************************************************************************/
+            return(
+                <section onMouseOver={() => {handleThumbnailMouseOver(idx)}} onMouseOut={() => {handleThumbnailMouseOut(idx)}}>
+                    <div className="align-center">
+                        <a class="thumbnail-box">
+                            <img id={`thumbnail-${idx}`} className="thumbnail" src={isPlaying ? animatedThumbnail : staticThumbnail} />
+                        </a>
+                    </div>
+                    <div className="main-desc-container">
+                        <div className="left-side-box">
+                            <a className="channel-profile">
+                                <img className="img-channel-profile" src={channelProfile} />
+                            </a>
+                        </div>
+                        <div className="right-side-box">
+                            <div className="vertical-align-center right-side-box-header">
+                                <h2 className="txt-title">{videoTitle}</h2>
+                                <button className="kebab-btn"></button>
+                            </div>
+                            <div className="right-side-box-profile">
+                                <div>
+                                    <span className="txt-name">{channelName}</span>
+                                    <img className="verified hide" />
+                                </div>
+                                <div>
+                                    <span className="txt-name">{`조회수 ${hitsPerVideo}회 · ${uploadedPeriod} 전`}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            )
+        }
+
+        const Main = () => {
+
+            // 데이터 받기
+            const keywordsSet = JSON.parse(JSON.stringify(keywords));
+            const dataSet = JSON.parse(JSON.stringify(video)).slice(0, 16);
+
+            return (
+                <main>
+                    <div className="vertical-align-center keywords-container">
+                        <div className="vertical-align-center keyword-box">
+                        {
+                            keywordsSet.map((item, index) => {
+                                return (
+                                    <div value={item.value} idx={index} className="keyword">
+                                        <span>{item.key}</span>
+                                    </div>
+                                )
+                            })
+                        }
+                        </div>
+                    </div>
+                    <div className="contents-container">
+                        {
+                            dataSet.map((item, index) => {
+                                return (<Section item={item} idx={index} />);
+                            })
+                        }
+                    </div>
+                </main>
+            )
+        }
+
+        const Container = () => {
+            const [isOpen, setIsOpen] = React.useState(false);
+
+            return (
+                <React.Fragment>
+                    <Header isOpen={isOpen} setIsOpen={setIsOpen} />
+                    <Nav isOpen={isOpen} />
+                    <Main />
+                </React.Fragment>
+            )
+        }
+        
+        const App = () => {
+            const root = document.getElementById("root");
+            ReactDOM.createRoot(root).render(<Container />);
+        }
+
+        window.onload = App;
+    </script>
+</body>
+</html>

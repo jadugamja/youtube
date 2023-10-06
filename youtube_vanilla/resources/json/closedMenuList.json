@@ -1,0 +1,18 @@
+closedMenuList = [
+    {
+        "id": "home",
+        "name": "홈"
+    }, 
+    {
+        "id": "shorts",
+        "name": "Shorts"
+    },
+    {
+        "id": "sub",
+        "name": "구독"
+    },
+    {
+        "id": "lib",
+        "name": "보관함"
+    }
+]

@@ -1,0 +1,39 @@
+keywords = [
+    {
+        "key": "전체",
+        "value": "all"
+    }, {
+        "key": "음악",
+        "value": "music"
+    }, {
+        "key": "뉴스",
+        "value": "news"
+    }, {
+        "key": "실시간",
+        "value": "now"
+    }, {
+        "key": "믹스",
+        "value": "mix"
+    }, {
+        "key": "게임",
+        "value": "game"
+    }, {
+        "key": "요리 프로그램",
+        "value": "cook"
+    }, {
+        "key": "시트콤",
+        "value": "sitcom"
+    }, {
+        "key": "만화 영화",
+        "value": "cartoon"
+    }, {
+        "key": "최근에 업로드된 동영상",
+        "value": "recently-uploaded"
+    }, {
+        "key": "감상한 동영상",
+        "value": "have-watched"
+    }, {
+        "key": "새로운 맞춤 동영상",
+        "value": "custom"
+    }
+]
