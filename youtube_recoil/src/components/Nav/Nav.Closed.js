@@ -7,7 +7,7 @@ import NavItem from "./NavItem";
 
 const NavClosed = () => {
 
-    // 선택 메뉴
+    // 선택된 메뉴
     const [selectedMenu, setSelectedMenu] = useRecoilState(selectedMenuState);
 
     // 네비바 메뉴 클릭 이벤트
@@ -21,12 +21,11 @@ const NavClosed = () => {
     let [closedMenuListSet, setClosedMenuListSet] = React.useState([]);
 
     React.useEffect(() => {
-        // 로컬 JSON 데이터 불러오기
-        fetchData("/data.json", (data) => {
-            setClosedMenuListSet(data.closedMenuList);
-        });
-    }, []);
+        
+        // 닫힌 사이드 바 메뉴 목록 불러오기
+        fetchData("/data.json", (data) => setClosedMenuListSet(data.closedMenuList));
 
+    }, []);
 
     return (
         <ul className="nav-closed" onClick={clickMenuEvent}>
