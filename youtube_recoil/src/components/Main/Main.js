@@ -1,6 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useRecoilValue } from "recoil";
 
+import { selectedMenuState } from "recoil/atoms/mainAtom";
 import MainHome from "./MainHome";
 import MainShorts from "./MainShorts";
 import MainSubscribe from "./MainSubscribe";
@@ -9,7 +10,7 @@ import MainLibrary from "./MainLibrary";
 const Main = () => {
 
     // 선택 메뉴
-    const selectedMenu = useSelector(state => state.selectedMenu);
+    const selectedMenu = useRecoilValue(selectedMenuState);
 
     // 첫 로드 시 스크롤 최상단 위치
     React.useEffect(() => {

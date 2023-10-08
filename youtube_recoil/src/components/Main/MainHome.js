@@ -1,26 +1,25 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import{ setSelectedKeyword } from "redux/action";
+import { useRecoilState } from "recoil";
 
+import { selectedKeywordState } from "recoil/atoms/mainAtom";
 import MainHomeItem from "./MainHomeItem";
 import videoSet from "db/videoSet.json";
 import { fetchData } from "utils/fetchData";
 import "./Main.Home.css";
 
 const MainHome = () => {
-    
-    const dispatch = useDispatch();
 
     // 스크롤이 문서 최하단에 위치한 횟수
     const [isScrolledDown, setIsScrolledDown] = useState(0);
-    const selectedKeyword = useSelector(state => state.selectedKeyword);
+    // 선택 키워드
+    const [selectedKeyword, setSelectedKeyword] = useRecoilState(selectedKeywordState);
 
     // 영상 정보, 키워드 정보
     const [dataSet, setDataSet] = useState(videoSet.slice(isScrolledDown, isScrolledDown + 16));
     let [keywordsSet, setKeywordsSet] = useState([]);
 
     // 선택 키워드 및 클릭 이벤트
-    const clickKeywordButtonEvent = (idx) => dispatch(setSelectedKeyword(idx));
+    const clickKeywordButtonEvent = (idx) => setSelectedKeyword(idx);
     
     // 스크롤 문서 최하단 위치 시 콘텐츠 추가 이벤트
     const scrollDownToNextContentEvent = () => {

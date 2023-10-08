@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import{ toggleMenuButton } from "redux/action";
+import { useRecoilState } from "recoil";
 
+import { isOpenNavState } from "recoil/atoms/mainAtom";
 import "./Header.css";
 import menu from "assets/menu.png";
 import logo from "assets/logo.png";
@@ -11,12 +11,9 @@ import mic from "assets/mic.png";
 
 const Header = () => {
 
-    const dispatch = useDispatch();
-
     // 메뉴바 버튼 클릭 이벤트
-    const toggleEvent = () => {
-        dispatch(toggleMenuButton());
-    }
+    const [isOpen, setIsOpen] = useRecoilState(isOpenNavState);
+    const toggleMenuButton = () => setIsOpen(!isOpen);
 
     // 검색 영역 활성화 상태 여부 및 상태 변경 이벤트
     const [isActive, setIsActive] = useState(false);
@@ -24,7 +21,7 @@ const Header = () => {
     const disabledInputEvent = () => setIsActive(false);
 
     // 키보드 아이콘 클릭 이벤트
-    const toggleKeyboardEvent = () => console.log("키보드 아이콘 클릭")
+    const toggleKeyboardEvent = () => console.log("키보드 아이콘 클릭");
 
     // 마우스 오버 상태 여부 및 툴팁 출력/숨김 상태 변경 이벤트
     const [isHover, setIsHover] = useState(false);
@@ -35,7 +32,7 @@ const Header = () => {
         <header>
             <div className="vertical-align-center h-left-box">
                 <div className="vertical-align-center h-left">
-                    <div id="menu" className="align-center menu-box" onClick={toggleEvent}>
+                    <div id="menu" className="align-center menu-box" onClick={toggleMenuButton}>
                         <img className="i-menu" src={menu} />
                     </div>
                     <a className="logo-box" href="#">
