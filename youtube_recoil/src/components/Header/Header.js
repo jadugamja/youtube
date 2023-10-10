@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useRecoilState } from "recoil";
 
 import { isOpenNavState } from "recoil/atoms/mainAtom";
+import { FixedHeader, HeaderLeftDiv, MenuLogoContainerDiv, MenuBoxDiv, LogoBoxAnchor, MenuImg, LogoImg, HeaderCenterDiv, TootipHomeDiv, SearchForm, SearchContainerDiv, InputContainerDiv, SearchImg, SearchInput, KeyboardContainerDiv, KeyboardImg } from "testStyle.js";
 import "./Header.css";
 import menu from "assets/menu.png";
 import logo from "assets/logo.png";
@@ -29,37 +30,37 @@ const Header = () => {
     const disabledTooltipEvent = () => setIsHover(false);
 
     return (
-        <header>
-            <div className="vertical-align-center h-left-box">
-                <div className="vertical-align-center h-left">
-                    <div id="menu" className="align-center menu-box" onClick={toggleMenuButton}>
-                        <img className="i-menu" src={menu} />
-                    </div>
-                    <a className="logo-box" href="#">
-                        <img className="i-logo" src={logo} />
-                    </a>
-                    <div id="tooltip-home" className="hide">
+        <FixedHeader>
+            <HeaderLeftDiv col="center">
+                <MenuLogoContainerDiv row="between" col="center">
+                    <MenuBoxDiv row="center" col="center" onClick={toggleMenuButton}>
+                        <MenuImg src={menu} />
+                    </MenuBoxDiv>
+                    <LogoBoxAnchor href="#">
+                        <LogoImg src={logo} />
+                    </LogoBoxAnchor>
+                    <TootipHomeDiv hide>
                         <span>YouTube 홈</span>
-                    </div>
-                </div>
-            </div>
-            <div className="align-center h-center">
-                <form className="vertical-align-center">
-                    <div className={`vertical-align-center input-area-container ${isActive ? "active" : ""}`} onFocus={activateInputEvent} onBlur={disabledInputEvent}>
-                      <div className="vertical-align-center input-area">
+                    </TootipHomeDiv>
+                </MenuLogoContainerDiv>
+            </HeaderLeftDiv>
+            <HeaderCenterDiv row="center" col="center">
+                <SearchForm>
+                    <SearchContainerDiv col="center" active={isActive} onFocus={activateInputEvent} onBlur={disabledInputEvent}>
+                      <InputContainerDiv row="between" col="center">
                         {
-                            isActive &&
-                                <img className="i-search" src={search} />
+                            isActive && <SearchImg src={search} />
                         }
-                            <input type="text" className="input" placeholder="검색" />
-                            <div className="keyboard-box" onClick={toggleKeyboardEvent}>
-                                <img className="i-keyboard" src={keyboard} />
-                            </div>
-                        </div>
-                    </div>
+                        
+                            <SearchInput type="text" placeholder="검색" />
+                            <KeyboardContainerDiv onClick={toggleKeyboardEvent}>
+                                <KeyboardImg src={keyboard} />
+                            </KeyboardContainerDiv>
+                        </InputContainerDiv>
+                    </SearchContainerDiv>
                     <div className="search-btn-area" onMouseOver={() => {activateTooltipEvent(0)}} onMouseOut={disabledTooltipEvent}>
                         <input type="submit" value="" />
-                        <img className="i-search" src={search} />
+                        <SearchImg src={search} />
                         {
                             isHover === 0 && (
                                 <div id="tooltip-search" className="tooltip">
@@ -68,7 +69,7 @@ const Header = () => {
                             )
                         }
                     </div>
-                </form>
+                </SearchForm>
                 <div className="mic-box" onMouseOver={() => {activateTooltipEvent(1)}} onMouseOut={disabledTooltipEvent}>
                     <img className="i-mic" src={mic} />
                         {
@@ -79,7 +80,7 @@ const Header = () => {
                             )
                         }
                 </div>
-            </div>
+            </HeaderCenterDiv>
             <div className="vertical-align-center h-right">
                 <div className="align-center h-right-item" onMouseOver={() => {activateTooltipEvent(2)}} onMouseOut={disabledTooltipEvent}>
                     <img className="i-video" src={require(`assets/video.png`)} alt="video" />
@@ -105,7 +106,7 @@ const Header = () => {
                     <img className="i-user" alt="user"/>
                 </div>
             </div>
-        </header>
+        </FixedHeader>
     )
 }
 
