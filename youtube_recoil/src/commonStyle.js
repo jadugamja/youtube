@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const AlignDiv = styled.div`
+export const FlexBoxDiv = styled.div`
     display: flex;
     ${ props => setVerticalAlign(props.col) }
     ${ props => setHorizontalAlign(props.row) }

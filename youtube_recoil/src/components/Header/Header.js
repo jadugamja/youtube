@@ -2,19 +2,19 @@ import { useState } from "react";
 import { useRecoilState } from "recoil";
 
 import { isOpenNavState } from "recoil/atoms/mainAtom";
-import { FixedHeader, HeaderLeftDiv, MenuLogoContainerDiv, MenuBoxDiv, LogoBoxAnchor, MenuImg, LogoImg, HeaderCenterDiv, TootipHomeDiv, SearchForm, SearchContainerDiv, InputContainerDiv, SearchImg, SearchInput, KeyboardContainerDiv, KeyboardImg } from "testStyle.js";
-import "./Header.css";
+import { FixedHeader, HeaderLeftDiv, MenuLogoContainerDiv, MenuBoxDiv, LogoBoxLink, MenuImg, LogoImg, HeaderCenterDiv, TootipHomeDiv, SearchForm, SearchContainerDiv, InputContainerDiv, SearchImg, SearchInput, KeyboardContainerDiv, KeyboardImg, SearchButtonContainerDiv, TooltipDiv, TooltipSpan, MicContainerDiv, MicImg, HeaderRightItemDiv, VideoImg, BellImg, ProfileContainerDiv, ProfileImg } from "./HeaderStyle.js";
 import menu from "assets/menu.png";
 import logo from "assets/logo.png";
 import search from "assets/search.png";
 import keyboard from "assets/keyboard.png";
 import mic from "assets/mic.png";
+import { FlexBoxDiv } from "commonStyle";
 
 const Header = () => {
 
     // 메뉴바 버튼 클릭 이벤트
     const [isOpen, setIsOpen] = useRecoilState(isOpenNavState);
-    const toggleMenuButton = () => setIsOpen(!isOpen);
+        const toggleMenuButton = () => setIsOpen(!isOpen);
 
     // 검색 영역 활성화 상태 여부 및 상태 변경 이벤트
     const [isActive, setIsActive] = useState(false);
@@ -36,9 +36,9 @@ const Header = () => {
                     <MenuBoxDiv row="center" col="center" onClick={toggleMenuButton}>
                         <MenuImg src={menu} />
                     </MenuBoxDiv>
-                    <LogoBoxAnchor href="#">
+                    <LogoBoxLink href="#">
                         <LogoImg src={logo} />
-                    </LogoBoxAnchor>
+                    </LogoBoxLink>
                     <TootipHomeDiv hide>
                         <span>YouTube 홈</span>
                     </TootipHomeDiv>
@@ -47,65 +47,48 @@ const Header = () => {
             <HeaderCenterDiv row="center" col="center">
                 <SearchForm>
                     <SearchContainerDiv col="center" active={isActive} onFocus={activateInputEvent} onBlur={disabledInputEvent}>
-                      <InputContainerDiv row="between" col="center">
-                        {
-                            isActive && <SearchImg src={search} />
-                        }
-                        
+                        <InputContainerDiv row="between" col="center">
+                            {
+                                isActive && <SearchImg src={search} />
+                            }
                             <SearchInput type="text" placeholder="검색" />
                             <KeyboardContainerDiv onClick={toggleKeyboardEvent}>
                                 <KeyboardImg src={keyboard} />
                             </KeyboardContainerDiv>
                         </InputContainerDiv>
                     </SearchContainerDiv>
-                    <div className="search-btn-area" onMouseOver={() => {activateTooltipEvent(0)}} onMouseOut={disabledTooltipEvent}>
+                    <SearchButtonContainerDiv row="center" col="center" onMouseOver={() => {activateTooltipEvent(0)}} onMouseOut={disabledTooltipEvent}>
                         <input type="submit" value="" />
                         <SearchImg src={search} />
                         {
-                            isHover === 0 && (
-                                <div id="tooltip-search" className="tooltip">
-                                    <span className="tooltip-txt">검색</span>
-                                </div>
-                            )
+                            isHover === 0 && <TooltipDiv><TooltipSpan>검색</TooltipSpan></TooltipDiv>
                         }
-                    </div>
+                    </SearchButtonContainerDiv>
                 </SearchForm>
-                <div className="mic-box" onMouseOver={() => {activateTooltipEvent(1)}} onMouseOut={disabledTooltipEvent}>
-                    <img className="i-mic" src={mic} />
+                <MicContainerDiv row="center" col="center" onMouseOver={() => {activateTooltipEvent(1)}} onMouseOut={disabledTooltipEvent}>
+                    <MicImg src={mic} />
                         {
-                            isHover === 1 && (
-                                <div id="tooltip-search-by-voice" className="tooltip">
-                                    <span className="tooltip-txt">음성으로 검색</span>
-                                </div>
-                            )
+                            isHover === 1 && <TooltipDiv><TooltipSpan>음성으로 검색</TooltipSpan></TooltipDiv>
                         }
-                </div>
+                </MicContainerDiv>
             </HeaderCenterDiv>
-            <div className="vertical-align-center h-right">
-                <div className="align-center h-right-item" onMouseOver={() => {activateTooltipEvent(2)}} onMouseOut={disabledTooltipEvent}>
-                    <img className="i-video" src={require(`assets/video.png`)} alt="video" />
+            <FlexBoxDiv col="center">
+                <HeaderRightItemDiv row="center" col="center" onMouseOver={() => {activateTooltipEvent(2)}} onMouseOut={disabledTooltipEvent}>
+                    <VideoImg src={require(`assets/video.png`)} alt="video" />
                         {
-                            isHover === 2 && (
-                                <div id="tooltip-video" className="tooltip">
-                                    <span className="tooltip-txt">만들기</span>
-                                </div>
-                            )
+                            isHover === 2 && <TooltipDiv><TooltipSpan>만들기</TooltipSpan></TooltipDiv>
                         }
-                </div>
-                <div className="align-center h-right-item" onMouseOver={() => {activateTooltipEvent(3)}} onMouseOut={disabledTooltipEvent}>
-                    <img className={`i-bell`} src={require(`assets/bell.png`)} alt="bell" />
-                       {
-                            isHover === 3 && (
-                                <div id="tooltip-video" className="tooltip">
-                                    <span className="tooltip-txt">알림</span>
-                                </div>
-                            )
+                </HeaderRightItemDiv>
+                <HeaderRightItemDiv row="center" col="center" onMouseOver={() => {activateTooltipEvent(3)}} onMouseOut={disabledTooltipEvent}>
+                    <BellImg src={require(`assets/bell.png`)} alt="bell" />
+                        {
+                            isHover === 3 && <TooltipDiv><TooltipSpan>알림</TooltipSpan></TooltipDiv>
                         }
-             </div>
-                <div className="align-center profile">
-                    <img className="i-user" alt="user"/>
-                </div>
-            </div>
+                </HeaderRightItemDiv>
+                <ProfileContainerDiv row="center" col="center">
+                    <ProfileImg alt="user"/>
+                </ProfileContainerDiv>
+            </FlexBoxDiv>
         </FixedHeader>
     )
 }
