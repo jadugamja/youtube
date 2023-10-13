@@ -2,8 +2,9 @@ import styled from "styled-components";
 
 export const FlexBoxDiv = styled.div`
     display: flex;
-    ${ props => setVerticalAlign(props.col) }
     ${ props => setHorizontalAlign(props.row) }
+    ${ props => setVerticalAlign(props.col) }
+    ${ props => setDirection(props.dir) }
 `;
 
 // flex-box 안의 align-items 값 설정
@@ -50,6 +51,15 @@ const setHorizontalAlign = (row) => {
         case "between":
             return `
                 justify-content: space-between;
+            `;
+    }
+}
+
+const setDirection = (dir) => {
+    switch (dir) {
+        case "col":
+            return `
+                flex-direction: column;
             `;
     }
 }

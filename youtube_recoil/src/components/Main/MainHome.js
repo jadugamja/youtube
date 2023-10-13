@@ -5,6 +5,7 @@ import { selectedKeywordState, videoKeywordsState } from "recoil/atoms/mainAtom"
 import MainHomeItem from "./MainHomeItem";
 import videoSet from "db/videoSet.json";
 import { fetchData } from "utils/fetchData";
+import { MainHome, VideoKeywordsContainerDiv, KeywordsBoxDiv, KeywordsDiv } from "./MainHomeStyle.js";
 import "./Main.Home.css";
 
 const MainHome = () => {
@@ -51,20 +52,20 @@ const MainHome = () => {
     }, [isScrolledDown]);
 
     return (
-        <main>
-            <div className="vertical-align-center keywords-container">
-                <div className="vertical-align-center keyword-box">
+        <MainHome dir="col">
+            <VideoKeywordsContainerDiv col="center">
+                <KeywordsBoxDiv col="center">
                 {
                     videoKeywords.map((item, index) => {
                         return (
-                            <div onClick={() => {clickKeywordButtonEvent(index)}} className={`keyword ${selectedKeyword === index? "active": ""}`} key={index} idx={index} value={item.value}>
+                            <KeywordsDiv row="center" onClick={() => {clickKeywordButtonEvent(index)}} className={`${selectedKeyword === index? "active": ""}`} key={index} idx={index} value={item.value}>
                                 <span>{item.key}</span>
-                            </div>
+                            </KeywordsDiv>
                         )
                     })
                 }
-                </div>
-            </div>
+                </KeywordsBoxDiv>
+            </VideoKeywordsContainerDiv>
             <div className="contents-container">
                 {
                     videoContent.map((item, index) => {
@@ -72,7 +73,7 @@ const MainHome = () => {
                     })
                 }
             </div>
-        </main>
+        </MainHome>
     );
 }
 

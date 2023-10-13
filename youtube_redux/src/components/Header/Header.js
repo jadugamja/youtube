@@ -51,8 +51,7 @@ const Header = () => {
                     <div className={`vertical-align-center input-area-container ${isActive ? "active" : ""}`} onFocus={activateInputEvent} onBlur={disabledInputEvent}>
                       <div className="vertical-align-center input-area">
                         {
-                            isActive &&
-                                <img className="i-search" src={search} />
+                            isActive && <img className="i-search" src={search} />
                         }
                             <input type="text" className="input" placeholder="검색" />
                             <div className="keyboard-box" onClick={toggleKeyboardEvent}>
