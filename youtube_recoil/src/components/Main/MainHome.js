@@ -5,7 +5,7 @@ import { selectedKeywordState, videoKeywordsState } from "recoil/atoms/mainAtom"
 import MainHomeItem from "./MainHomeItem";
 import videoSet from "db/videoSet.json";
 import { fetchData } from "utils/fetchData";
-import { MainHome, VideoKeywordsContainerDiv, KeywordsBoxDiv, KeywordsDiv } from "./MainHomeStyle.js";
+import { HomeMain, VideoKeywordsContainerDiv, KeywordsBoxDiv, KeywordsDiv, KeywordsSpan, VideoContentContainerDiv } from "./MainHomeStyle.js";
 import "./Main.Home.css";
 
 const MainHome = () => {
@@ -52,28 +52,28 @@ const MainHome = () => {
     }, [isScrolledDown]);
 
     return (
-        <MainHome dir="col">
+        <HomeMain dir="col">
             <VideoKeywordsContainerDiv col="center">
                 <KeywordsBoxDiv col="center">
-                {
-                    videoKeywords.map((item, index) => {
-                        return (
-                            <KeywordsDiv row="center" onClick={() => {clickKeywordButtonEvent(index)}} className={`${selectedKeyword === index? "active": ""}`} key={index} idx={index} value={item.value}>
-                                <span>{item.key}</span>
-                            </KeywordsDiv>
-                        )
-                    })
-                }
+                    {
+                        videoKeywords.map((item, index) => {
+                            return (
+                                <KeywordsDiv row="center" onClick={() => {clickKeywordButtonEvent(index)}} active={selectedKeyword === index} key={index} idx={index} value={item.value}>
+                                    <KeywordsSpan>{item.key}</KeywordsSpan>
+                                </KeywordsDiv>
+                            )
+                        })
+                    }
                 </KeywordsBoxDiv>
             </VideoKeywordsContainerDiv>
-            <div className="contents-container">
+            <VideoContentContainerDiv>
                 {
                     videoContent.map((item, index) => {
                         return <MainHomeItem item={item} idx={index} key={index} />
                     })
                 }
-            </div>
-        </MainHome>
+            </VideoContentContainerDiv>
+        </HomeMain>
     );
 }
 

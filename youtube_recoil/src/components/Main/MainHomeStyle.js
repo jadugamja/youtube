@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { FlexBoxDiv } from "commonStyle";
 
-export const MainHome = styled(FlexBoxDiv)`
+export const HomeMain = styled(FlexBoxDiv)`
     height: 100%;
     margin-top: 56px;
     margin-left: 78px;
@@ -32,4 +32,27 @@ export const KeywordsDiv = styled(FlexBoxDiv)`
     border-radius: 8px;
 
     cursor: pointer;
+
+    &:hover {
+        background-color: #E5E5E5;
+    }
+
+    ${props => props.active && css`
+        background-color: #0F0F0F!important;
+    
+        ${KeywordsSpan} {
+            color: #fff;
+        }
+    `}
+
+`;
+
+export const KeywordsSpan = styled.span``;
+
+export const VideoContentContainerDiv = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(330px, 1fr));
+    grid-gap: 60px 20px;
+    margin: 96px 20px 0 30px;
 `;
