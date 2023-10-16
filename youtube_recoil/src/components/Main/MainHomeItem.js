@@ -1,4 +1,5 @@
-import {useState} from "react";
+import { useState } from "react";
+import { VideoSection, ThumbnailContainerDiv, ThumbnailLink, ThumbnailImg, VideoDescContainerDiv, ChannelProfileImg, DescRightContainerDiv, DescRightHeaderDiv, DescRightProfileDiv, VideoTitle, KebabButton, NameSpan, VerifiedImg } from "components/Main/MainHomeItemStyle";
 
 const MainHomeItem = (props) => {
 
@@ -15,35 +16,35 @@ const MainHomeItem = (props) => {
     const handleThumbnailMouseOut = () => setIsPlaying(false);
 
     return(
-        <section onMouseOver={handleThumbnailMouseOver} onMouseOut={handleThumbnailMouseOut}>
-            <div className="align-center">
-                <a className="thumbnail-box">
-                    <img id={`thumbnail-${idx}`} className="thumbnail" src={isPlaying ? convertToAbsolutePath(animatedThumbnail) : convertToAbsolutePath(staticThumbnail) } alt="thumbnail" />
-                </a>
-            </div>
-            <div className="main-desc-container">
-                <div className="left-side-box">
-                    <a className="channel-profile">
-                        <img className="img-channel-profile" src={process.env.PUBLIC_URL + channelProfile} />
+        <VideoSection onMouseOver={handleThumbnailMouseOver} onMouseOut={handleThumbnailMouseOut}>
+            <ThumbnailContainerDiv row="center" col="center">
+                <ThumbnailLink href="#">
+                    <ThumbnailImg id={`thumbnail-${idx}`} src={isPlaying ? convertToAbsolutePath(animatedThumbnail) : convertToAbsolutePath(staticThumbnail) } alt="thumbnail" />
+                </ThumbnailLink>
+            </ThumbnailContainerDiv>
+            <VideoDescContainerDiv row="between">
+                <div>
+                    <a>
+                        <ChannelProfileImg src={process.env.PUBLIC_URL + channelProfile} />
                     </a>
                 </div>
-                <div className="right-side-box">
-                    <div className="vertical-align-center right-side-box-header">
-                        <h2 className="txt-title">{videoTitle}</h2>
-                        <button className="kebab-btn"></button>
-                    </div>
-                    <div className="right-side-box-profile">
+                <DescRightContainerDiv>
+                    <DescRightHeaderDiv row="between" col="baseline">
+                        <VideoTitle>{videoTitle}</VideoTitle>
+                        <KebabButton></KebabButton>
+                    </DescRightHeaderDiv>
+                    <DescRightProfileDiv dir="col">
                         <div>
-                            <span className="txt-name">{channelName}</span>
-                            <img className="verified hide" />
+                            <NameSpan>{channelName}</NameSpan>
+                            <VerifiedImg hide />
                         </div>
                         <div>
-                            <span className="txt-name">{`조회수 ${hitsPerVideo}회 · ${uploadedPeriod} 전`}</span>
+                            <NameSpan>{`조회수 ${hitsPerVideo}회 · ${uploadedPeriod} 전`}</NameSpan>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+                    </DescRightProfileDiv>
+                </DescRightContainerDiv>
+            </VideoDescContainerDiv>
+        </VideoSection>
     )
 }
 

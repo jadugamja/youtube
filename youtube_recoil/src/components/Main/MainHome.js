@@ -6,7 +6,6 @@ import MainHomeItem from "./MainHomeItem";
 import videoSet from "db/videoSet.json";
 import { fetchData } from "utils/fetchData";
 import { HomeMain, VideoKeywordsContainerDiv, KeywordsBoxDiv, KeywordsDiv, KeywordsSpan, VideoContentContainerDiv } from "./MainHomeStyle.js";
-import "./Main.Home.css";
 
 const MainHome = () => {
 
@@ -52,7 +51,7 @@ const MainHome = () => {
     }, [isScrolledDown]);
 
     return (
-        <HomeMain dir="col">
+        <HomeMain>
             <VideoKeywordsContainerDiv col="center">
                 <KeywordsBoxDiv col="center">
                     {

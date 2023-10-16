@@ -1,7 +1,9 @@
 import styled, { css } from "styled-components";
 import { FlexBoxDiv } from "commonStyle";
 
-export const HomeMain = styled(FlexBoxDiv)`
+export const HomeMain = styled.main`
+    display: flex;
+    flex-direction: column;
     height: 100%;
     margin-top: 56px;
     margin-left: 78px;

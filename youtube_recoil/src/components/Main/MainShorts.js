@@ -1,7 +1,7 @@
 import React from "react";
 import { faPause, faVolumeHigh, faThumbsUp, faThumbsDown, faMessage, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./Main.Shorts.css";
+import { ShortsMain, ContainerDiv, VideoContainerDiv, Video, VideoHeaderDiv, MediaControlButton, VideoFooterDiv, VideoTitle, VideoSubtitleContainerDiv, VideoSubtitle, ProfileContainerDiv, ProfileDiv, ChannelNameContainerDiv, ChannelNameSpan, SubButtonContainerDiv, SubButton, FeedbackContainerDiv, ButtonContainerDiv, RoundedButton, SquareRoundedButton, FixedButtonContainerDiv, BiggerRoundedButton } from "components/Main/MainShortsStyle";
 
 const MainShorts = () => {
     
@@ -26,87 +26,85 @@ const MainShorts = () => {
     }
 
     return (
-        <main className="vertical-align-center">
-            <div className="container" onMouseOver={() => {activateHeaderEvent()}} onMouseOut={disabledHeaderEvent}>
-                <div className="play-container" onClick={togglePlayPauseEvent}>
-                    <video ref={videoRef} controls autoPlay={true} loop="loop">
+        <ShortsMain>
+            <ContainerDiv onMouseOver={() => {activateHeaderEvent()}} onMouseOut={disabledHeaderEvent}>
+                <VideoContainerDiv onClick={togglePlayPauseEvent}>
+                    <Video ref={videoRef} controls autoPlay={true} loop="loop">
                         <source type="video/mp4" src={`${process.env.PUBLIC_URL}/media/test.mp4`}></source>
-                    </video>
-                    <div className={`play-header ${ !isHover? "hide": "" }`}>
+                    </Video>
+                    <VideoHeaderDiv row="between" col="baseline" hover={isHover}>
                         {
                             isPlaying
-                                ? <button className="play">▶</button>
-                                : <button className="pause"> <FontAwesomeIcon icon={faPause} style={{color: "#ffffff"}}/> </button>
+                                ? <MediaControlButton size="medium">▶</MediaControlButton>
+                                : <MediaControlButton size="large"> <FontAwesomeIcon icon={faPause} style={{color: "#ffffff"}} /> </MediaControlButton>
                         }
-                        <button className="volume">
+                        <MediaControlButton size="medium">
                             <FontAwesomeIcon icon={faVolumeHigh} style={{color: "#ffffff"}}/>
-                        </button>
-                    </div>
-                    <div className="play-footer">
-                        <div className="title-container">
-                            <h2 className="video-title">쇼츠 제목1</h2>
-                        </div>
-                        <div className="sub-title-container hide">
-                            <div>
-                                <h3 className="video-sub-title">
-                                    <div>▶</div>
-                                    <span>쇼츠 제목2</span>
-                                </h3>
-                            </div>
-                        </div>
+                        </MediaControlButton>
+                    </VideoHeaderDiv>
+                    <VideoFooterDiv>
                         <div>
-                            <div className="profile-container">
-                                <div className="profile"></div>
-                                <div className="channel-name">
-                                    <span className="channel-name-txt">{`@account1`}</span>
-                                </div>
-                            </div>
-                            <div className="sub-button-container">
-                                <button className="sub-button">구독</button>
-                            </div>
+                            <VideoTitle>쇼츠 제목1</VideoTitle>
                         </div>
-                    </div>
-                </div>
-                <div className="feedback-container">
-                    <div className="button-container">
-                        <button className="rounded-button">
+                        <VideoSubtitleContainerDiv hide>
+                            <VideoSubtitle>
+                                <div>▶</div>
+                                <span>쇼츠 제목2</span>
+                            </VideoSubtitle>
+                        </VideoSubtitleContainerDiv>
+                        <div>
+                            <ProfileContainerDiv>
+                                <ProfileDiv></ProfileDiv>
+                                <ChannelNameContainerDiv col="center">
+                                    <ChannelNameSpan>{`@account1`}</ChannelNameSpan>
+                                </ChannelNameContainerDiv>
+                            </ProfileContainerDiv>
+                            <SubButtonContainerDiv>
+                                <SubButton>구독</SubButton>
+                            </SubButtonContainerDiv>
+                        </div>
+                    </VideoFooterDiv>
+                </VideoContainerDiv>
+                <FeedbackContainerDiv dir="col" row="end">
+                    <ButtonContainerDiv dir="col" row="center" col="center">
+                        <RoundedButton>
                             <FontAwesomeIcon icon={faThumbsUp}/>
-                        </button>
+                        </RoundedButton>
                         <span>ddd</span>
-                    </div>
-                    <div className="button-container">
-                        <button className="rounded-button">
+                    </ButtonContainerDiv>
+                    <ButtonContainerDiv dir="col" row="center" col="center">
+                        <RoundedButton>
                             <FontAwesomeIcon icon={faThumbsDown} flip="horizontal"/>
-                        </button>
+                        </RoundedButton>
                         <span>싫어요</span>
-                    </div>
-                    <div className="button-container">
-                        <button className="rounded-button">
+                    </ButtonContainerDiv>
+                    <ButtonContainerDiv dir="col" row="center" col="center">
+                        <RoundedButton>
                             <FontAwesomeIcon icon={faMessage} flip="horizontal" />
-                        </button>
+                        </RoundedButton>
                         <span>5</span>
-                    </div>
-                    <div className="button-container">
-                        <button className="rounded-button">
+                    </ButtonContainerDiv>
+                    <ButtonContainerDiv dir="col" row="center" col="center">
+                        <RoundedButton>
                             <FontAwesomeIcon icon={faShare} />
-                        </button>
+                        </RoundedButton>
                         <span>공유</span>
-                    </div>
-                    <div className="button-container">
-                        <button className="rounded-button">⋯</button>
-                    </div>
-                    <div className="button-container">
-                        <button className="square-rounded-button">??</button>
-                    </div>
-                </div>
-            </div>
-            <div className="top-button-container">
-                <button className="bigger-rounded-button">↑</button>
-            </div>
-            <div className="bottom-button-container">
-                <button className="bigger-rounded-button">↓</button>
-            </div>
-        </main>
+                    </ButtonContainerDiv>
+                    <ButtonContainerDiv dir="col" row="center" col="center">
+                        <RoundedButton>⋯</RoundedButton>
+                    </ButtonContainerDiv>
+                    <ButtonContainerDiv dir="col" row="center" col="center">
+                        <SquareRoundedButton>??</SquareRoundedButton>
+                    </ButtonContainerDiv>
+                </FeedbackContainerDiv>
+            </ContainerDiv>
+            <FixedButtonContainerDiv type="top">
+                <BiggerRoundedButton>↑</BiggerRoundedButton>
+            </FixedButtonContainerDiv>
+            <FixedButtonContainerDiv type="bottom">
+                <BiggerRoundedButton>↓</BiggerRoundedButton>
+            </FixedButtonContainerDiv>
+        </ShortsMain>
     );
 }
 
