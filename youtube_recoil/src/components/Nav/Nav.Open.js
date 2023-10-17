@@ -1,9 +1,50 @@
 import React from "react";
 import { useRecoilState } from "recoil";
+import styled from "styled-components";
 
 import { selectedMenuState } from "recoil/atoms/mainAtom";
 import { fetchData } from "utils/fetchData";
 import NavItem from "./NavItem";
+
+const OpenUlContainer = styled.div`
+    width: 100%;
+    overflow-y: auto;
+    margin-top: 13px;
+`;
+
+const OpenUl = styled.ul`
+    width: 240px;
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+`;
+
+const MenuGroupTitle = styled.h3`
+    align-self: baseline;
+    margin: 6px 25px;
+    font-size: 18px;
+    font-weight: 500;
+`;
+
+const Scroll = styled.div`
+    position: absolute;
+    width: 10px;
+    height: 100%;
+    top: 0;
+    right: -19px;
+    opacity: 1;
+    background-color: #fff;
+`;
+
+const GroupLine = styled.hr`
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    width: 90%;
+    opacity: 0.5;
+`;
 
 const NavOpen = () => {
 
@@ -29,25 +70,26 @@ const NavOpen = () => {
 
     return (
         <React.Fragment>
-            <div className="nav-open" onClick={clickMenuEvent}>
+            <OpenUlContainer onClick={clickMenuEvent}>
                 {
                     Object.values(openMenuListsSet).map((group, groupIndex) => {
                         return (
-                            <ul key={groupIndex}>
+                            <OpenUl key={groupIndex}>
                                 {
-                                    group.title !== "" && <h3>{group.title}</h3>
-                                }{
+                                    group.title !== "" && <MenuGroupTitle>{group.title}</MenuGroupTitle>
+                                }
+                                {
                                     Object.values(group.contents).map((menu, index) => (
                                         <NavItem key={`${groupIndex}-${index}`} item={menu} isSelected={selectedMenu === (groupIndex * group.contents.length + index)} />
                                     ))
                                 }
-                                <hr />
-                            </ul>
+                                <GroupLine />
+                            </OpenUl>
                         )
                     })
                 }
-            </div>
-            <div className="scroll"></div>
+            </OpenUlContainer>
+            <Scroll></Scroll>
         </React.Fragment>
     );
 }

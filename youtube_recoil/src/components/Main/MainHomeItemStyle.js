@@ -22,8 +22,7 @@ export const VideoSection = styled.section`
     }
 `;
 
-export const ThumbnailContainerDiv = styled(FlexBoxDiv)`
-`;
+export const ThumbnailContainerDiv = styled(FlexBoxDiv)``;
 
 export const ThumbnailLink = styled.a`
     flex-basis: 100%;

@@ -2,10 +2,9 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 
-import "./Nav.css";
+import { isOpenNavState } from "recoil/atoms/mainAtom";
 import NavOpen from "./Nav.Open";
 import NavClosed from "./Nav.Closed";
-import { isOpenNavState } from "recoil/atoms/mainAtom";
 
 const StyledNav = styled.nav`
     position: fixed;

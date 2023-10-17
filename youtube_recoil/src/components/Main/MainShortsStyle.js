@@ -45,9 +45,7 @@ export const VideoHeaderDiv = styled(FlexBoxDiv)`
         display: flex;
     }
 
-    ${props => !props.hover && `
-        display: none;
-    `}
+    ${props => !props.hover && `display: none;`}
 `;
 
 export const MediaControlButton = styled.button`

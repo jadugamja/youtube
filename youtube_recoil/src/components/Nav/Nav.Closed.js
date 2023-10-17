@@ -1,9 +1,22 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-
 import { selectedMenuState } from "recoil/atoms/mainAtom";
 import { fetchData } from "utils/fetchData";
+import styled from "styled-components";
+
 import NavItem from "./NavItem";
+
+const ClosedUl = styled.ul`
+    position: fixed;
+    top: 52px;
+    width: 78px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 4px;
+`;
 
 const NavClosed = () => {
 
@@ -28,13 +41,13 @@ const NavClosed = () => {
     }, []);
 
     return (
-        <ul className="nav-closed" onClick={clickMenuEvent}>
+        <ClosedUl onClick={clickMenuEvent}>
             {
                 closedMenuListSet.map((item, index) => 
                     <NavItem key={index} item={item} isSelected={selectedMenu === index} />
                 )
             }
-        </ul>
+        </ClosedUl>
     );
 }
 
