@@ -17,7 +17,7 @@ export const FixedHeader = styled.header`
 
 export const HeaderLeftDiv = styled(FlexBoxDiv)`
     position: relative;
-    flex-basis: 15.5%;
+    flex-basis: 16%;
     background-color: #fff;
 
     z-index: 9;
@@ -164,7 +164,7 @@ export const TooltipSpan = styled.span`
 `;
 
 export const MicContainerDiv = styled(FlexBoxDiv)`
-    margin-left: 20px;
+    margin-left: 16px;
     width: 40px;
     height: 40px;
 
@@ -201,8 +201,8 @@ export const VideoImg = styled.img`
 `;
 
 export const BellImg = styled.img`
-    width: 18px;
-    height: 22px;
+    width: 37px;
+    height: 34px;
 `;
 
 export const ProfileContainerDiv = styled(FlexBoxDiv)`
@@ -212,7 +212,7 @@ export const ProfileContainerDiv = styled(FlexBoxDiv)`
     height: 32px;
 
     border-radius: 50%;
-    margin: 0 29px;
+    margin: 0 24px;
     cursor: pointer;
 `;
 

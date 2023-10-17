@@ -46,7 +46,6 @@ const NavItem = ((props) => {
     
     const {item: {id, name}, isSelected} = props;
     const isOpen = useRecoilValue(isOpenNavState);
-    console.log(isOpen)
     return (
         <MenuItem key={id} open={isOpen} active={isSelected}>
             <div>
