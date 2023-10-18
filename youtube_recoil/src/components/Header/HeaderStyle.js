@@ -12,15 +12,17 @@ export const FixedHeader = styled.header`
     padding: 0 0 0 16px;
     background-color: #fff;
 
-    z-index: 4;
+    z-index: 3;
 `;
 
-export const HeaderLeftDiv = styled(FlexBoxDiv)`
+export const HeaderLeftWrapper = styled(FlexBoxDiv)`
     position: relative;
     flex-basis: 16%;
     background-color: #fff;
 
     z-index: 9;
+    height: ${props => props.height || "inherit" };
+    margin: ${props => props.margin || "0" };
 `;
 
 export const MenuLogoContainerDiv = styled(FlexBoxDiv)`
@@ -28,8 +30,8 @@ export const MenuLogoContainerDiv = styled(FlexBoxDiv)`
 `;
 
 export const MenuBoxDiv = styled(FlexBoxDiv)`
-    flex-basis: 46px;
-    height: 46px;
+    flex-basis: 40px;
+    height: 40px;
     border-radius: 50%;
     cursor: pointer;
 
@@ -38,14 +40,14 @@ export const MenuBoxDiv = styled(FlexBoxDiv)`
     }
 `;
 
+export const MenuImg = styled.img`
+    width: 25.5px;
+    height: 28px;
+`;
+
 export const LogoBoxLink = styled.a`
     display: block;
     height: fit-content;
-`;
-
-export const MenuImg = styled.img`
-    width: 26.5px;
-    height: 32px;
 `;
 
 export const LogoImg = styled.img`
@@ -68,7 +70,7 @@ export const TootipHomeDiv = styled.div`
     }};
 `;
 
-export const HeaderCenterDiv = styled(FlexBoxDiv)`
+export const HeaderCenterWrapper = styled(FlexBoxDiv)`
     flex-basis: 51%;
     margin-right: 133px;
 `;
@@ -163,7 +165,7 @@ export const TooltipSpan = styled.span`
     color: #fff;
 `;
 
-export const MicContainerDiv = styled(FlexBoxDiv)`
+export const MicContainer = styled(FlexBoxDiv)`
     margin-left: 16px;
     width: 40px;
     height: 40px;
@@ -180,6 +182,27 @@ export const MicImg = styled.img`
     width: 24px;
     height: 25px;
 `;
+
+export const ButtonContainer = styled(FlexBoxDiv)``;
+
+export const MicWrapper = styled(FlexBoxDiv)`
+    position: relative;
+    top: 150px;
+
+    ${MicContainer} {
+        margin-left: 0;
+        width: 68px;
+        height: 68px;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    ${MicImg} {
+        width: 37px;
+        height: 39px;
+    }
+`;
+
+export const HeaderRightWrapper = styled(FlexBoxDiv)``;
 
 export const HeaderRightItemDiv = styled(FlexBoxDiv)`
     width: 40px;

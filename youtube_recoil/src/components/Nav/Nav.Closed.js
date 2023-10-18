@@ -8,8 +8,8 @@ import NavItem from "./NavItem";
 
 const ClosedUl = styled.ul`
     position: fixed;
-    top: 52px;
-    width: 78px;
+    top: 44px;
+    width: 74px;
 
     display: flex;
     flex-flow: column nowrap;

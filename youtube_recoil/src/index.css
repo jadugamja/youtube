@@ -156,25 +156,24 @@ body {
 }
 
 .i-home {
-    width: 17px;
+    width: 16px;
     height: 18px;
 }
 
 .i-shorts {
-    width: 26px;
-    height: 26px;
+    width: 25px;
+    height: 25px;
     margin-left: 2px;
 }
 
 .i-sub {
-    width: 23px;
-    height: 19px;
+    width: 21px;
+    height: 17px;
 }
 
 .i-lib {
-    width: 24px;
-    height: 24px;
-    margin-left: 2px;
+    width: 23px;
+    height: 23px;
 }
 
 /************************************************/

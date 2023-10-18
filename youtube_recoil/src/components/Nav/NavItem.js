@@ -4,7 +4,7 @@ import { useRecoilValue } from "recoil";
 import { isOpenNavState } from "recoil/atoms/mainAtom";
 
 const MenuItem = styled.li`
-    font-size: 11px;
+    font-size: 10px;
     text-align: center;
     border-radius: 7px;
     align-items: center;
@@ -25,7 +25,7 @@ const MenuItem = styled.li`
 
     ${({ open }) => !open && css`
         width: 100%;
-        height: 82px;
+        height: 72px;
         padding: 13px 0;
 
         display: flex;

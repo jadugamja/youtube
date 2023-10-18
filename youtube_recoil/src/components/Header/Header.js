@@ -1,20 +1,61 @@
 import { useState } from "react";
 import { useRecoilState } from "recoil";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { isOpenNavState } from "recoil/atoms/mainAtom";
-import { FixedHeader, HeaderLeftDiv, MenuLogoContainerDiv, MenuBoxDiv, LogoBoxLink, MenuImg, LogoImg, HeaderCenterDiv, TootipHomeDiv, SearchForm, SearchContainerDiv, InputContainerDiv, SearchImg, SearchInput, KeyboardContainerDiv, KeyboardImg, SearchButtonContainerDiv, TooltipDiv, TooltipSpan, MicContainerDiv, MicImg, HeaderRightItemDiv, VideoImg, BellImg, ProfileContainerDiv, ProfileImg } from "./HeaderStyle.js";
+import { FixedHeader, HeaderLeftWrapper, HeaderCenterWrapper, HeaderRightWrapper, MenuLogoContainerDiv, MenuBoxDiv, LogoBoxLink, MenuImg, LogoImg, TootipHomeDiv, SearchForm, SearchContainerDiv, InputContainerDiv, SearchImg, SearchInput, KeyboardContainerDiv, KeyboardImg, SearchButtonContainerDiv, TooltipDiv, TooltipSpan, MicWrapper, MicContainer, MicImg, HeaderRightItemDiv, VideoImg, BellImg, ProfileContainerDiv, ProfileImg, ButtonContainer } from "./HeaderStyle.js";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import menu from "assets/menu.png";
 import logo from "assets/logo.png";
 import search from "assets/search.png";
 import keyboard from "assets/keyboard.png";
 import mic from "assets/mic.png";
-import { FlexBoxDiv } from "commonStyle";
+
+const Modal = styled.div`
+    position: fixed;
+    z-index: 99;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+
+    ${({hide}) => hide && `display: none;`}
+`;
+
+const MicSearch = styled.div`
+    position: absolute;
+    top: 8px;
+    width: 590px;
+    height: 400px;
+    padding: 17px 17px 0 35px;
+    background: #fff;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
+`;
+
+const MicAccessTitle = styled.h2`
+    color: #0f0f0f;
+    font-family: "Roboto","Arial", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 3.2rem;
+    padding-bottom: 15px;
+`;
+
+const MicAccessGuide = styled.span`
+    font-size: 14px;
+`;
 
 const Header = () => {
 
     // 메뉴바 버튼 클릭 이벤트
     const [isOpen, setIsOpen] = useRecoilState(isOpenNavState);
-        const toggleMenuButton = () => setIsOpen(!isOpen);
+    const toggleMenuButton = () => setIsOpen(!isOpen);
 
     // 검색 영역 활성화 상태 여부 및 상태 변경 이벤트
     const [isActive, setIsActive] = useState(false);
@@ -31,7 +72,7 @@ const Header = () => {
 
     return (
         <FixedHeader>
-            <HeaderLeftDiv col="center">
+            <HeaderLeftWrapper col="center">
                 <MenuLogoContainerDiv row="between" col="center">
                     <MenuBoxDiv row="center" col="center" onClick={toggleMenuButton}>
                         <MenuImg src={menu} />
@@ -43,8 +84,8 @@ const Header = () => {
                         <span>YouTube 홈</span>
                     </TootipHomeDiv>
                 </MenuLogoContainerDiv>
-            </HeaderLeftDiv>
-            <HeaderCenterDiv row="center" col="center">
+            </HeaderLeftWrapper>
+            <HeaderCenterWrapper row="center" col="center">
                 <SearchForm>
                     <SearchContainerDiv col="center" active={isActive} onFocus={activateInputEvent} onBlur={disabledInputEvent}>
                         <InputContainerDiv row="between" col="center">
@@ -65,14 +106,32 @@ const Header = () => {
                         }
                     </SearchButtonContainerDiv>
                 </SearchForm>
-                <MicContainerDiv row="center" col="center" onMouseOver={() => {activateTooltipEvent(1)}} onMouseOut={disabledTooltipEvent}>
+                <MicContainer row="center" col="center" onMouseOver={() => {activateTooltipEvent(1)}} onMouseOut={disabledTooltipEvent}>
                     <MicImg src={mic} />
                         {
                             isHover === 1 && <TooltipDiv><TooltipSpan>음성으로 검색</TooltipSpan></TooltipDiv>
                         }
-                </MicContainerDiv>
-            </HeaderCenterDiv>
-            <FlexBoxDiv col="center">
+                </MicContainer>
+                <Modal hide>
+                    <MicSearch>
+                        <div>
+                            <ButtonContainer row="end">
+                                <FontAwesomeIcon icon={faXmark} style={{color: "#000", fontSize: "30px"}} />
+                            </ButtonContainer>
+                        </div>
+                        <div>
+                            <MicAccessTitle>승인 대기 중</MicAccessTitle>
+                            <MicAccessGuide>음성으로 검색하려면 마이크에 대한 액세스를 허용하세요.</MicAccessGuide>
+                            <MicWrapper row="center">
+                                <MicContainer row="center" col="center">
+                                    <MicImg src={mic} />
+                                </MicContainer>
+                            </MicWrapper>
+                        </div>
+                    </MicSearch>
+                </Modal>
+            </HeaderCenterWrapper>
+            <HeaderRightWrapper col="center">
                 <HeaderRightItemDiv row="center" col="center" onMouseOver={() => {activateTooltipEvent(2)}} onMouseOut={disabledTooltipEvent}>
                     <VideoImg src={require(`assets/video.png`)} alt="video" />
                         {
@@ -88,7 +147,7 @@ const Header = () => {
                 <ProfileContainerDiv row="center" col="center">
                     <ProfileImg alt="user"/>
                 </ProfileContainerDiv>
-            </FlexBoxDiv>
+            </HeaderRightWrapper>
         </FixedHeader>
     )
 }

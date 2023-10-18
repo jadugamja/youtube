@@ -2,9 +2,12 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 
-import { selectedMenuState } from "recoil/atoms/mainAtom";
+import { isOpenNavState, selectedMenuState } from "recoil/atoms/mainAtom";
 import { fetchData } from "utils/fetchData";
+import { HeaderLeftWrapper, MenuLogoContainerDiv, MenuBoxDiv, MenuImg, LogoBoxLink, LogoImg, TootipHomeDiv } from "components/Header/HeaderStyle"
 import NavItem from "./NavItem";
+import menu from "assets/menu.png";
+import logo from "assets/logo.png";
 
 const OpenUlContainer = styled.div`
     width: 100%;
@@ -48,6 +51,10 @@ const GroupLine = styled.hr`
 
 const NavOpen = () => {
 
+    // 메뉴바 버튼 클릭 이벤트
+    const [isOpen, setIsOpen] = useRecoilState(isOpenNavState);
+    const toggleMenuButton = () => setIsOpen(!isOpen);
+
     // 선택된 메뉴
     const [selectedMenu, setSelectedMenu] = useRecoilState(selectedMenuState);
 
@@ -70,6 +77,19 @@ const NavOpen = () => {
 
     return (
         <React.Fragment>
+            <HeaderLeftWrapper col="center" height="56px" margin="0 0 0 16px">
+                <MenuLogoContainerDiv row="between" col="center">
+                    <MenuBoxDiv row="center" col="center" onClick={toggleMenuButton}>
+                        <MenuImg src={menu} />
+                    </MenuBoxDiv>
+                    <LogoBoxLink href="#">
+                        <LogoImg src={logo} />
+                    </LogoBoxLink>
+                    <TootipHomeDiv hide>
+                        <span>YouTube 홈</span>
+                    </TootipHomeDiv>
+                </MenuLogoContainerDiv>
+            </HeaderLeftWrapper>
             <OpenUlContainer onClick={clickMenuEvent}>
                 {
                     Object.values(openMenuListsSet).map((group, groupIndex) => {

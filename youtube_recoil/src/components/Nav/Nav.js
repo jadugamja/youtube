@@ -13,11 +13,14 @@ const StyledNav = styled.nav`
     height: 100%;
     background: #fff;
 
-    margin-top: 56px;
+    margin-top: ${props => {
+        if (props.open) return "0"
+        else return "56px"
+    }};
     overflow-x: hidden;
 `;
 
-const ModalDiv = styled.div`
+const Modal = styled.div`
     position: fixed;
     z-index: 3;
     left: 0;
@@ -35,7 +38,7 @@ const Nav = () => {
 
     return (
         <React.Fragment>
-            <StyledNav>
+            <StyledNav open={isOpen}>
                 {
                     !isOpen
                         ? <NavClosed />
@@ -43,7 +46,7 @@ const Nav = () => {
                 }
             </StyledNav>
                 {
-                    isOpen && <ModalDiv></ModalDiv>
+                    isOpen && <Modal></Modal>
                 }
         </React.Fragment>
     );
