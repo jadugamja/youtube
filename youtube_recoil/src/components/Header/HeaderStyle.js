@@ -17,7 +17,8 @@ export const FixedHeader = styled.header`
 
 export const HeaderLeftWrapper = styled(FlexBoxDiv)`
     position: relative;
-    flex-basis: 16%;
+    min-width: 150px;
+    flex-basis: 8%;
     background-color: #fff;
 
     z-index: 9;
@@ -71,8 +72,7 @@ export const TootipHomeDiv = styled.div`
 `;
 
 export const HeaderCenterWrapper = styled(FlexBoxDiv)`
-    flex-basis: 51%;
-    margin-right: 133px;
+    flex-basis: 52%;
 `;
 
 export const SearchForm = styled.form`

@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { isOpenNavState, selectedMenuState } from "recoil/atoms/mainAtom";
 import { fetchData } from "utils/fetchData";
@@ -11,14 +11,14 @@ import logo from "assets/logo.png";
 
 const OpenUlContainer = styled.div`
     width: 100%;
+    max-height: 100vh;
     overflow-y: auto;
-    margin-top: 13px;
 `;
 
 const OpenUl = styled.ul`
     width: 240px;
     margin: 0;
-    padding: 0;
+    padding: 12px;
 
     display: flex;
     flex-flow: column nowrap;
@@ -28,8 +28,8 @@ const OpenUl = styled.ul`
 
 const MenuGroupTitle = styled.h3`
     align-self: baseline;
-    margin: 6px 25px;
-    font-size: 18px;
+    margin: 6px 17px;
+    font-size: 16px;
     font-weight: 500;
 `;
 
@@ -38,15 +38,41 @@ const Scroll = styled.div`
     width: 10px;
     height: 100%;
     top: 0;
-    right: -19px;
+    right: 0;
     opacity: 1;
     background-color: #fff;
 `;
 
 const GroupLine = styled.hr`
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    width: 90%;
-    opacity: 0.5;
+    margin: 0;
+    width: 100%;
+    border-top-width: 1px;
+    opacity: 0.3;
+
+    &&:nth-child(1) {
+        margin-left: 16px;
+    }
+
+`;
+
+const Footer = styled.footer`
+    padding: 16px 24px;
+`;
+
+const TermsContainer = styled.div`
+    font-size: ${({ link }) => { 
+        if (link)
+            return "13px"
+        else
+            return "12px"
+    }};
+    color: ${({ link }) => { 
+        if (link)
+            return "#606060"
+        else
+            return "#909090"
+    }};
+    margin-bottom: 13px;
 `;
 
 const NavOpen = () => {
@@ -94,22 +120,53 @@ const NavOpen = () => {
                 {
                     Object.values(openMenuListsSet).map((group, groupIndex) => {
                         return (
-                            <OpenUl key={groupIndex}>
-                                {
-                                    group.title !== "" && <MenuGroupTitle>{group.title}</MenuGroupTitle>
-                                }
-                                {
-                                    Object.values(group.contents).map((menu, index) => (
-                                        <NavItem key={`${groupIndex}-${index}`} item={menu} isSelected={selectedMenu === (groupIndex * group.contents.length + index)} />
-                                    ))
-                                }
+                            <React.Fragment>
+                                <OpenUl key={groupIndex}>
+                                    {
+                                        group.title !== "" && <MenuGroupTitle>{group.title}</MenuGroupTitle>
+                                    }
+                                    {
+                                        Object.values(group.contents).map((menu, index) => (
+                                            <NavItem key={`${groupIndex}-${index}`} item={menu} isSelected={selectedMenu === (groupIndex * group.contents.length + index)} />
+                                        ))
+                                    }
+                                </OpenUl>
                                 <GroupLine />
-                            </OpenUl>
+                            </React.Fragment>
                         )
                     })
                 }
+                <Footer>
+                    <TermsContainer link>
+                        <div>
+                            <a>정보</a>
+                            <a>보도자료</a>
+                            <a>저작권</a>
+                            <a>문의하기</a>
+                            <a>크리에이터</a>
+                            <a>광고</a>
+                            <a>개발자</a>
+                        </div>
+                        <div>
+                            <a>약관</a>
+                            <a>개인정보처리방침</a>
+                            <a>정책 및 안전</a>
+                            <a>YouTube 작동의 원리</a>
+                            <a>새로운 기능 테스트하기</a>
+                        </div>
+                    </TermsContainer>
+                    <TermsContainer>
+                        <span>
+                            © 2023 Google LLC, Sundar Pichai, 1600 Amphitheatre Parkway, Mountain View CA 94043, USA, 0807-882-594 (무료), yt-support-solutions-kr@google.com, 호스팅: Google LLC, 
+                            <a>사업자정보</a>, 
+                            <a>불법촬영물 신고</a>
+                            <br />
+                            크리에이터들이 유튜브 상에 게시, 태그 또는 추천한 상품들은 판매자들의 약관에 따라 판매됩니다. 유튜브는 이러한 제품들을 판매하지 않으며, 그에 대한 책임을 지지 않습니다.
+                        </span>
+                    </TermsContainer>
+                </Footer>
             </OpenUlContainer>
-            <Scroll></Scroll>
+            {/* <Scroll></Scroll> */}
         </React.Fragment>
     );
 }

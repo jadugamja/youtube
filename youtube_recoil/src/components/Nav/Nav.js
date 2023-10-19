@@ -13,11 +13,12 @@ const StyledNav = styled.nav`
     height: 100%;
     background: #fff;
 
-    margin-top: ${props => {
-        if (props.open) return "0"
-        else return "56px"
-    }};
-    overflow-x: hidden;
+    ${props => {
+        if (props.open)
+            return ` width: 240px; margin-top: 0; `
+        else 
+            return "margin-top: 56px;"
+    }}
 `;
 
 const Modal = styled.div`
