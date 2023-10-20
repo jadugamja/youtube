@@ -1,7 +1,12 @@
 import { atom } from "recoil";
 
-export const isOpenNavState = atom({
-    key: "isOpenNavState",
+export const isWideNavHiddenModalState = atom({
+    key: "isWideNavHiddenModalState",
+    default: false
+});
+
+export const isWideNavState = atom({
+    key: "isWideNavState",
     default: false
 });
 

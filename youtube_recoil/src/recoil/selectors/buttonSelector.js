@@ -1,12 +1,12 @@
 import { selector } from "recoil";
 
-export const isOpenSelector = selector({
-    key: "isOpenSelector",
+export const isWideNavSelector = selector({
+    key: "isWideNavSelector",
     get: ({ get }) => {
-        const isOpen = get(isOpenNavState);
-        if (isOpen) {
+        const isWideNav = get(isWideNavState);
+        if (isWideNav) {
             return {
-                name: isOpen.name
+                name: isWideNav.name
             }
         }
         

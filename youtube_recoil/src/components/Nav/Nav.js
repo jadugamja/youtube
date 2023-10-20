@@ -2,7 +2,7 @@ import React from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
 
-import { isOpenNavState } from "recoil/atoms/mainAtom";
+import { isWideNavState, isWideNavHiddenModalState } from "recoil/atoms/mainAtom";
 import NavOpen from "./Nav.Open";
 import NavClosed from "./Nav.Closed";
 
@@ -14,7 +14,7 @@ const StyledNav = styled.nav`
     background: #fff;
 
     ${props => {
-        if (props.open)
+        if (props.wide)
             return ` width: 240px; margin-top: 0; `
         else 
             return "margin-top: 56px;"
@@ -34,20 +34,26 @@ const Modal = styled.div`
 
 const Nav = () => {
 
-    // 네비바 열림/닫힘 여부
-    const isOpen = useRecoilValue(isOpenNavState);
+    // 브라우저 화면 너비 1313px 이상
+    const isWideScreen = useRecoilValue(isWideNavHiddenModalState);
+    // 메뉴바 클릭 여부
+    const buttonClicked = useRecoilValue(isWideNavState);
 
     return (
         <React.Fragment>
-            <StyledNav open={isOpen}>
+            <StyledNav wide={(isWideScreen && !buttonClicked) || (!isWideScreen && buttonClicked)}>
                 {
-                    !isOpen
-                        ? <NavClosed />
-                        : <NavOpen />
+                    isWideScreen
+                        ? buttonClicked
+                            ? <NavClosed />
+                            : <NavOpen />
+                        : buttonClicked
+                            ? <NavOpen />
+                            : <NavClosed />
                 }
             </StyledNav>
                 {
-                    isOpen && <Modal></Modal>
+                    !isWideScreen && buttonClicked && <Modal></Modal>
                 }
         </React.Fragment>
     );

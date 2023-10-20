@@ -1,21 +1,25 @@
 import React from "react";
 import { useRecoilState } from "recoil";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-import { isOpenNavState, selectedMenuState } from "recoil/atoms/mainAtom";
+import { isWideNavState, selectedMenuState } from "recoil/atoms/mainAtom";
 import { fetchData } from "utils/fetchData";
 import { HeaderLeftWrapper, MenuLogoContainerDiv, MenuBoxDiv, MenuImg, LogoBoxLink, LogoImg, TootipHomeDiv } from "components/Header/HeaderStyle"
 import NavItem from "./NavItem";
 import menu from "assets/menu.png";
 import logo from "assets/logo.png";
 
-const OpenUlContainer = styled.div`
+const WideUlContainer = styled.div`
     width: 100%;
     max-height: 100vh;
     overflow-y: auto;
+
+    hr:first-child {
+        margin-left: 16px;
+    }
 `;
 
-const OpenUl = styled.ul`
+const WideUl = styled.ul`
     width: 240px;
     margin: 0;
     padding: 12px;
@@ -48,11 +52,6 @@ const GroupLine = styled.hr`
     width: 100%;
     border-top-width: 1px;
     opacity: 0.3;
-
-    &&:nth-child(1) {
-        margin-left: 16px;
-    }
-
 `;
 
 const Footer = styled.footer`
@@ -78,8 +77,8 @@ const TermsContainer = styled.div`
 const NavOpen = () => {
 
     // 메뉴바 버튼 클릭 이벤트
-    const [isOpen, setIsOpen] = useRecoilState(isOpenNavState);
-    const toggleMenuButton = () => setIsOpen(!isOpen);
+    const [isWideNav, setIsWideNav] = useRecoilState(isWideNavState);
+    const toggleMenuButton = () => setIsWideNav(!isWideNav);
 
     // 선택된 메뉴
     const [selectedMenu, setSelectedMenu] = useRecoilState(selectedMenuState);
@@ -116,12 +115,12 @@ const NavOpen = () => {
                     </TootipHomeDiv>
                 </MenuLogoContainerDiv>
             </HeaderLeftWrapper>
-            <OpenUlContainer onClick={clickMenuEvent}>
+            <WideUlContainer onClick={clickMenuEvent}>
                 {
                     Object.values(openMenuListsSet).map((group, groupIndex) => {
                         return (
                             <React.Fragment>
-                                <OpenUl key={groupIndex}>
+                                <WideUl key={groupIndex}>
                                     {
                                         group.title !== "" && <MenuGroupTitle>{group.title}</MenuGroupTitle>
                                     }
@@ -130,7 +129,7 @@ const NavOpen = () => {
                                             <NavItem key={`${groupIndex}-${index}`} item={menu} isSelected={selectedMenu === (groupIndex * group.contents.length + index)} />
                                         ))
                                     }
-                                </OpenUl>
+                                </WideUl>
                                 <GroupLine />
                             </React.Fragment>
                         )
@@ -165,7 +164,7 @@ const NavOpen = () => {
                         </span>
                     </TermsContainer>
                 </Footer>
-            </OpenUlContainer>
+            </WideUlContainer>
             {/* <Scroll></Scroll> */}
         </React.Fragment>
     );

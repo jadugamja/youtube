@@ -6,7 +6,7 @@ export const HomeMain = styled.main`
     flex-direction: column;
     height: 100%;
     margin-top: 56px;
-    margin-left: 78px;
+    margin-left: ${props => props.marginLeft ? "240px" : "78px"};
 `;
 
 export const VideoKeywordsContainerDiv = styled(FlexBoxDiv)`
@@ -53,7 +53,7 @@ export const KeywordsSpan = styled.span``;
 
 export const VideoContentContainerDiv = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(305px, 1fr));
     grid-template-rows: repeat(auto-fit, minmax(330px, 1fr));
     grid-gap: 60px 20px;
     margin: 96px 20px 0 30px;

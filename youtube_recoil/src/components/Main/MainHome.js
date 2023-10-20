@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
-import { selectedKeywordState, videoKeywordsState } from "recoil/atoms/mainAtom";
+import { isWideNavHiddenModalState, isWideNavState, selectedKeywordState, videoKeywordsState } from "recoil/atoms/mainAtom";
 import MainHomeItem from "./MainHomeItem";
 import videoSet from "db/videoSet.json";
 import { fetchData } from "utils/fetchData";
@@ -9,12 +9,18 @@ import { HomeMain, VideoKeywordsContainerDiv, KeywordsBoxDiv, KeywordsDiv, Keywo
 
 const MainHome = () => {
 
+    const isWideScreen = useRecoilValue(isWideNavHiddenModalState);
+    const menuButtonClicked = useRecoilValue(isWideNavState);
+
     // 스크롤이 문서 최하단에 위치한 횟수
     const [isScrolledDown, setIsScrolledDown] = useState(0);
+    
     // 영상 정보
     const [videoContent, setVideoContent] = useState(videoSet.slice(isScrolledDown, isScrolledDown + 16));
+    
     // 영상 키워드 정보
     const [videoKeywords, setVideoKeywords] = useRecoilState(videoKeywordsState);
+    
     // 선택된 키워드
     const [selectedKeyword, setSelectedKeyword] = useRecoilState(selectedKeywordState);
 
@@ -51,7 +57,7 @@ const MainHome = () => {
     }, [isScrolledDown]);
 
     return (
-        <HomeMain>
+        <HomeMain marginLeft={(isWideScreen && !menuButtonClicked)}>
             <VideoKeywordsContainerDiv col="center">
                 <KeywordsBoxDiv col="center">
                     {

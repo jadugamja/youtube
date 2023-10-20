@@ -7,6 +7,16 @@ export const FlexBoxDiv = styled.div`
     ${ props => setDirection(props.dir) }
 `;
 
+// flex-box의 flex-direction 설정
+const setDirection = (dir) => {
+    switch (dir) {
+        case "col":
+            return `
+                flex-direction: column;
+            `;
+    }
+}
+
 // flex-box 안의 align-items 값 설정
 const setVerticalAlign = (col) => {
     switch (col) {
@@ -30,7 +40,7 @@ const setVerticalAlign = (col) => {
             return `
                 align-items: stretch;
             `;
-            }
+    }
 }
 
 // flex-box 안의 justify-content 값 설정
@@ -51,15 +61,6 @@ const setHorizontalAlign = (row) => {
         case "between":
             return `
                 justify-content: space-between;
-            `;
-    }
-}
-
-const setDirection = (dir) => {
-    switch (dir) {
-        case "col":
-            return `
-                flex-direction: column;
             `;
     }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { useRecoilValue } from "recoil";
-import { isOpenNavState } from "recoil/atoms/mainAtom";
+import { isWideNavHiddenModalState, isWideNavState } from "recoil/atoms/mainAtom";
 
 const MenuItem = styled.li`
     font-size: 10px;
@@ -10,8 +10,8 @@ const MenuItem = styled.li`
     align-items: center;
     cursor: pointer;
 
-    // 메뉴바 열었을 때
-    ${({ open }) => open && css`
+    // 넓은 네비바
+    ${({ wide }) => wide && css`
         width: 98%;
         height: 40px;
         display: grid;
@@ -25,8 +25,8 @@ const MenuItem = styled.li`
         }
     `}
 
-    // 메뉴바 닫았을 때
-    ${({ open }) => !open && css`
+    // 미니 네비바
+    ${({ wide }) => !wide && css`
         width: 100%;
         height: 72px;
         padding: 13px 0;
@@ -48,9 +48,11 @@ const MenuName = styled.span``;
 const NavItem = ((props) => {
     
     const {item: {id, name}, isSelected} = props;
-    const isOpen = useRecoilValue(isOpenNavState);
+    const isWideScreen = useRecoilValue(isWideNavHiddenModalState);
+    const isWideNav = useRecoilValue(isWideNavState);
+    
     return (
-        <MenuItem key={id} open={isOpen} active={isSelected}>
+        <MenuItem key={id} wide={isWideScreen || isWideNav} active={isSelected}>
             <div>
                 <img className={`i-${id}`} src={require(`assets/${id}.png`)} alt={id} />
             </div>

@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { isOpenNavState } from "recoil/atoms/mainAtom";
+import { isWideNavState } from "recoil/atoms/mainAtom";
 import { FixedHeader, HeaderLeftWrapper, HeaderCenterWrapper, HeaderRightWrapper, MenuLogoContainerDiv, MenuBoxDiv, LogoBoxLink, MenuImg, LogoImg, TootipHomeDiv, SearchForm, SearchContainerDiv, InputContainerDiv, SearchImg, SearchInput, KeyboardContainerDiv, KeyboardImg, SearchButtonContainerDiv, TooltipDiv, TooltipSpan, MicWrapper, MicContainer, MicImg, HeaderRightItemDiv, VideoImg, BellImg, ProfileContainerDiv, ProfileImg, ButtonContainer } from "./HeaderStyle.js";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import menu from "assets/menu.png";
@@ -54,8 +54,8 @@ const MicAccessGuide = styled.span`
 const Header = () => {
 
     // 메뉴바 버튼 클릭 이벤트
-    const [isOpen, setIsOpen] = useRecoilState(isOpenNavState);
-    const toggleMenuButton = () => setIsOpen(!isOpen);
+    const [isWideNav, setIsWideNav] = useRecoilState(isWideNavState);
+    const toggleMenuButton = () => setIsWideNav(!isWideNav);
 
     // 검색 영역 활성화 상태 여부 및 상태 변경 이벤트
     const [isActive, setIsActive] = useState(false);

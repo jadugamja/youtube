@@ -24,6 +24,7 @@ export const HeaderLeftWrapper = styled(FlexBoxDiv)`
     z-index: 9;
     height: ${props => props.height || "inherit" };
     margin: ${props => props.margin || "0" };
+    ${props => props.hide && css `display: none;` }
 `;
 
 export const MenuLogoContainerDiv = styled(FlexBoxDiv)`
@@ -105,7 +106,7 @@ export const InputContainerDiv = styled(FlexBoxDiv)`
     padding-left: 15px;
     flex-basis: 100%;
 
-    border: 1px solid var(--search-border-color);
+    border: 1px solid ${props => props.theme.searchBorderColor};
     border-radius: 25px 0 0 25px;
     box-shadow: inset 0.5px 0.2px 3px #e6e6e6;
 `;
