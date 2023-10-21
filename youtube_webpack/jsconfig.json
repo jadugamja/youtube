@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "baseUrl": "src",
+      "paths": {
+        "@Header": ["components/Header/*"],
+        "@Nav": ["components/Nav/*"],
+        "@Main": ["components/Main/*"]
+      }
+    },
+    "includes": ["src/**/**"]
+}
