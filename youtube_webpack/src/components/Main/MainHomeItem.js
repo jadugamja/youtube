@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { VideoSection, ThumbnailContainerDiv, ThumbnailLink, ThumbnailImg, VideoDescContainerDiv, ChannelProfileImg, DescRightContainerDiv, DescRightHeaderDiv, DescRightProfileDiv, VideoTitle, KebabButton, NameSpan, VerifiedImg } from "./MainHomeItemStyle";
 
 const MainHomeItem = (props) => {

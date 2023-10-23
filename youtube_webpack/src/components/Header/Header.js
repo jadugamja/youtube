@@ -1,7 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { createRequire } from "module";
 
 import { isWideNavState } from "../../recoil/atoms/mainAtom";
 import { FixedHeader, HeaderLeftWrapper, HeaderCenterWrapper, HeaderRightWrapper, MenuLogoContainerDiv, MenuBoxDiv, LogoBoxLink, MenuImg, LogoImg, TootipHomeDiv, SearchForm, SearchContainerDiv, InputContainerDiv, SearchImg, SearchInput, KeyboardContainerDiv, KeyboardImg, SearchButtonContainerDiv, TooltipDiv, TooltipSpan, MicWrapper, MicContainer, MicImg, HeaderRightItemDiv, VideoImg, BellImg, ProfileContainerDiv, ProfileImg, ButtonContainer } from "./HeaderStyle";
@@ -11,6 +12,8 @@ import logo from "../../assets/logo.png";
 import search from "../../assets/search.png";
 import keyboard from "../../assets/keyboard.png";
 import mic from "../../assets/mic.png";
+
+// const require = createRequire(import.meta.url);
 
 const Modal = styled.div`
     position: fixed;
@@ -134,6 +137,7 @@ const Header = () => {
             <HeaderRightWrapper col="center">
                 <HeaderRightItemDiv row="center" col="center" onMouseOver={() => {activateTooltipEvent(2)}} onMouseOut={disabledTooltipEvent}>
                     <VideoImg src={require(`../../assets/video.png`)} alt="video" />
+                    {/* <VideoImg src={require(`../../assets/video.png`)} alt="video" /> */}
                         {
                             isHover === 2 && <TooltipDiv><TooltipSpan>만들기</TooltipSpan></TooltipDiv>
                         }

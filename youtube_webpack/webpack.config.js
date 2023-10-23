@@ -1,24 +1,44 @@
+import { createRequire } from "module";
+import { fileURLToPath } from "url";
+
+const require = createRequire(import.meta.url);
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
+
+const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const jsConfigPath = path.resolve(__dirname, "./jsconfig.json") 
+// import webpack from "webpack";
+// import path from "path";
+// import HtmlWebpackPlugin from "html-webpack-plugin";
 
 const config = {
     mode: "development",
     entry: {
-        app: ["./src/index"]
+        app: ["./src/index.js"]
     },
     output: {
         filename: "bundle.js",
-        path: path.resolve(__dirname, "public")
+        path: path.resolve(__dirname, "public"),
+        publicPath: "public/"
     },
+    resolve: {
+        extensions: [".js", ".jsx"],
+        // fallback: {
+        //     "fs": false,
+        //     "os": false,
+        //     "path": false,
+        //     "assert": false,
+        //     "constants": false,
+        // }
+    },
+    // target: "web",
     devServer: {
         open: true,
         static: {
             directory: path.resolve(__dirname, "public")
         },
         host: "localhost",
-        port: 3000
+        port: 3030
     },
     module: {
         rules: [
@@ -30,22 +50,35 @@ const config = {
                 exclude: /node_modules/
             },
             {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+                test: /\.(eot|svg|ttf|woff|woff2|png|jpe?g|gif|mp4|webm)$/i,
+                use: [{
+                    loader: "file-loader",
+                    // options: {
+                    //     name: "assets/[name].[ext]",
+                    // }
+                }],
                 exclude: /node_modules/,
                 type: "asset"
-            },
+            }, 
+            {
+                test: /\.m?js$/,
+                resolve: {
+                    fullySpecified: false,
+                }
+            }
         ]
     },
     // resolve: {
         plugins: [
             new HtmlWebpackPlugin({
-                template: __dirname + "/public/index.html"
+                template: path.resolve(__dirname, "public/index.html")
             }),
-            // new TsconfigPathsPlugin({ 
-            //     configFile: jsConfigPath
-            // })
+            new webpack.ProvidePlugin({
+                process: "process/browser.js"
+            })
         ],
     // }
 }
 
-module.exports = config;
+// module.exports = config;
+export default config
