@@ -18,27 +18,28 @@ const config = {
     },
     output: {
         filename: "bundle.js",
+        // path: A place where you store bundle.js and index.html
         path: path.resolve(__dirname, "public"),
-        publicPath: "public/"
     },
     resolve: {
         extensions: [".js", ".jsx"],
-        // fallback: {
-        //     "fs": false,
-        //     "os": false,
-        //     "path": false,
-        //     "assert": false,
-        //     "constants": false,
-        // }
+        fallback: {
+            "fs": false,
+            "os": false,
+            "path": false,
+            "assert": false,
+            "constants": false,
+        }
     },
-    // target: "web",
+    target: "web",
     devServer: {
         open: true,
         static: {
             directory: path.resolve(__dirname, "public")
         },
         host: "localhost",
-        port: 3030
+        port: 3030,
+        hot: true
     },
     module: {
         rules: [
@@ -53,9 +54,9 @@ const config = {
                 test: /\.(eot|svg|ttf|woff|woff2|png|jpe?g|gif|mp4|webm)$/i,
                 use: [{
                     loader: "file-loader",
-                    // options: {
-                    //     name: "assets/[name].[ext]",
-                    // }
+                    options: {
+                        name: "assets/[name].[ext]",
+                    }
                 }],
                 exclude: /node_modules/,
                 type: "asset"

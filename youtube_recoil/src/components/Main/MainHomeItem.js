@@ -25,7 +25,7 @@ const MainHomeItem = (props) => {
             <VideoDescContainerDiv row="between">
                 <div>
                     <a>
-                        <ChannelProfileImg src={process.env.PUBLIC_URL + channelProfile} />
+                        <ChannelProfileImg src={`../../../public/media/ + ${channelProfile}`} />
                     </a>
                 </div>
                 <DescRightContainerDiv>
