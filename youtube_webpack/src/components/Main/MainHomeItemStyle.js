@@ -71,7 +71,7 @@ export const VideoTitle = styled.h2`
 `;
 
 export const KebabButton = styled.button`
-    background-image: url(assets/kebab.png);
+    background-image: url(../../assets/images/kebab.png);
     background-repeat: no-repeat;
     background-size: contain;
     background-color: transparent;
@@ -93,7 +93,7 @@ export const NameSpan = styled.span`
 `;
 
 export const VerifiedImg = styled.img`
-    background-image: url(assets/verified.png);
+    background-image: url(../../assets/images/verified.png);
     background-repeat: no-repeat;
     background-size: contain;
     width: 15px;

@@ -30,7 +30,7 @@ const MainShorts = () => {
             <ContainerDiv onMouseOver={() => {activateHeaderEvent()}} onMouseOut={disabledHeaderEvent}>
                 <VideoContainerDiv onClick={togglePlayPauseEvent}>
                     <Video ref={videoRef} controls autoPlay={true} loop="loop">
-                        <source type="video/mp4" src={`${process.env.PUBLIC_URL}/media/test.mp4`}></source>
+                        <source type="video/mp4" src="/media/test.mp4"></source>
                     </Video>
                     <VideoHeaderDiv row="between" col="baseline" hover={isHover}>
                         {

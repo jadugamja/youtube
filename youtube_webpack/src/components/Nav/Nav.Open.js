@@ -7,8 +7,8 @@ import { fetchData } from "../../utils/fetchData";
 import { HeaderLeftWrapper, MenuLogoContainerDiv, MenuBoxDiv, MenuImg, LogoBoxLink, LogoImg, TootipHomeDiv } from "../Header/HeaderStyle"
 import NavItem from "./NavItem";
 import Footer from "./Footer";
-import menu from "../../assets/menu.png";
-import logo from "../../assets/logo.png";
+import menu from "../../assets/images/menu.png";
+import logo from "../../assets/images/logo.png";
 
 const WideUlContainer = styled.div`
     width: 100%;

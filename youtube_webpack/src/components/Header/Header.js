@@ -6,13 +6,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { isWideNavState } from "../../recoil/atoms/mainAtom";
 import { FixedHeader, HeaderLeftWrapper, HeaderCenterWrapper, HeaderRightWrapper, MenuLogoContainerDiv, MenuBoxDiv, LogoBoxLink, MenuImg, LogoImg, TootipHomeDiv, SearchForm, SearchContainerDiv, InputContainerDiv, SearchImg, SearchInput, KeyboardContainerDiv, KeyboardImg, SearchButtonContainerDiv, TooltipDiv, TooltipSpan, MicWrapper, MicContainer, MicImg, HeaderRightItemDiv, VideoImg, BellImg, ProfileContainerDiv, ProfileImg, ButtonContainer } from "./HeaderStyle";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import menu from "../../assets/menu.png";
-import logo from "../../assets/logo.png";
-import search from "../../assets/search.png";
-import keyboard from "../../assets/keyboard.png";
-import mic from "../../assets/mic.png";
-import video from "../../assets/video.png";
-import bell from "../../assets/bell.png";
+import menu from "../../assets/images/menu.png";
+import logo from "../../assets/images/logo.png";
+import search from "../../assets/images/search.png";
+import keyboard from "../../assets/images/keyboard.png";
+import mic from "../../assets/images/mic.png";
+import video from "../../assets/images/video.png";
+import bell from "../../assets/images/bell.png";
 
 const Modal = styled.div`
     position: fixed;
@@ -77,7 +77,7 @@ const Header = () => {
             <HeaderLeftWrapper col="center">
                 <MenuLogoContainerDiv row="between" col="center">
                     <MenuBoxDiv row="center" col="center" onClick={toggleMenuButton}>
-                        <MenuImg src={menu} />
+                        <MenuImg src="/assets/images/menu.png" alt="menu" />
                     </MenuBoxDiv>
                     <LogoBoxLink href="#">
                         <LogoImg src={logo} />

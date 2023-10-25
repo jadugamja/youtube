@@ -3,13 +3,9 @@ import { fileURLToPath } from "url";
 
 const require = createRequire(import.meta.url);
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
-
 const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-// import webpack from "webpack";
-// import path from "path";
-// import HtmlWebpackPlugin from "html-webpack-plugin";
 
 const config = {
     mode: "development",
@@ -20,7 +16,9 @@ const config = {
         filename: "bundle.js",
         // path: A place where you store bundle.js and index.html
         path: path.resolve(__dirname, "public"),
+        publicPath: "/"
     },
+    // 이걸.. 어떡해야?
     resolve: {
         extensions: [".js", ".jsx"],
         fallback: {
@@ -50,18 +48,22 @@ const config = {
                 }],
                 exclude: /node_modules/
             },
-            {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpe?g|gif|mp4|webm)$/i,
+            {   // 이미지 로더
+                test: /\.(png|jpe?g|gif)$/i,
                 use: [{
-                    loader: "file-loader",
+                    loader: "url-loader",
                     options: {
-                        name: "assets/[name].[ext]",
+                        limit: 8192, // url-loader 쓰는 경우, 8192 바이트까지 처리
+                        // set file name in project
+                        name: "assets/images/[name].[ext]",
+                        // publicPath: "/public/"
                     }
                 }],
+                include: path.resolve(__dirname, "src/assets/images"),
                 exclude: /node_modules/,
-                type: "asset"
+                type: "asset/resource"
             }, 
-            {
+            {   // 확장자 js 생략 가능
                 test: /\.m?js$/,
                 resolve: {
                     fullySpecified: false,
@@ -69,17 +71,16 @@ const config = {
             }
         ]
     },
-    // resolve: {
-        plugins: [
-            new HtmlWebpackPlugin({
-                template: path.resolve(__dirname, "public/index.html")
-            }),
-            new webpack.ProvidePlugin({
-                process: "process/browser.js"
-            })
-        ],
-    // }
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, "public/index.html"),
+            filename: "index.html",
+            publicPath: "/"
+        }),
+        new webpack.ProvidePlugin({
+            process: "process/browser.js"
+        })
+    ],
 }
 
-// module.exports = config;
 export default config
