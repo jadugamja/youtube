@@ -1,86 +1,55 @@
-import { createRequire } from "module";
-import { fileURLToPath } from "url";
-
-const require = createRequire(import.meta.url);
-const __dirname = fileURLToPath(new URL(".", import.meta.url));
-const webpack = require("webpack");
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path")
+const HtmlWebpackPlugin = require("html-webpack-plugin")
 
 const config = {
     mode: "development",
-    entry: {
-        app: ["./src/index.js"]
+    entry: {                    // 시작 파일
+        app: ["./src/index"]
     },
-    output: {
+    output: {                   // 결과물
         filename: "bundle.js",
-        // path: A place where you store bundle.js and index.html
-        path: path.resolve(__dirname, "public"),
-        publicPath: "/"
+        path: __dirname + "/public"
     },
-    // 이걸.. 어떡해야?
+    // For Webpack 4
     resolve: {
-        extensions: [".js", ".jsx"],
-        fallback: {
-            "fs": false,
-            "os": false,
-            "path": false,
-            "assert": false,
-            "constants": false,
+        alias: {
+            src: path.resolve(__dirname, "src")
         }
     },
-    target: "web",
     devServer: {
-        open: true,
+        open: true,         // 새 창 열림
+        hot: true,          // Hot Module Reload
         static: {
-            directory: path.resolve(__dirname, "public")
+            directory: __dirname + "/public"
         },
         host: "localhost",
-        port: 3030,
-        hot: true
+        port: 3000
     },
-    module: {
+    module: {                   // 전처리기 등록하는 부분
         rules: [
             {
                 test: /\.(js|jsx)$/i,
                 use: [{
                     loader: "babel-loader"
-                }],
-                exclude: /node_modules/
+                }]
             },
-            {   // 이미지 로더
-                test: /\.(png|jpe?g|gif)$/i,
+            {
+                test: /\.(jpe?g|png|gif)$/i,
                 use: [{
                     loader: "url-loader",
                     options: {
-                        limit: 8192, // url-loader 쓰는 경우, 8192 바이트까지 처리
-                        // set file name in project
-                        name: "assets/images/[name].[ext]",
-                        // publicPath: "/public/"
+                        limit: 8189
                     }
-                }],
-                include: path.resolve(__dirname, "src/assets/images"),
-                exclude: /node_modules/,
-                type: "asset/resource"
-            }, 
-            {   // 확장자 js 생략 가능
-                test: /\.m?js$/,
-                resolve: {
-                    fullySpecified: false,
-                }
+                }]
             }
         ]
+
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, "public/index.html"),
-            filename: "index.html",
-            publicPath: "/"
-        }),
-        new webpack.ProvidePlugin({
-            process: "process/browser.js"
+            template: __dirname + "/public/index.html"
         })
     ],
 }
 
-export default config
+module.exports = config;

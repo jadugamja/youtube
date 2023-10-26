@@ -77,7 +77,7 @@ const Header = () => {
             <HeaderLeftWrapper col="center">
                 <MenuLogoContainerDiv row="between" col="center">
                     <MenuBoxDiv row="center" col="center" onClick={toggleMenuButton}>
-                        <MenuImg src="/assets/images/menu.png" alt="menu" />
+                        <MenuImg src={menu} alt="menu" />
                     </MenuBoxDiv>
                     <LogoBoxLink href="#">
                         <LogoImg src={logo} />

@@ -1,11 +1,8 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { useRecoilValue } from "recoil";
-// import { createRequire } from "module";
 
 import { isWideNavHiddenModalState, isWideNavState } from "../../recoil/atoms/mainAtom";
-
-// const require = createRequire(import.meta.url);
 
 const MenuItem = styled.li`
     font-size: 10px;
@@ -58,8 +55,7 @@ const NavItem = ((props) => {
     return (
         <MenuItem key={id} wide={isWideScreen || isWideNav} active={isSelected}>
             <div>
-                <img className={`i-${id}`} alt={id} />
-                {/* <img className={`i-${id}`} src={require(`../../assets/${id}.png`)} alt={id} /> */}
+                <img className={`i-${id}`} src={require(`../../assets/images/${id}.png`).default} alt={id} />
             </div>
             <MenuName>{name}</MenuName>
         </MenuItem>
