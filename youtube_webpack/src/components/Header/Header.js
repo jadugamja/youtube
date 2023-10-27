@@ -3,9 +3,12 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { isWideNavState } from "../../recoil/atoms/mainAtom";
-import { FixedHeader, HeaderLeftWrapper, HeaderCenterWrapper, HeaderRightWrapper, MenuLogoContainerDiv, MenuBoxDiv, LogoBoxLink, MenuImg, LogoImg, TootipHomeDiv, SearchForm, SearchContainerDiv, InputContainerDiv, SearchImg, SearchInput, KeyboardContainerDiv, KeyboardImg, SearchButtonContainerDiv, TooltipDiv, TooltipSpan, MicWrapper, MicContainer, MicImg, HeaderRightItemDiv, VideoImg, BellImg, ProfileContainerDiv, ProfileImg, ButtonContainer } from "./HeaderStyle";
+import { isWideNavState, isOpenProfileState } from "../../recoil/atoms/mainAtom";
+import { FixedHeader, HeaderLeftWrapper, HeaderCenterWrapper, HeaderRightWrapper, MenuLogoContainerDiv, MenuBoxDiv, LogoBoxLink, MenuImg, LogoImg, TootipHomeDiv, SearchForm, SearchContainerDiv, InputContainerDiv, SearchImg, SearchInput, KeyboardContainerDiv, KeyboardImg, SearchButtonContainerDiv, TooltipDiv, TooltipSpan, MicWrapper, MicContainer, MicImg, HeaderRightItemDiv, VideoImg, BellImg, ProfileContainerDiv, ProfileImg, ButtonContainer, Button } from "./HeaderStyle";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCircleUser} from "@fortawesome/free-regular-svg-icons";
+
+import Profile from "./Profile.jsx";
 import menu from "../../assets/images/menu.png";
 import logo from "../../assets/images/logo.png";
 import search from "../../assets/images/search.png";
@@ -13,6 +16,7 @@ import keyboard from "../../assets/images/keyboard.png";
 import mic from "../../assets/images/mic.png";
 import video from "../../assets/images/video.png";
 import bell from "../../assets/images/bell.png";
+import user from "../../assets/images/channel-profile-1.jpg";
 
 const Modal = styled.div`
     position: fixed;
@@ -71,6 +75,10 @@ const Header = () => {
     const [isHover, setIsHover] = useState(false);
     const activateTooltipEvent = (idx) => setIsHover(idx);
     const disabledTooltipEvent = () => setIsHover(false);
+
+    // 프로필 클릭 이벤트
+    const [isOpenProfile, setIsOpenProfile] = useRecoilState(isOpenProfileState);
+    const toggleProfileButton = () => setIsOpenProfile(!isOpenProfile);
 
     return (
         <FixedHeader>
@@ -134,21 +142,37 @@ const Header = () => {
                 </Modal>
             </HeaderCenterWrapper>
             <HeaderRightWrapper col="center">
-                <HeaderRightItemDiv row="center" col="center" onMouseOver={() => {activateTooltipEvent(2)}} onMouseOut={disabledTooltipEvent}>
-                    <VideoImg src={video} alt="video" />
+                {/* <React.Fragment>
+                    <HeaderRightItemDiv row="center" col="center" onMouseOver={() => {activateTooltipEvent(2)}} onMouseOut={disabledTooltipEvent}>
+                        <VideoImg src={video} alt="video" />
+                            {
+                                isHover === 2 && <TooltipDiv><TooltipSpan>만들기</TooltipSpan></TooltipDiv>
+                            }
+                    </HeaderRightItemDiv>
+                    <HeaderRightItemDiv row="center" col="center" onMouseOver={() => {activateTooltipEvent(3)}} onMouseOut={disabledTooltipEvent}>
+                        <BellImg src={bell} alt="bell" />
+                            {
+                                isHover === 3 && <TooltipDiv><TooltipSpan>알림</TooltipSpan></TooltipDiv>
+                            }
+                    </HeaderRightItemDiv>
+                    <ProfileContainerDiv row="center" col="center" onClick={toggleProfileButton}>
+                        <ProfileImg src={user} alt="user"/>
+                    </ProfileContainerDiv>
                         {
-                            isHover === 2 && <TooltipDiv><TooltipSpan>만들기</TooltipSpan></TooltipDiv>
+                            isOpenProfile && <Profile />   
                         }
-                </HeaderRightItemDiv>
-                <HeaderRightItemDiv row="center" col="center" onMouseOver={() => {activateTooltipEvent(3)}} onMouseOut={disabledTooltipEvent}>
-                    <BellImg src={bell} alt="bell" />
-                        {
-                            isHover === 3 && <TooltipDiv><TooltipSpan>알림</TooltipSpan></TooltipDiv>
-                        }
-                </HeaderRightItemDiv>
-                <ProfileContainerDiv row="center" col="center">
-                    <ProfileImg alt="user"/>
-                </ProfileContainerDiv>
+                </React.Fragment> */}
+                <React.Fragment>
+                    <HeaderRightItemDiv>
+                        <img />
+                    </HeaderRightItemDiv>
+                    <ButtonContainer login>
+                        <Button>
+                            <FontAwesomeIcon icon={faCircleUser} style={{color: "#1669d6", width: "22px", height: "21px"}}></FontAwesomeIcon>
+                            <span>로그인</span>
+                        </Button>
+                    </ButtonContainer>
+                </React.Fragment>
             </HeaderRightWrapper>
         </FixedHeader>
     )

@@ -184,7 +184,22 @@ export const MicImg = styled.img`
     height: 25px;
 `;
 
-export const ButtonContainer = styled(FlexBoxDiv)``;
+export const ButtonContainer = styled(FlexBoxDiv)`
+    cursor: pointer;
+    ${props => props.login && css`
+        width: 100px;
+        height: 36px;
+    `}
+`;
+
+export const Button = styled.button`
+    width: 100%;
+    border-radius: 20px;
+    background-color: #fff;
+    border: 1px solid #E5E5E5;
+    font-size: 14px;
+    color: #1669d6;
+`;
 
 export const MicWrapper = styled(FlexBoxDiv)`
     position: relative;
@@ -230,16 +245,15 @@ export const BellImg = styled.img`
 `;
 
 export const ProfileContainerDiv = styled(FlexBoxDiv)`
-    /* 임시 */
-    background-color: #000;
     width: 32px;
     height: 32px;
 
-    border-radius: 50%;
     margin: 0 24px;
     cursor: pointer;
 `;
 
 export const ProfileImg = styled.img`
-
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
 `;

@@ -10,6 +10,11 @@ export const isWideNavState = atom({
     default: false
 });
 
+export const isOpenProfileState = atom({
+    key: "isOpenProfileState",
+    default: false
+});
+
 export const selectedMenuState = atom({
     key: "selectedMenuState",
     default: 0

@@ -1,5 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { faPause, faVolumeHigh, faThumbsUp, faThumbsDown, faMessage, faShare } from "@fortawesome/free-solid-svg-icons";
 import { ShortsMain, ContainerDiv, VideoContainerDiv, Video, VideoHeaderDiv, MediaControlButton, VideoFooterDiv, VideoTitle, VideoSubtitleContainerDiv, VideoSubtitle, ProfileContainerDiv, ProfileDiv, ChannelNameContainerDiv, ChannelNameSpan, SubButtonContainerDiv, SubButton, FeedbackContainerDiv, ButtonContainerDiv, RoundedButton, SquareRoundedButton, FixedButtonContainerDiv, BiggerRoundedButton } from "components/Main/MainShortsStyle";
 

@@ -53,7 +53,7 @@
         },
         {
             "id": "lib",
-            "name": "보관함"
+            "name": "나"
         }
     ],
     "openMenuLists": {
@@ -73,11 +73,11 @@
             ]
         }, 
         "secondGroup" : {
-            "title": "",
+            "title": "나",
             "contents": [
                 {
                     "id": "lib",
-                    "name": "보관함"
+                    "name": "내 채널"
                 }, {
                     "id": "record",
                     "name": "시청 기록"

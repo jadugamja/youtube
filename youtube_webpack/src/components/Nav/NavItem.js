@@ -35,6 +35,22 @@ const MenuItem = styled.li`
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
+
+        .i-home {
+            width: 16px;
+        }
+
+        .i-shorts {
+            width: 24px;
+        }
+
+        .i-sub {
+            width: 19px;
+        }
+
+        .i-lib {
+            width: 22px;
+        }        
     `}
 
     ${({ active }) => active && `background: #F2F2F2;`}
@@ -42,6 +58,8 @@ const MenuItem = styled.li`
     &:hover {
         background: #F2F2F2;
     }
+
+
 `;
 
 const MenuName = styled.span``;
