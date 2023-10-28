@@ -10,8 +10,10 @@ const theme = {
     searchFocusBorderColor: '#1c62b9',
     searchBtnBgColor: '#f8f8f8',
     btnBgColor: '#f2f2f2',
+    btnHoverBgColor: '#E5E5E5',
+    
     mainTextColor: '#0F0F0F',
-    channelTextColor: '#606060',
+    subTextColor: '#606060',
 }
 
 const GlobalStyle = createGlobalStyle`
@@ -29,10 +31,18 @@ const GlobalStyle = createGlobalStyle`
     body, #root {
         position: absolute;
         width: 100%;
+        overflow-x: hidden;
     }
 
     body {
         margin: 0;
+    }
+
+    main {
+        position: relative;
+        top: 60px;
+        left: 72px;
+        height: 100%;
     }
 
     input[type="text"], input[type="submit"] {
@@ -57,8 +67,10 @@ const GlobalStyle = createGlobalStyle`
         cursor: pointer;
     }
 
-    ul, ol {
+    ul, ol, dl {
         list-style: none;
+        margin: 0;
+        padding: 0;
     }
 
     video::-webkit-media-controls {

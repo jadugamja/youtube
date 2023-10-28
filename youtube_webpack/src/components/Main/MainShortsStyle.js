@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FlexBoxDiv } from "../../commonStyle";
+import { FlexBox } from "../../commonStyle";
 
 export const ShortsMain = styled.main`
     display: flex;
@@ -10,12 +10,12 @@ export const ShortsMain = styled.main`
     margin-left: 140px;
 `;
 
-export const ContainerDiv = styled(FlexBoxDiv)`
+export const ContainerDiv = styled(FlexBox)`
     height: 90%;
     z-index: 2;
 `;
 
-export const VideoContainerDiv = styled(FlexBoxDiv)`
+export const VideoContainerDiv = styled(FlexBox)`
     position: relative;
     height: 800px;
     margin-top: 22px;
@@ -30,7 +30,7 @@ export const Video = styled.video`
     object-fit: cover;
 `;
 
-export const VideoHeaderDiv = styled(FlexBoxDiv)`
+export const VideoHeaderDiv = styled(FlexBox)`
     position: absolute;
     top: 0;
     padding: 20px 20px;
@@ -92,7 +92,7 @@ export const VideoSubtitle = styled.h3`
     color: #fff;
 `;
 
-export const ProfileContainerDiv = styled(FlexBoxDiv)``;
+export const ProfileContainerDiv = styled(FlexBox)``;
 
 export const ProfileDiv = styled.div`
     margin: 0;
@@ -101,7 +101,7 @@ export const ProfileDiv = styled.div`
     height: 34px;
 `;
 
-export const ChannelNameContainerDiv = styled(FlexBoxDiv)`
+export const ChannelNameContainerDiv = styled(FlexBox)`
     font-size: 14px;
     font-weight: 600;
 `;
@@ -126,13 +126,13 @@ export const SubButton = styled.button`
     cursor: pointer;
 `;
 
-export const FeedbackContainerDiv = styled(FlexBoxDiv)`
+export const FeedbackContainerDiv = styled(FlexBox)`
     margin: 20px 12px;
     gap: 20px;
     font-size: 14px;
 `;
 
-export const ButtonContainerDiv = styled(FlexBoxDiv)``;
+export const ButtonContainerDiv = styled(FlexBox)``;
 
 export const RoundedButton = styled.button`
     width: 48px;

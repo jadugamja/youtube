@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { FlexBoxDiv } from "../../commonStyle";
+import { FlexBox } from "../../commonStyle";
 
 export const FixedHeader = styled.header`
     position: fixed;
@@ -15,7 +15,7 @@ export const FixedHeader = styled.header`
     z-index: 3;
 `;
 
-export const HeaderLeftWrapper = styled(FlexBoxDiv)`
+export const HeaderLeftWrapper = styled(FlexBox)`
     position: relative;
     min-width: 150px;
     flex-basis: 8%;
@@ -27,11 +27,11 @@ export const HeaderLeftWrapper = styled(FlexBoxDiv)`
     ${props => props.hide && css `display: none;` }
 `;
 
-export const MenuLogoContainerDiv = styled(FlexBoxDiv)`
+export const MenuLogoContainerDiv = styled(FlexBox)`
     flex-basis: 150px; // 메뉴와 로고의 간격을 일정하게 유지하기 위함
 `;
 
-export const MenuBoxDiv = styled(FlexBoxDiv)`
+export const MenuBoxDiv = styled(FlexBox)`
     flex-basis: 40px;
     height: 40px;
     border-radius: 50%;
@@ -72,7 +72,7 @@ export const TootipHomeDiv = styled.div`
     }};
 `;
 
-export const HeaderCenterWrapper = styled(FlexBoxDiv)`
+export const HeaderCenterWrapper = styled(FlexBox)`
     flex-basis: 52%;
 `;
 
@@ -82,7 +82,7 @@ export const SearchForm = styled.form`
     align-items: center;
 `;
 
-export const SearchContainerDiv = styled(FlexBoxDiv)`
+export const SearchContainerDiv = styled(FlexBox)`
     flex-basis: 100%;
     padding-left: ${function(props){
         if(props.active)
@@ -101,7 +101,7 @@ export const SearchContainerDiv = styled(FlexBoxDiv)`
     `}
 `;
 
-export const InputContainerDiv = styled(FlexBoxDiv)`
+export const InputContainerDiv = styled(FlexBox)`
     height: 40px;
     padding-left: 15px;
     flex-basis: 100%;
@@ -132,7 +132,7 @@ export const KeyboardImg = styled.img`
     width: 21px;
 `;
 
-export const SearchButtonContainerDiv = styled(FlexBoxDiv)`
+export const SearchButtonContainerDiv = styled(FlexBox)`
     background: #f8f8f8;
     border: 1px solid #ccc;
     border-left: 0;
@@ -146,7 +146,7 @@ export const SearchButtonContainerDiv = styled(FlexBoxDiv)`
     }
 `;
 
-export const TooltipDiv = styled(FlexBoxDiv)`
+export const TooltipDiv = styled(FlexBox)`
     position: absolute;
     top: 74px;
 
@@ -161,12 +161,16 @@ export const TooltipDiv = styled(FlexBoxDiv)`
     transition: all ease-out 5s;
 `;
 
-export const TooltipSpan = styled.span`
+export const TooltipText = styled.span`
     margin: 8px;
     color: #fff;
 `;
 
-export const MicContainer = styled(FlexBoxDiv)`
+export const DialogText = styled.span`
+    margin-left: 18px;
+`;
+
+export const MicContainer = styled(FlexBox)`
     margin-left: 16px;
     width: 40px;
     height: 40px;
@@ -184,11 +188,20 @@ export const MicImg = styled.img`
     height: 25px;
 `;
 
-export const ButtonContainer = styled(FlexBoxDiv)`
+export const ButtonContainer = styled(FlexBox)`
     cursor: pointer;
     ${props => props.login && css`
         width: 100px;
         height: 36px;
+    `}
+
+    ${props => props.upload && css`
+        height: 40px;
+        font-size: 14px;
+
+        &:hover {
+            background-color: ${props => props.theme.btnHoverBgColor};
+        }
     `}
 `;
 
@@ -201,7 +214,7 @@ export const Button = styled.button`
     color: #1669d6;
 `;
 
-export const MicWrapper = styled(FlexBoxDiv)`
+export const MicWrapper = styled(FlexBox)`
     position: relative;
     top: 150px;
 
@@ -218,9 +231,9 @@ export const MicWrapper = styled(FlexBoxDiv)`
     }
 `;
 
-export const HeaderRightWrapper = styled(FlexBoxDiv)``;
+export const HeaderRightWrapper = styled(FlexBox)``;
 
-export const HeaderRightItemDiv = styled(FlexBoxDiv)`
+export const HeaderRightItemDiv = styled(FlexBox)`
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -228,11 +241,12 @@ export const HeaderRightItemDiv = styled(FlexBoxDiv)`
 
     &:hover {
         background-color: #E5E5E5;
+        ${({login}) => login && css`
+            background-color: #fff;
+        `}
     }
 
-    & + & {
-        margin-left: 13px;        
-    }
+    margin-left: ${props => props.marginLeft || "0"}
 `;
 
 export const VideoImg = styled.img`
@@ -244,7 +258,7 @@ export const BellImg = styled.img`
     height: 34px;
 `;
 
-export const ProfileContainerDiv = styled(FlexBoxDiv)`
+export const ProfileContainerDiv = styled(FlexBox)`
     width: 32px;
     height: 32px;
 

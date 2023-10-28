@@ -46,14 +46,11 @@ const MainHome = () => {
     React.useEffect(() => {
 
         fetchData("/data.json", (data) => setVideoKeywords(data.keywords));
-    
-        // isScrolledDown의 상태가 변화할 때마다 이벤트 핸들러 호출
+
+        // Handle Infinite Scroll Event
         window.addEventListener("scroll", scrollDownToNextContentEvent, true);
-
-        // 컴포넌트 언마운트 시, 이벤트 리스너 제거
-        return () => 
-            window.removeEventListener("scroll", scrollDownToNextContentEvent);
-
+        return () => window.removeEventListener("scroll", scrollDownToNextContentEvent);
+        
     }, [isScrolledDown]);
 
     return (

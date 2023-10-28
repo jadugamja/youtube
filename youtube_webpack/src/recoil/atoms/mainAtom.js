@@ -10,8 +10,13 @@ export const isWideNavState = atom({
     default: false
 });
 
-export const isOpenProfileState = atom({
-    key: "isOpenProfileState",
+export const isOpenUploadDialogState = atom({
+    key: "isOpenUploadDialogState",
+    default: false
+});
+
+export const isOpenProfileDialogState = atom({
+    key: "isOpenProfileDialogState",
     default: false
 });
 

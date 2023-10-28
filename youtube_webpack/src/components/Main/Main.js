@@ -6,6 +6,7 @@ import MainHome from "./MainHome";
 import MainShorts from "./MainShorts";
 import MainSubscribe from "./MainSubscribe";
 import MainLibrary from "./MainLibrary";
+import MainMyChannel from "./MainMyChannel.jsx";
 
 const Main = () => {
 
@@ -30,6 +31,9 @@ const Main = () => {
             }
             {
                 selectedMenu === 3 && <MainLibrary />
+            }
+            {
+                selectedMenu === 4 && <MainMyChannel />
             }
         </React.Fragment>
     );

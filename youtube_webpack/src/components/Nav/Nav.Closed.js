@@ -8,7 +8,7 @@ import NavItem from "./NavItem";
 
 const ClosedUl = styled.ul`
     position: fixed;
-    top: 44px;
+    top: 62px;
     width: 74px;
 
     display: flex;

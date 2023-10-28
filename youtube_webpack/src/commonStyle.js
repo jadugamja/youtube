@@ -1,10 +1,91 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const FlexBoxDiv = styled.div`
+export const FlexBox = styled.div`
     display: flex;
     ${ props => setDirection(props.dir) }
     ${ props => setHorizontalAlign(props.row) }
     ${ props => setVerticalAlign(props.col) }
+`;
+
+export const ButtonContainer = styled(FlexBox)`
+    cursor: pointer;
+    ${props => props.login && css`
+        width: 100px;
+        height: 36px;
+    `}
+`;
+
+export const Button = styled.button`
+    // 로그인 버튼
+    ${props => props.login && css`
+        width: 100%;
+        border-radius: 20px;
+        background-color: #fff;
+        border: 1px solid #E5E5E5;
+        font-size: 14px;
+        color: #1669d6;
+    `}
+`;
+
+export const OvalButton = styled(Button)`
+    border: 0;
+    border-radius: 20px;
+    background-color: ${props => props.theme.btnBgColor};
+    font-size: 14px;
+    padding: 8px 16px;
+
+    &:hover {
+        background-color: ${props => props.theme.btnHoverBgColor};
+    }
+
+    & + & {
+        margin-left: 8px;
+    }
+`;
+
+export const ProfileImgContainer = styled(FlexBox)`
+    width: 160px;
+    height: 160px;
+`;
+
+export const Img = styled.img`
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+`
+
+export const TitleContainer = styled.div`
+    margin-bottom: 4px;
+`;
+
+export const Title = styled.span`
+    word-break: break-word;
+    color: ${props => props.theme.mainTextColor};
+`;
+
+export const BigTitle = styled(Title)`
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 36px;
+`;
+
+export const Description = styled.span`
+    font-size: 14px;
+    color: ${props => props.theme.subTextColor};
+
+    & + &::before {
+        content: '‧';
+    }
+`;
+
+export const Link = styled.a`
+`;
+
+export const InfoLink = styled(Link)`
+    display: block;
+    margin: 8px 0 24px 0;
+    font-size: 14px;
+    color: ${props => props.theme.subTextColor};
 `;
 
 // flex-box의 flex-direction 설정

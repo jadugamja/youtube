@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FlexBoxDiv } from "../../commonStyle";
+import { FlexBox } from "../../commonStyle";
 
 export const ThumbnailImg = styled.img`
     object-fit: cover;
@@ -22,7 +22,7 @@ export const VideoSection = styled.section`
     }
 `;
 
-export const ThumbnailContainerDiv = styled(FlexBoxDiv)``;
+export const ThumbnailContainerDiv = styled(FlexBox)``;
 
 export const ThumbnailLink = styled.a`
     flex-basis: 100%;
@@ -30,7 +30,7 @@ export const ThumbnailLink = styled.a`
     justify-content: center;
 `;
 
-export const VideoDescContainerDiv = styled(FlexBoxDiv)`
+export const VideoDescContainerDiv = styled(FlexBox)`
     position: absolute;
     width: 100%;
     max-width: 450px;
@@ -49,13 +49,13 @@ export const DescRightContainerDiv = styled.div`
     overflow: hidden;
 `;
 
-export const DescRightHeaderDiv = styled(FlexBoxDiv)`
+export const DescRightHeaderDiv = styled(FlexBox)`
     max-width: 376px;
     max-height: 47px;
     overflow: hidden;
 `;
 
-export const DescRightProfileDiv = styled(FlexBoxDiv)`
+export const DescRightProfileDiv = styled(FlexBox)`
     margin: 2px 0;
 `;
 
@@ -71,7 +71,7 @@ export const VideoTitle = styled.h2`
 `;
 
 export const KebabButton = styled.button`
-    background-image: url(../../assets/images/kebab.png);
+    background-image: url(${require("../../assets/images/kebab.png").default});
     background-repeat: no-repeat;
     background-size: contain;
     background-color: transparent;
@@ -93,7 +93,7 @@ export const NameSpan = styled.span`
 `;
 
 export const VerifiedImg = styled.img`
-    background-image: url(../../assets/images/verified.png);
+    background-image: url(${require("../../assets/images/verified.png").default});
     background-repeat: no-repeat;
     background-size: contain;
     width: 15px;

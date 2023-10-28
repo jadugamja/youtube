@@ -22,13 +22,11 @@ export const login = async () => {
     const loginResponseData = await loginResponse.json();
     
     if (loginResponse.ok) {
-        
         // 로그인 성공
         if (loginResponse.status === 200) {
             saveAccessTokenToLocalStorage(loginResponseData.data.token)
             return loginResponseData.message
-        } 
-        
+        }
     }
 
     return loginResponseData.message

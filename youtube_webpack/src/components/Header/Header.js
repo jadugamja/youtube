@@ -3,8 +3,8 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { isWideNavState, isOpenProfileState } from "../../recoil/atoms/mainAtom";
-import { FixedHeader, HeaderLeftWrapper, HeaderCenterWrapper, HeaderRightWrapper, MenuLogoContainerDiv, MenuBoxDiv, LogoBoxLink, MenuImg, LogoImg, TootipHomeDiv, SearchForm, SearchContainerDiv, InputContainerDiv, SearchImg, SearchInput, KeyboardContainerDiv, KeyboardImg, SearchButtonContainerDiv, TooltipDiv, TooltipSpan, MicWrapper, MicContainer, MicImg, HeaderRightItemDiv, VideoImg, BellImg, ProfileContainerDiv, ProfileImg, ButtonContainer, Button } from "./HeaderStyle";
+import { isWideNavState, isOpenUploadDialogState, isOpenProfileDialogState } from "../../recoil/atoms/mainAtom";
+import { FixedHeader, HeaderLeftWrapper, HeaderCenterWrapper, HeaderRightWrapper, MenuLogoContainerDiv, MenuBoxDiv, LogoBoxLink, MenuImg, LogoImg, TootipHomeDiv, SearchForm, SearchContainerDiv, InputContainerDiv, SearchImg, SearchInput, KeyboardContainerDiv, KeyboardImg, SearchButtonContainerDiv, TooltipDiv, TooltipText, MicWrapper, MicContainer, MicImg, HeaderRightItemDiv, VideoImg, BellImg, ProfileContainerDiv, ProfileImg, ButtonContainer, Button, DialogText } from "./HeaderStyle";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faCircleUser} from "@fortawesome/free-regular-svg-icons";
 
@@ -17,6 +17,8 @@ import mic from "../../assets/images/mic.png";
 import video from "../../assets/images/video.png";
 import bell from "../../assets/images/bell.png";
 import user from "../../assets/images/channel-profile-1.jpg";
+import myVideo from "../../assets/images/my-video.png";
+import live from "../../assets/images/real-time.png";
 
 const Modal = styled.div`
     position: fixed;
@@ -34,14 +36,26 @@ const Modal = styled.div`
     ${({hide}) => hide && `display: none;`}
 `;
 
-const MicSearch = styled.div`
+const Dialog = styled.div`
     position: absolute;
+    background: #fff;
+`;
+
+const MicDialog = styled(Dialog)`
     top: 8px;
     width: 590px;
     height: 400px;
     padding: 17px 17px 0 35px;
-    background: #fff;
     box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
+`;
+
+const UploadDialog = styled(Dialog)`
+    top: 50px;
+    right: 124px;
+    width: 230px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 32px 0px rgba(0, 0, 0, 0.1);
 `;
 
 const MicAccessTitle = styled.h2`
@@ -55,6 +69,21 @@ const MicAccessTitle = styled.h2`
 
 const MicAccessGuide = styled.span`
     font-size: 14px;
+`;
+
+const KebabButton = styled.button`
+    background-image: url(${require("../../assets/images/kebab.png").default});
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: transparent;
+
+    border: 0;
+    max-width: 23px;
+    height: 23px;
+    cursor: pointer;
+
+    align-self: center;
+    flex: 1;
 `;
 
 const Header = () => {
@@ -76,8 +105,13 @@ const Header = () => {
     const activateTooltipEvent = (idx) => setIsHover(idx);
     const disabledTooltipEvent = () => setIsHover(false);
 
+    // 동영상 추가 아이콘 클릭 이벤트
+    const [isOpenUpload, setIsOpenUpload] = useRecoilState(isOpenUploadDialogState);
+    const toggleUploadButton = () => setIsOpenUpload(!isOpenUpload);
+
+
     // 프로필 클릭 이벤트
-    const [isOpenProfile, setIsOpenProfile] = useRecoilState(isOpenProfileState);
+    const [isOpenProfile, setIsOpenProfile] = useRecoilState(isOpenProfileDialogState);
     const toggleProfileButton = () => setIsOpenProfile(!isOpenProfile);
 
     return (
@@ -112,18 +146,18 @@ const Header = () => {
                         <input type="submit" value="" />
                         <SearchImg src={search} />
                         {
-                            isHover === 0 && <TooltipDiv><TooltipSpan>검색</TooltipSpan></TooltipDiv>
+                            isHover === 0 && <TooltipDiv><TooltipText>검색</TooltipText></TooltipDiv>
                         }
                     </SearchButtonContainerDiv>
                 </SearchForm>
                 <MicContainer row="center" col="center" onMouseOver={() => {activateTooltipEvent(1)}} onMouseOut={disabledTooltipEvent}>
                     <MicImg src={mic} />
                         {
-                            isHover === 1 && <TooltipDiv><TooltipSpan>음성으로 검색</TooltipSpan></TooltipDiv>
+                            isHover === 1 && <TooltipDiv><TooltipText>음성으로 검색</TooltipText></TooltipDiv>
                         }
                 </MicContainer>
                 <Modal hide>
-                    <MicSearch>
+                    <MicDialog>
                         <div>
                             <ButtonContainer row="end">
                                 <FontAwesomeIcon icon={faXmark} style={{color: "#000", fontSize: "30px"}} />
@@ -138,21 +172,35 @@ const Header = () => {
                                 </MicContainer>
                             </MicWrapper>
                         </div>
-                    </MicSearch>
+                    </MicDialog>
                 </Modal>
             </HeaderCenterWrapper>
             <HeaderRightWrapper col="center">
-                {/* <React.Fragment>
-                    <HeaderRightItemDiv row="center" col="center" onMouseOver={() => {activateTooltipEvent(2)}} onMouseOut={disabledTooltipEvent}>
+                <React.Fragment>
+                    <HeaderRightItemDiv row="center" col="center" onMouseOver={() => {activateTooltipEvent(2)}} onMouseOut={disabledTooltipEvent} onClick={toggleUploadButton}>
                         <VideoImg src={video} alt="video" />
                             {
-                                isHover === 2 && <TooltipDiv><TooltipSpan>만들기</TooltipSpan></TooltipDiv>
+                                isHover === 2 && <TooltipDiv><TooltipText>만들기</TooltipText></TooltipDiv>
                             }
                     </HeaderRightItemDiv>
-                    <HeaderRightItemDiv row="center" col="center" onMouseOver={() => {activateTooltipEvent(3)}} onMouseOut={disabledTooltipEvent}>
+                        {
+                           isOpenUpload && (
+                                <UploadDialog as="ul">
+                                    <ButtonContainer as="li" row="start" col="center" upload>
+                                        <img src={myVideo} />
+                                        <DialogText>동영상 업로드</DialogText>
+                                    </ButtonContainer>
+                                    <ButtonContainer as="li" row="start" col="center" upload>
+                                        <img src={live} />
+                                        <DialogText>라이브 스트리밍 시작</DialogText>
+                                    </ButtonContainer>
+                                </UploadDialog>
+                               ) 
+                        }
+                    <HeaderRightItemDiv row="center" col="center" marginLeft="13px" onMouseOver={() => {activateTooltipEvent(3)}} onMouseOut={disabledTooltipEvent}>
                         <BellImg src={bell} alt="bell" />
                             {
-                                isHover === 3 && <TooltipDiv><TooltipSpan>알림</TooltipSpan></TooltipDiv>
+                                isHover === 3 && <TooltipDiv><TooltipText>알림</TooltipText></TooltipDiv>
                             }
                     </HeaderRightItemDiv>
                     <ProfileContainerDiv row="center" col="center" onClick={toggleProfileButton}>
@@ -161,18 +209,21 @@ const Header = () => {
                         {
                             isOpenProfile && <Profile />   
                         }
-                </React.Fragment> */}
-                <React.Fragment>
-                    <HeaderRightItemDiv>
-                        <img />
+                </React.Fragment>
+
+                {/* 로그인 페이지 */}
+                {/* <React.Fragment>
+                    <HeaderRightItemDiv row="center" col="center" login>
+                        <KebabButton />
                     </HeaderRightItemDiv>
                     <ButtonContainer login>
-                        <Button>
+                        <Button login>
                             <FontAwesomeIcon icon={faCircleUser} style={{color: "#1669d6", width: "22px", height: "21px"}}></FontAwesomeIcon>
                             <span>로그인</span>
                         </Button>
                     </ButtonContainer>
-                </React.Fragment>
+                </React.Fragment> */}
+
             </HeaderRightWrapper>
         </FixedHeader>
     )

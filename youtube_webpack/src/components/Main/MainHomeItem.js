@@ -3,7 +3,7 @@ import { VideoSection, ThumbnailContainerDiv, ThumbnailLink, ThumbnailImg, Video
 
 const MainHomeItem = (props) => {
 
-    const {item: {channelName, channelProfile, videoTitle, staticThumbnail, animatedThumbnail, hitsPerVideo, uploadedPeriod}, idx} = props;
+    const {item: {nickname, profileImgPath, videoTitle, thumbnailImgPath, animatedThumbnail, hitsPerVideo, uploadedPeriod}, idx} = props;
     const [isPlaying, setIsPlaying] = useState(false);
 
     // 마우스 오버 시
@@ -16,13 +16,13 @@ const MainHomeItem = (props) => {
         <VideoSection onMouseOver={handleThumbnailMouseOver} onMouseOut={handleThumbnailMouseOut}>
             <ThumbnailContainerDiv row="center" col="center">
                 <ThumbnailLink href="#">
-                    <ThumbnailImg id={`thumbnail-${idx}`} src={isPlaying ? animatedThumbnail : staticThumbnail } alt="thumbnail" />
+                    <ThumbnailImg id={`thumbnail-${idx}`} src={isPlaying ? animatedThumbnail : thumbnailImgPath } alt="thumbnail" />
                 </ThumbnailLink>
             </ThumbnailContainerDiv>
             <VideoDescContainerDiv row="between">
                 <div>
                     <a>
-                        <ChannelProfileImg src={channelProfile} />
+                        <ChannelProfileImg src={profileImgPath} />
                     </a>
                 </div>
                 <DescRightContainerDiv>
@@ -32,7 +32,7 @@ const MainHomeItem = (props) => {
                     </DescRightHeaderDiv>
                     <DescRightProfileDiv dir="col">
                         <div>
-                            <NameSpan>{channelName}</NameSpan>
+                            <NameSpan>{nickname}</NameSpan>
                             <VerifiedImg hide />
                         </div>
                         <div>

@@ -1,15 +1,15 @@
 import styled, { css } from "styled-components";
-import { FlexBoxDiv } from "../../commonStyle";
+import { FlexBox } from "../../commonStyle";
 
 export const HomeMain = styled.main`
     display: flex;
     flex-direction: column;
-    height: 100%;
+    position: static;
     margin-top: 56px;
     margin-left: ${props => props.marginLeft ? "240px" : "78px"};
 `;
 
-export const VideoKeywordsContainerDiv = styled(FlexBoxDiv)`
+export const VideoKeywordsContainerDiv = styled(FlexBox)`
     position: fixed;
     width: 100%;
     height: 60px;
@@ -20,12 +20,12 @@ export const VideoKeywordsContainerDiv = styled(FlexBoxDiv)`
     white-space: nowrap;
 `;
 
-export const KeywordsBoxDiv = styled(FlexBoxDiv)`
+export const KeywordsBoxDiv = styled(FlexBox)`
     height: 100%;
     margin-left: 24px;
 `;
 
-export const KeywordsDiv = styled(FlexBoxDiv)`
+export const KeywordsDiv = styled(FlexBox)`
     flex: 1 1;
     margin: 0 6px;
     background-color: #F2F2F2;

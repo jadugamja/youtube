@@ -76,7 +76,7 @@
             "title": "나",
             "contents": [
                 {
-                    "id": "lib",
+                    "id": "my_channel",
                     "name": "내 채널"
                 }, {
                     "id": "record",
