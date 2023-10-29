@@ -53,7 +53,7 @@ const UploadDialog = styled(Dialog)`
     top: 50px;
     right: 124px;
     width: 230px;
-    padding: 10px 15px;
+    padding: 8px 17px;
     border-radius: 10px;
     box-shadow: 0px 4px 32px 0px rgba(0, 0, 0, 0.1);
 `;
@@ -108,7 +108,6 @@ const Header = () => {
     // 동영상 추가 아이콘 클릭 이벤트
     const [isOpenUpload, setIsOpenUpload] = useRecoilState(isOpenUploadDialogState);
     const toggleUploadButton = () => setIsOpenUpload(!isOpenUpload);
-
 
     // 프로필 클릭 이벤트
     const [isOpenProfile, setIsOpenProfile] = useRecoilState(isOpenProfileDialogState);

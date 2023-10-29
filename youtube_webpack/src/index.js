@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RecoilRoot } from "recoil";
-
-import App from "./App";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
+import App from "./App";
 
 const theme = {
     searchBorderColor: '#ccc',
@@ -106,10 +105,12 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <RecoilRoot>
-        <ThemeProvider theme={theme}>
-            <GlobalStyle />
-            <App />
-        </ThemeProvider>
-    </RecoilRoot>
+    <React.StrictMode>
+        <RecoilRoot>
+            <ThemeProvider theme={theme}>
+                <GlobalStyle />
+                <App />
+            </ThemeProvider>
+        </RecoilRoot>
+    </React.StrictMode>
 );

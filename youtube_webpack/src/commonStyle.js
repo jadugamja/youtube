@@ -5,6 +5,8 @@ export const FlexBox = styled.div`
     ${ props => setDirection(props.dir) }
     ${ props => setHorizontalAlign(props.row) }
     ${ props => setVerticalAlign(props.col) }
+
+    width: ${props => props.width || ""};
 `;
 
 export const ButtonContainer = styled(FlexBox)`
@@ -16,6 +18,11 @@ export const ButtonContainer = styled(FlexBox)`
 `;
 
 export const Button = styled.button`
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #E5E5E5;
+    font-size: 14px;
+
     // 로그인 버튼
     ${props => props.login && css`
         width: 100%;
@@ -25,6 +32,12 @@ export const Button = styled.button`
         font-size: 14px;
         color: #1669d6;
     `}
+`;
+
+export const LoginButton = styled(Button)`
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: 700;
 `;
 
 export const OvalButton = styled(Button)`
@@ -74,7 +87,7 @@ export const Description = styled.span`
     color: ${props => props.theme.subTextColor};
 
     & + &::before {
-        content: '‧';
+        content: ' ‧ ';
     }
 `;
 
@@ -86,6 +99,16 @@ export const InfoLink = styled(Link)`
     margin: 8px 0 24px 0;
     font-size: 14px;
     color: ${props => props.theme.subTextColor};
+`;
+
+export const MarginLabel = styled.label`
+    margin-top: 10px;
+`
+
+export const TempInput = styled.input`
+    border: 1px solid rgba(0, 0, 0, 0.3)!important;
+    height: 40px;
+    font-size: 20px;
 `;
 
 // flex-box의 flex-direction 설정

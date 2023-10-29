@@ -17,6 +17,12 @@ const config = {
         }
     },
     devServer: {
+        historyApiFallback: {
+            rewrites: [
+                { from: /^\/auth/, to: "/auth.html" },
+                { from: /^./, to: "/index.html" },
+            ]
+        },
         open: true,         // 새 창 열림
         hot: true,          // Hot Module Reload
         static: {
