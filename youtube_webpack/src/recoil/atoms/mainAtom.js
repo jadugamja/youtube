@@ -39,3 +39,8 @@ export const videoKeywordsState = atom({
     key: "videoKeywordsState",
     default: []
 });
+
+export const profileImgPathState = atom({
+    key: "profileImgPathState",
+    default: "../../assets/images/channel-profile-1.jpg"
+});

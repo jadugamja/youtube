@@ -16,16 +16,29 @@ export const login = async ({id, pw}) => {
 
     const loginResponseData = await loginResponse.json();
     
-    console.log(loginResponse.ok)
-
     if (loginResponse.ok) {
-        // 로그인 성공
-        if (loginResponse.status === 200) {
-            alert(loginResponseData.message)
-            saveAccessTokenToLocalStorage(loginResponseData.data.token)
-            return loginResponseData.data.token
-        }
+        saveAccessTokenToLocalStorage(loginResponseData.data.token)
+        return loginResponseData.data
     }
 
     return loginResponseData.message
+}
+
+export const getCurrentUserInfo = async (token) => {
+
+    const userInfoRes = await fetch(`${BASE_URL}/user`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${ token }`
+        },
+    })
+
+    if (userInfoRes.ok) {
+        const userInfoData = await userInfoRes.json();
+        console.log(userInfoData.data)
+        return userInfoData.data;
+    }
+
+    return null;
 }

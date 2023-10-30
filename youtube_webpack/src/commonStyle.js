@@ -9,6 +9,10 @@ export const FlexBox = styled.div`
     width: ${props => props.width || ""};
 `;
 
+export const Hidden = styled.div`
+    display: none;
+`;
+
 export const ButtonContainer = styled(FlexBox)`
     cursor: pointer;
     ${props => props.login && css`
@@ -18,7 +22,7 @@ export const ButtonContainer = styled(FlexBox)`
 `;
 
 export const Button = styled.button`
-    width: 100%;
+    /* width: 100%; */
     border-radius: 20px;
     border: 1px solid #E5E5E5;
     font-size: 14px;
@@ -56,9 +60,19 @@ export const OvalButton = styled(Button)`
     }
 `;
 
+export const IconWrapper = styled.div`
+    position: absolute;
+    left: 300px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 0;
+    border-radius: 50%;
+`;
+
 export const ProfileImgContainer = styled(FlexBox)`
     width: 160px;
     height: 160px;
+    cursor: pointer;
 `;
 
 export const Img = styled.img`

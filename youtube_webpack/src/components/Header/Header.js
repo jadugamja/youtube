@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 import { isWideNavState, isOpenUploadDialogState, isOpenProfileDialogState } from "../../recoil/atoms/mainAtom";
 import { FixedHeader, HeaderLeftWrapper, HeaderCenterWrapper, HeaderRightWrapper, MenuLogoContainerDiv, MenuBoxDiv, LogoBoxLink, MenuImg, LogoImg, TootipHomeDiv, SearchForm, SearchContainerDiv, InputContainerDiv, SearchImg, SearchInput, KeyboardContainerDiv, KeyboardImg, SearchButtonContainerDiv, TooltipDiv, TooltipText, MicWrapper, MicContainer, MicImg, HeaderRightItemDiv, VideoImg, BellImg, ProfileContainerDiv, ProfileImg, ButtonContainer, Button, DialogText } from "./HeaderStyle";
@@ -120,9 +121,9 @@ const Header = () => {
                     <MenuBoxDiv row="center" col="center" onClick={toggleMenuButton}>
                         <MenuImg src={menu} alt="menu" />
                     </MenuBoxDiv>
-                    <LogoBoxLink href="#">
+                    <Link to="/home">
                         <LogoImg src={logo} />
-                    </LogoBoxLink>
+                    </Link>
                     <TootipHomeDiv hide>
                         <span>YouTube 홈</span>
                     </TootipHomeDiv>

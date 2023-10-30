@@ -148,7 +148,8 @@ export const SearchButtonContainerDiv = styled(FlexBox)`
 
 export const TooltipDiv = styled(FlexBox)`
     position: absolute;
-    top: 74px;
+    top: ${props => props.top || "74px" };
+    left: ${props => props.left || "" };
 
     width: fit-content;
     height: 34px;

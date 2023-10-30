@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useRef, useState, useCallback } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { FlexBox, ProfileImgContainer, Img, TitleContainer, BigTitle, Description, InfoLink, OvalButton } from "../../commonStyle";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import profilePath from "../../assets/images/channel-profile-1.jpg";
+import { FlexBox, ProfileImgContainer, Img, IconWrapper, TitleContainer, BigTitle, Description, InfoLink, OvalButton, Hidden } from "../../commonStyle";
+import { TooltipDiv, TooltipText } from "../Header/HeaderStyle";
+import { faCamera, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { profileImgPathState } from "../../recoil/atoms/mainAtom";
+import { updateProfileImg } from "../../api/user"
 
 const ChannelHeader = styled(FlexBox)`
     width: auto;
@@ -14,19 +17,56 @@ const ChannelHeader = styled(FlexBox)`
 const ProfileDescContainer = styled(FlexBox)`
     padding: 0 24px;
 `
+
 const MyChannelItem = styled.li`
     margin: 23px 16px 17px 16px;
 `;
 
 const MainMyChannel = () => {
 
+    const [profileImgPath, setProfileImgPath] = useRecoilState(profileImgPathState);
+    const inputRef = useRef(null)
+
+    // 프로필 사진 마우스 오버 시 툴팁 출력
+    const [isHover, setIsHover] = useState(false);
+    const activateTooltipEvent = () => setIsHover(!isHover)
+    const disabledTooltipEvent = () => setIsHover(false)
+
+    const changeProfileEvent = useCallback((e) => {
+        if (!e.target.files) return;
+
+        const selectedFile = e.target.files[0]
+
+        updateProfileImg(selectedFile).then(() => {
+            setProfileImgPath(URL.createObjectURL(selectedFile));
+        }).catch((error) => {
+            console.error("에러 내용: ", error)
+        })
+    }, [setProfileImgPath]);
+
+    const uploadProfileClickEvent = useCallback(() => {
+        if(!inputRef.current) return;
+        inputRef.current.click();
+    }, [])
+
     return(
         <main>
-            <div style={{"margin-top": "22px", "margin-left": "100px"}}>
+            <div style={{"margin-top": "22px", "margin-left": "240px"}}>
                 <ChannelHeader col="center">
                     <ProfileImgContainer row="center" col="center">
-                        <Img src={profilePath} alt="edit"/>
+                        <Hidden as="input" type="file" accept="image/*" ref={inputRef} onChange={changeProfileEvent}/>
+                        <Img src={profileImgPath} alt="edit" onMouseOver={activateTooltipEvent} onMouseOut={disabledTooltipEvent} onClick={uploadProfileClickEvent} />
+                        {
+                            isHover && (
+                                <IconWrapper>
+                                    <FontAwesomeIcon icon={faCamera}></FontAwesomeIcon>
+                                </IconWrapper>
+                            )
+                        }
                     </ProfileImgContainer>
+                    {
+                        isHover && <TooltipDiv top="200px" left="265px"><TooltipText>프로필 사진 수정</TooltipText></TooltipDiv>
+                    }
                     <ProfileDescContainer dir="col" row="between">
                         <TitleContainer>
                             <BigTitle>사용자명</BigTitle>

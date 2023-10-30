@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { login } from "../api/login";
+import { Link, useNavigate } from "react-router-dom";
+import { login, getCurrentUserInfo } from "../api/login";
 
 import { FlexBox, TitleContainer, BigTitle, MarginLabel, TempInput, LoginButton } from "../commonStyle"
 
 const Login = () => {
     
-    const [userInfo, setUserInfo] = useState(null)
+    const [userInfo, setUserInfo] = useState(null);
+    const navigate = useNavigate();
 
     const loginSubmitHandler = async (e) => {
         e.preventDefault();
@@ -17,10 +19,16 @@ const Login = () => {
             pw: formData.get("pw")
         }
 
-        const token = JSON.stringify((await login(loginPayload)))
+        const response = await login(loginPayload)
 
-        if (userInfo === null) return;
-        setUserInfo(userInfo);
+        if (response.token) {
+            // const userInfo = await getCurrentUserInfo(response.token)
+            // if (userInfo === null) return;
+
+            setUserInfo(userInfo);
+            navigate("/home");
+        }
+        
     }
     
     return (
@@ -37,6 +45,7 @@ const Login = () => {
                 </MarginLabel>
                 <LoginButton type="submit">로그인</LoginButton>
             </FlexBox>
+            <Link to="/signup">회원가입</Link>
         </main>
     )
 }

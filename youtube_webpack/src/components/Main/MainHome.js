@@ -3,6 +3,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 
 import { isWideNavHiddenModalState, isWideNavState, selectedKeywordState, videoKeywordsState } from "../../recoil/atoms/mainAtom";
 import MainHomeItem from "./MainHomeItem";
+import { selectAllVideo } from "../../api/post";
 import videoSet from "../../db/videoSet.json";
 import { fetchData } from "../../utils/fetchData";
 import { HomeMain, VideoKeywordsContainerDiv, KeywordsBoxDiv, KeywordsDiv, KeywordsSpan, VideoContentContainerDiv } from "./MainHomeStyle.js";
@@ -43,15 +44,18 @@ const MainHome = () => {
         }
     }
 
+    const [page, setPage] = useState(1);
+
     React.useEffect(() => {
 
+        selectAllVideo(page);
         fetchData("/data.json", (data) => setVideoKeywords(data.keywords));
 
         // Handle Infinite Scroll Event
         window.addEventListener("scroll", scrollDownToNextContentEvent, true);
         return () => window.removeEventListener("scroll", scrollDownToNextContentEvent);
         
-    }, [isScrolledDown]);
+    }, [isScrolledDown, page]);
 
     return (
         <HomeMain marginLeft={(isWideScreen && !menuButtonClicked)}>
