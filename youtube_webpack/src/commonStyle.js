@@ -22,7 +22,6 @@ export const ButtonContainer = styled(FlexBox)`
 `;
 
 export const Button = styled.button`
-    /* width: 100%; */
     border-radius: 20px;
     border: 1px solid #E5E5E5;
     font-size: 14px;
@@ -39,6 +38,7 @@ export const Button = styled.button`
 `;
 
 export const LoginButton = styled(Button)`
+    width: 100%;
     margin-top: 15px;
     font-size: 20px;
     font-weight: 700;

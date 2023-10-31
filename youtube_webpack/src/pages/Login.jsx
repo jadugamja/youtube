@@ -21,9 +21,10 @@ const Login = () => {
 
         const response = await login(loginPayload)
 
-        if (response.token) {
-            // const userInfo = await getCurrentUserInfo(response.token)
-            // if (userInfo === null) return;
+        if (response === "success") {
+
+            const userInfo = await getCurrentUserInfo()
+            if (userInfo === null) return;
 
             setUserInfo(userInfo);
             navigate("/home");

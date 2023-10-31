@@ -1,5 +1,5 @@
 import { BASE_URL } from './const'
-import { getAccessTokenFromLocalStorage, saveAccessTokenToLocalStorage } from '../utils/accessTokenHandler'
+import { setCookie } from '../utils/accessTokenHandler'
 
 export const login = async ({id, pw}) => {
 
@@ -14,23 +14,25 @@ export const login = async ({id, pw}) => {
         })
     })
 
-    const loginResponseData = await loginResponse.json();
-    
     if (loginResponse.ok) {
-        saveAccessTokenToLocalStorage(loginResponseData.data.token)
-        return loginResponseData.data
+        const result = await loginResponse.json();
+        const token = result.data.token;
+        setCookie("token", token, {
+            path: "/",
+            // Cf. Response Date: new Date().toUTCString()
+        })
+        return "success";
     }
 
-    return loginResponseData.message
+    return "fail";
 }
 
-export const getCurrentUserInfo = async (token) => {
+export const getCurrentUserInfo = async () => {
 
     const userInfoRes = await fetch(`${BASE_URL}/user`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${ token }`
         },
     })
 

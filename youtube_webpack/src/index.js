@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RecoilRoot } from "recoil";
+import { CookiesProvider } from "react-cookie";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import App from "./App";
 
@@ -107,10 +108,12 @@ const GlobalStyle = createGlobalStyle`
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <RecoilRoot>
-            <ThemeProvider theme={theme}>
-                <GlobalStyle />
-                <App />
-            </ThemeProvider>
+            <CookiesProvider>
+                <ThemeProvider theme={theme}>
+                    <GlobalStyle />
+                    <App />
+                </ThemeProvider>
+            </CookiesProvider>
         </RecoilRoot>
     </React.StrictMode>
 );
