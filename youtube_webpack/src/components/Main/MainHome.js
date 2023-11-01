@@ -4,7 +4,6 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { isWideNavHiddenModalState, isWideNavState, selectedKeywordState, videoKeywordsState } from "../../recoil/atoms/mainAtom";
 import MainHomeItem from "./MainHomeItem";
 import { selectAllVideo } from "../../api/post";
-import videoSet from "../../db/videoSet.json";
 import { fetchData } from "../../utils/fetchData";
 import { HomeMain, VideoKeywordsContainerDiv, KeywordsBoxDiv, KeywordsDiv, KeywordsSpan, VideoContentContainerDiv } from "./MainHomeStyle.js";
 
@@ -13,14 +12,17 @@ const MainHome = () => {
     const isWideScreen = useRecoilValue(isWideNavHiddenModalState);
     const menuButtonClicked = useRecoilValue(isWideNavState);
 
-    // 스크롤이 문서 최하단에 위치한 횟수
-    const [isScrolledDown, setIsScrolledDown] = useState(0);
-    
-    // 영상 정보
-    const [videoContent, setVideoContent] = useState(videoSet.slice(isScrolledDown, isScrolledDown + 16));
-    
     // 영상 키워드 정보
     const [videoKeywords, setVideoKeywords] = useRecoilState(videoKeywordsState);
+
+    // 스크롤이 문서 최하단에 위치한 횟수
+    const [isScrolledDown, setIsScrolledDown] = useState(0);
+
+    // 조회할 게시물 페이지
+    const [page, setPage] = useState(1);
+
+    // 영상 정보
+    const [videoContent, setVideoContent] = useState([]);
     
     // 선택된 키워드
     const [selectedKeyword, setSelectedKeyword] = useRecoilState(selectedKeywordState);
@@ -38,22 +40,28 @@ const MainHome = () => {
 
         // 스크롤 위치가 문서 최하단에 닿았을 때
         if (scrollTop + windowHeight >= documentHeight) {
-            const nextData = videoSet.slice((isScrolledDown + 1) * 16, (isScrolledDown + 2) * 16);
+            // const nextData = videoSet.slice((isScrolledDown + 1) * 16, (isScrolledDown + 2) * 16);
             setIsScrolledDown(prevIsScrolledDown => prevIsScrolledDown + 1);
             setVideoContent( prevVideoContent => [...prevVideoContent, ...nextData] );
         }
     }
 
-    const [page, setPage] = useState(1);
 
     React.useEffect(() => {
-
-        selectAllVideo(page);
+        // 키워드
         fetchData("/data.json", (data) => setVideoKeywords(data.keywords));
+        
+        // 영상
+        async function fetchVideoData() {
+            const data = await selectAllVideo(page)
+            setVideoContent( prevVideoContent => [...prevVideoContent, ...data] );
+        }
+        
+        fetchVideoData()
 
         // Handle Infinite Scroll Event
-        window.addEventListener("scroll", scrollDownToNextContentEvent, true);
-        return () => window.removeEventListener("scroll", scrollDownToNextContentEvent);
+        // window.addEventListener("scroll", scrollDownToNextContentEvent, true);
+        // return () => window.removeEventListener("scroll", scrollDownToNextContentEvent);
         
     }, [isScrolledDown, page]);
 

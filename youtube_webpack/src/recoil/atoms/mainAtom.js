@@ -30,13 +30,13 @@ export const selectedKeywordState = atom({
     default: 0
 });
 
-export const videoContentState = atom({
-    key: "videoContentState",
+export const videoKeywordsState = atom({
+    key: "videoKeywordsState",
     default: []
 });
 
-export const videoKeywordsState = atom({
-    key: "videoKeywordsState",
+export const videoContentState = atom({
+    key: "videoContentState",
     default: []
 });
 

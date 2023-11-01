@@ -10,8 +10,9 @@ export const selectAllVideo = async (page) => {
     })
 
     if(selectAllRes.ok) {
-        const data = await selectAllRes.json().data;
-        console.log("유튜브 게시글 목록 가져오기 성공!!!")
+        const result = await selectAllRes.json();
+        console.log(result.data.postArray)
+        return result.data.postArray;
     } else {
         console.log("유튜브 게시글 목록 가져오기 실패!!!")
     }
