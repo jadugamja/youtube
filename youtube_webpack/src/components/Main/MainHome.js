@@ -3,8 +3,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 
 import { isWideNavHiddenModalState, isWideNavState, selectedKeywordState, videoKeywordsState } from "../../recoil/atoms/mainAtom";
 import MainHomeItem from "./MainHomeItem";
-import { selectAllVideo } from "../../api/post";
-import { fetchData } from "../../utils/fetchData";
+import { selectAllVideo, getDataFromPublic } from "../../api/post";
 import { HomeMain, VideoKeywordsContainerDiv, KeywordsBoxDiv, KeywordsDiv, KeywordsSpan, VideoContentContainerDiv } from "./MainHomeStyle.js";
 
 const MainHome = () => {
@@ -46,11 +45,11 @@ const MainHome = () => {
         }
     }
 
-
     React.useEffect(() => {
-        // 키워드
-        fetchData("/data.json", (data) => setVideoKeywords(data.keywords));
         
+        // 키워드
+        getDataFromPublic((data) => setVideoKeywords(data.keywords));
+
         // 영상
         async function fetchVideoData() {
             const data = await selectAllVideo(page)

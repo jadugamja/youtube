@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { isWideNavState } from "recoil/atoms/mainAtom";
-import { FixedHeader, HeaderLeftWrapper, HeaderCenterWrapper, HeaderRightWrapper, MenuLogoContainerDiv, MenuBoxDiv, LogoBoxLink, MenuImg, LogoImg, TootipHomeDiv, SearchForm, SearchContainerDiv, InputContainerDiv, SearchImg, SearchInput, KeyboardContainerDiv, KeyboardImg, SearchButtonContainerDiv, TooltipDiv, TooltipSpan, MicWrapper, MicContainer, MicImg, HeaderRightItemDiv, VideoImg, BellImg, ProfileContainerDiv, ProfileImg, ButtonContainer } from "./HeaderStyle.js";
+import { FixedHeader, HeaderLeftWrapper, HeaderCenterWrapper, HeaderRightWrapper, MenuLogoContainerDiv, MenuBoxDiv, LogoBoxLink, MenuImg, LogoImg, TootipHomeDiv, SearchForm, SearchContainerDiv, InputContainerDiv, SearchImg, SearchInput, KeyboardContainerDiv, KeyboardImg, SearchButtonContainerDiv, TooltipDiv, TooltipSpan, MicWrapper, MicContainer, MicImg, HeaderRightItemDiv, VideoImg, BellImg, ProfileContainerDiv, ProfileImg, ButtonContainer } from "./HeaderStyle";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import menu from "assets/menu.png";
 import logo from "assets/logo.png";

@@ -1,4 +1,4 @@
-import { BASE_URL } from './const'
+import { BASE_URL, PUBLIC_PATH } from './const'
 
 export const selectAllVideo = async (page) => {
 
@@ -17,6 +17,19 @@ export const selectAllVideo = async (page) => {
         console.log("유튜브 게시글 목록 가져오기 실패!!!")
     }
 
+}
+
+export const getDataFromPublic = async () => {
+
+    const getDataRes = await fetch(`${PUBLIC_PATH}/data.json`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+    })
+
+    const data = await getDataRes.json();
+    setDataSet(data);
 }
 
 export const getTimeAgo = (createdAt) => {

@@ -2,11 +2,12 @@ import React, { useState } from "react";
 
 import { getTimeAgo } from "../../api/post"
 import { VideoSection, ThumbnailContainerDiv, ThumbnailLink, ThumbnailImg, VideoDescContainerDiv, ChannelProfileImg, DescRightContainerDiv, DescRightHeaderDiv, DescRightProfileDiv, VideoTitle, KebabButton, NameSpan, VerifiedImg } from "./MainHomeItemStyle";
+import tempThumbnailImgPath from "../../assets/images/countdown.jpg";
+import animatedThumbnail from "../../assets/images/countdown.gif";
 
 const MainHomeItem = (props) => {
 
-    // 서버에서 제공해주지 않은 데이터: videoTitle, animatedThumbnail, hitsPerVideo
-    const {item: {nickname, profileImgPath, videoTitle, thumbnailImgPath, animatedThumbnail, hitsPerVideo, createdAt}, idx} = props;
+    const {item: {nickname, profileImgPath, videoTitle, thumbnailImgPath, animatedThumbnailImgPath, hitsPerVideo, createdAt}, idx} = props;
     const [isPlaying, setIsPlaying] = useState(false);
 
     const uploadedPeriod = getTimeAgo(new Date(createdAt).getTime());
@@ -20,7 +21,7 @@ const MainHomeItem = (props) => {
         <VideoSection onMouseOver={handleThumbnailMouseOver} onMouseOut={handleThumbnailMouseOut}>
             <ThumbnailContainerDiv row="center" col="center">
                 <ThumbnailLink href="#">
-                    <ThumbnailImg id={`thumbnail-${idx}`} src={isPlaying ? animatedThumbnail : thumbnailImgPath } alt="thumbnail" />
+                    <ThumbnailImg id={`thumbnail-${idx}`} src={isPlaying ? animatedThumbnail : tempThumbnailImgPath } alt="thumbnail" />
                 </ThumbnailLink>
             </ThumbnailContainerDiv>
             <VideoDescContainerDiv row="between">
