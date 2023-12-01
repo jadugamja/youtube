@@ -1,0 +1,8 @@
+{
+    "workspaces": [
+        "youtube_recoil",
+        "youtube_redux",
+        "youtube_vanilla",
+        "youtube_webpack",
+    ]
+}

@@ -8,7 +8,8 @@ const config = {
     },
     output: {                   // 결과물
         filename: "bundle.js",
-        path: __dirname + "/public"
+        path: __dirname + "/public",
+        clean: true,            // Webpack 5 output 폴더 내 파일 정리 후 번들링
     },
     // For Webpack 4
     resolve: {
