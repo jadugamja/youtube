@@ -21,7 +21,7 @@ export const selectAllVideo = async (page) => {
 
 export const getDataFromPublic = async () => {
 
-    const getDataRes = await fetch(`${PUBLIC_PATH}/data.json`, {
+    const getDataRes = await fetch(`${PUBLIC_PATH}data.json`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -29,7 +29,8 @@ export const getDataFromPublic = async () => {
     })
 
     const data = await getDataRes.json();
-    setDataSet(data);
+    return data;
+    // setDataSet(data);
 }
 
 export const getTimeAgo = (createdAt) => {

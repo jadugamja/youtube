@@ -11,8 +11,9 @@ const config = {
         path: __dirname + "/public",
         clean: true,            // Webpack 5 output 폴더 내 파일 정리 후 번들링
     },
-    // For Webpack 4
     resolve: {
+        extensions: [".js", "jsx"],     // 확장자 생략해도 알게끔
+        // For Webpack 4
         alias: {
             src: path.resolve(__dirname, "src")
         }
